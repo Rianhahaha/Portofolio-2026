@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontMain.variable} ${fontMain.variable} antialiased font-main bg-gradient-to-bl from-black  to-teal-950`}
+        className={`${fontMain.variable} ${fontMain.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
       >
         <AnimatedBg />
         
