@@ -18,6 +18,15 @@
   }
 }
 
+::selection {
+  @apply text-white bg-teal-500
+}
+
+/* For Firefox compatibility */
+::-moz-selection {
+  @apply text-white bg-teal-500
+}
+
 body {
 
   color: var(--foreground);
@@ -29,4 +38,22 @@ body {
 }
 .global-transition-slower {
   @apply transition-all duration-500 ease-in-out
+}
+
+/* custom swiper */
+.swiper {
+  margin: 0;
+}
+.swiper.custom {
+  overflow: unset!important;
+}
+
+.swiper-pagination {
+  bottom: -30px !important;
+}
+.swiper-pagination-bullet-active {
+  @apply !bg-cyan-500 scale-[1.3] transition-all duration-500 ease-in-out;
+}
+.swiper-pagination-bullet {
+  @apply transition-all duration-500 ease-in-out;
 }

@@ -10,12 +10,14 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.8.0",
     "cheerio": "^1.1.2",
     "lucide-react": "^0.542.0",
     "next": "15.5.2",
     "puppeteer": "^24.17.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "swiper": "^12.0.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
