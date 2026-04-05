@@ -7,14 +7,14 @@ import Section3 from "../component/home/section-3";
 export default function Home() {
   return (
     <>
-    <div className="hidden md:block">
+    <div className="hidden lg:block">
       <Section1 />
       <Navbar />
       <Section2 />
       <Section3 />
     </div>
-    <div className=" md:hidden h-dvh flex items-center justify-center">
-      Mobile View is on Develop
+    <div className=" lg:hidden h-dvh flex items-center justify-center">
+      Mobile View is currently on Develop
     </div>
     </>
   );

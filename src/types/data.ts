@@ -3,6 +3,12 @@ export interface SkillItem {
     title?:string;
     img?:string;
 }
+
+export interface ProjectType {
+    id:string;
+    name:string;
+}
+
 export interface ProjectItem {
     id:string;
     title:string;
@@ -10,7 +16,7 @@ export interface ProjectItem {
     img:string;
     desc:string;
     year:number;
-    type:string;
+    type?:string[];
     case?:string;
     techIds:string[];
     previewImg?:string[];

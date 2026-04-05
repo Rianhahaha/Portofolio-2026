@@ -31,14 +31,43 @@ export default function ProjectCard({
                     />
                 </div>
             </div>
-            <div className="w-full h-[10rem] rounded-xl rounded-b-none overflow-hidden">
-                <img width={300} height={300} className='size-full object-cover' alt='' src={img} />
-            </div>
+            {img === '' ? (
+                <div className="w-full relative h-[10rem] rounded-xl rounded-b-none overflow-hidden bg-gradient-to-br from-transparent from-10% to-teal-500/40 flex items-start justify-start">
+                    <div className=" pl-20 p-10 flex flex-wrap-re w-full justify-end items-center rotate-[-15deg] translate-x-[-90px] translate-y-[-60px]">
+                        <div className="w-[250px] opacity-50 flex flex-wrap gap-2">
+
+                            {projectTechs.slice(0, 3).map((tech, index) => (
+                                <Image className={` rounded-fulla size-[105px]  
+                            nth-[1]:left-[10px] 
+                            nth-[1]:top-[5px]
+                            nth-[2]:left-[60px]
+                            nth-[2]:top-[40px]
+                            nth-[3]:left-[10px]
+                            nth-[3]:top-[80px]
+                            
+                            `}
+                                    key={index} src={tech?.img || ''} alt={tech?.title || ''} width={50} height={50} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="w-full h-[10rem] rounded-xl rounded-b-none overflow-hidden">
+                    <img width={300} height={300} className='size-full object-cover' alt='' src={img} />
+                </div>
+            )}
             {/* title */}
             <div className="p-3 grow flex flex-col justify-between">
                 <div>
                     <div className="w-full font-bold">
-                        {title} <span className='font-light text-xs text-white/50'>- {type} </span>
+                        <span className="mr-1">
+
+                            {title}
+                        </span>
+                        <span className='font-light text-xs text-white/50'>
+
+                            - {type?.join(", ")}
+                        </span>
                     </div>
                     {/* tech */}
                     <div className="flex w-full gap-2 my-2 flex-wrap">

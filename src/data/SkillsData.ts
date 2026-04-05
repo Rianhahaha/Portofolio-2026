@@ -4,12 +4,12 @@ export const SKILLS_DATA: SkillItem[] = [
   {
     id: "javascript",
     title: "JavaScript",
-    img: "/skills/JS.png",
+    img: "/skills/js.png",
   },
   {
     id: "typescript",
     title: "TypeScript",
-    img: "/skills/TypeScript.svg",
+    img: "/skills/typeScript.svg",
   },
   {
     id: "css",
@@ -44,7 +44,7 @@ export const SKILLS_DATA: SkillItem[] = [
   {
     id: "supabase",
     title: "Supabase",
-    img: "/skills/nextjs.svg",
+    img: "/skills/supabase.svg",
   },
   {
     id: "react-native",
@@ -81,6 +81,11 @@ export const SKILLS_DATA: SkillItem[] = [
     title: "ACF Field",
     img: "/skills/acf.svg",
   },
+  {
+    id: "svelte",
+    title: "Svelte",
+    img: "/skills/svelte.png",
+  },
 ];
 export const OTHER_SKILLS_DATA: SkillItem[] = [
   {
@@ -98,9 +103,9 @@ export const OTHER_SKILLS_DATA: SkillItem[] = [
     title: "Corel Draw",
     img: "/skills/corel.png",
   },
-  {
-    id: "premierepro",
-    title: "Premiere Pro",
-    img: "/skills/premiere.svg",
-  },
+  // {
+  //   id: "premierepro",
+  //   title: "Premiere Pro",
+  //   img: "/skills/premiere.svg",
+  // },
 ];

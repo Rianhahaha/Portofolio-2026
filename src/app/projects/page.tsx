@@ -6,10 +6,13 @@ import ProjectCard from "../../component/card/ProjectCard";
 import { PROJECT_DATA } from "@/data/ProjectData";
 
 export default function Projects() {
+  const defaultSort = [...PROJECT_DATA].sort((a, b) => b.year - a.year);
+  // console.log(defaultSort);
+
   return (
     <PagesLayout>
       <section className="w-full min-h-screen overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full mt-[10rem]">
+        <div className="max-w-7xl mx-auto w-full my-[10rem]">
           {/* title */}
           <div className="flex gap-5 items-center">
             <h1 className="text-[5rem] font-bold mb-5">
@@ -28,7 +31,7 @@ export default function Projects() {
           {/* Projects List */}
           <div className="grid grid-cols-3 gap-10">
             {/* Project Card */}
-            {PROJECT_DATA.map((data, i) => (
+            {defaultSort.map((data, i) => (
               <ProjectCard key={i}
               id={data.id}
               title={data.title} 

@@ -10,13 +10,13 @@ export default function Navbar() {
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState(pathname);
   const [scrolled, setScrolled] = useState(false);
-  
+
   // Hapus baris ini, karena kita tidak perlu lagi state 'activeLink'
   // yang disinkronkan, kita bisa menghitung status aktif secara langsung.
   // const [activeLink, setActiveLink] = useState(pathname);
-  
+
   const links = [
-    { name: "About", href: "/" },
+    { name: "Home", href: "/" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
     { name: "Artworks", href: "/artworks" },
@@ -42,12 +42,12 @@ export default function Navbar() {
   }, []);
 
   // Fungsi utilitas untuk menentukan status aktif
-  const isLinkActive = (href:any) => {
+  const isLinkActive = (href: any) => {
     // Kasus Khusus: Jika link adalah root ('/'), hanya cocokkan secara eksak
     if (href === '/') {
       return pathname === href;
     }
-    
+
     // Kasus Umum: Jika link adalah sub-path ('/projects'), cek apakah pathname dimulai dengannya
     return pathname.startsWith(href);
   };
@@ -56,26 +56,27 @@ export default function Navbar() {
     <>
       <div className={`top-0 h-[100px] z-50 w-full ${pathname === links[0].href ? "sticky" : " fixed"}`}>
         <nav
-          className={`flex items-center mx-auto justify-center global-transition !duration-700 border-y ${
-            scrolled
-              ? "bg-black/10 backdrop-blur-sm w-7xl rounded-[100px] translate-y-5 h-full border-t-transparent border-b-teal-500/20"
-              : "  w-full bg-transparent backdrop-blur-sm h-full border-t-teal-500/20 border-b-transparent"
-          } `}
+          className={`relative flex items-center mx-auto justify-center global-transition !duration-700   ${scrolled
+              ? "bg-black/10 backdrop-blur-sm w-7xl rounded-[100px] translate-y-5 h-full border-t-transparent border-b-teal-500/50 border-y"
+              : "  w-full bg-transparent backdrop-blur-xs h-full border-t-transparent  border-b-transparent"
+            } `}
         >
+          <div className={`absolute w-full h-[2px] bg-gradient-to-l from-teal-500 via-30% via-teal-500/30 to-transparent z-[99999] top-0 global-transition-slower
+            ${scrolled ?  'opacity-0' : 'opacity-100'}
+            `} />
+
           <ul
-            className={` w-full mx-auto flex items-center justify-between global-transition !duration-1000 ${
-              scrolled ? "max-w-2xl" : "max-w-7xl"
-            }`}
+            className={` w-full mx-auto flex items-center justify-between global-transition !duration-1000 ${scrolled ? "max-w-2xl" : "max-w-7xl"
+              }`}
           >
             {leftNav.map((link) => (
               <li
                 key={link.name}
                 // MENGGUNAKAN FUNGSI BARU DI SINI
-                className={`${
-                  isLinkActive(link.href)
+                className={`${isLinkActive(link.href)
                     ? "text-white text-shadow-xl text-shadow-white"
                     : "opacity-50"
-                } hover:opacity-100 cursor-pointer global-transition`}
+                  } hover:opacity-100 cursor-pointer global-transition`}
               >
                 <Link href={link.href}>{link.name}</Link>
               </li>
@@ -93,10 +94,9 @@ export default function Navbar() {
             {rightNav.map((link) => (
               <li
                 key={link.name}
-                 // MENGGUNAKAN FUNGSI BARU DI SINI
-                className={`${
-                  isLinkActive(link.href) ? "text-white" : "text-gray-400"
-                } hover:text-white cursor-pointer global-transition`}
+                // MENGGUNAKAN FUNGSI BARU DI SINI
+                className={`${isLinkActive(link.href) ? "text-white" : "text-gray-400"
+                  } hover:text-white cursor-pointer global-transition`}
               >
                 <Link href={link.href}>{link.name}</Link>
               </li>

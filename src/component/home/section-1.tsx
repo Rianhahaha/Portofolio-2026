@@ -12,14 +12,14 @@ export default function Section1() {
             <span className="text-cyan-500">Rian</span> Here.
           </h1>
           <p className="">
-            an Information Technology student specializing in graphic design,
+            Fresh Graduated Information Technology student specializing in graphic design,
             illustration, and{" "}
             <b className="text-cyan-500"> front-end web development.</b> His
             expertise in these areas has been demonstrated through various
             projects completed for diverse clients. He has a keen interest in
             visual design and its implementation, which includes{" "}
             <b className="text-cyan-500"> front-end website development, </b>
-            illustration, and graphic design. (revisi)
+            illustration, and graphic design.
           </p>
           <div className="flex justify-end mt-5">
             <MainButton

@@ -20,7 +20,7 @@ export default function Footer() {
           <Link className='p-3 hover:bg-white/10 rounded-full global-transition hover:text-cyan-500' href="https://www.instagram.com/triandi_aprilio/" target="_blank" rel="noopener noreferrer">
             <SiInstagram />
           </Link>
-          <Link className='p-3 hover:bg-white/10 rounded-full global-transition hover:text-cyan-500' href="www.linkedin.com/in/triandiaprilio/" target="_blank" rel="noopener noreferrer">
+          <Link className='p-3 hover:bg-white/10 rounded-full global-transition hover:text-cyan-500' href="https://www.linkedin.com/in/triandiaprilio/" target="_blank" rel="noopener noreferrer">
             <Linkedin />
           </Link>
           <Link className='p-3 hover:bg-white/10 rounded-full global-transition hover:text-cyan-500' href="https://github.com/Rianhahaha/" target="_blank" rel="noopener noreferrer">
