@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { PROJECT_DATA } from "@/data/ProjectData";
 import { ProjectItem } from "@/types";
 
-// Import CSS Swiper (Jangan lupa!)
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from "next/image";

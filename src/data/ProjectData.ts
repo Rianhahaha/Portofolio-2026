@@ -94,7 +94,7 @@ export const PROJECT_DATA: ProjectItem[] = [
     case: "This project began as a technical research initiative to evaluate Svelte as a lightweight, compiler-based alternative to traditional frontend frameworks. I conducted an in-depth analysis of its performance benefits, reactive state management, and overall developer experience. After validating its capabilities during the research phase, I successfully transitioned into hands-on development, applying Svelte to build and deliver a real-world project with a highly optimized and reactive user interface.",
     techIds: [
       'svelte',
-      'javascript',
+      'typescript',
       'css',
       // Tambahkan tech lain jika ada, misal: 'vite', 'tailwind-css'
     ],    
@@ -115,7 +115,7 @@ export const PROJECT_DATA: ProjectItem[] = [
       'react-native',
       'strapi',
       'tailwind',
-      'javascript',
+      'typescript',
     ],    
      previewImg: [], // Sesuaikan parameter gambarnya
   },
@@ -130,7 +130,7 @@ export const PROJECT_DATA: ProjectItem[] = [
     case: "The primary objective of this project was to explore and implement scalable video conferencing solutions tailored for modern web browsers. I conducted extensive research and hands-on integration using the Agora Web SDK to establish low-latency, high-quality audio and video rooms. To enhance accessibility and user experience, I also researched and successfully integrated a real-time Speech-to-Text (STT) feature, allowing the application to generate live transcriptions during online meetings.",
     techIds: [
       'agora',
-      'javascript',
+      'typescript',
       'react-js',
       'tailwind',
     
