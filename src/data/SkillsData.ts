@@ -9,7 +9,7 @@ export const SKILLS_DATA: SkillItem[] = [
   {
     id: "typescript",
     title: "TypeScript",
-    img: "/skills/typescript.svg",
+    img: "/skills/typescript_logo.svg",
   },
   {
     id: "css",
