@@ -1,6 +1,6 @@
 import { ProjectType, SkillItem } from "@/types";
 
-export const SKILLS_DATA: ProjectType[] = [
+export const PROJECT_TYPE: ProjectType[] = [
   {
     id: "website",
     name: "Website",

@@ -12,6 +12,7 @@ export default function ProjectCard({
     year,
     techIds,
     type,
+    className,
 }: ProjectItem) {
     const ALL_RESOURCES = [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
     const projectTechs = techIds
@@ -19,7 +20,7 @@ export default function ProjectCard({
         .filter(Boolean);
 
     return (
-        <div className="relative group overflow-hidden w-full h-full min-h-[25rem] bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/50  global-transition rounded-xl flex flex-col justify-start items-center">
+        <div className={"relative group overflow-hidden w-full h-full min-h-[25rem] bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/50  global-transition rounded-xl flex flex-col justify-start items-center " + className}>
             <div className="flex opacity-0 justify-center items-center group-hover:opacity-100 absolute bg-black/50 backdrop-blur-sm z-10 size-full top-0 left-0 global-transition">
                 <div className="translate-y-[15rem] group-hover:translate-y-0 global-transition-slower">
                     <MainButton
@@ -33,7 +34,7 @@ export default function ProjectCard({
             </div>
             {img === '' ? (
                 <div className="w-full relative h-[10rem] rounded-xl rounded-b-none overflow-hidden bg-gradient-to-br from-transparent from-10% to-teal-500/40 flex items-start justify-start">
-                    <div className=" pl-20 p-10 flex flex-wrap-re w-full justify-end items-center rotate-[-15deg] translate-x-[-90px] translate-y-[-60px]">
+                    <div className=" pl-20 p-10 flex flex-wrap-re w-[23rem] justify-end items-center rotate-[-15deg] translate-x-[-90px] translate-y-[-60px]">
                         <div className="w-[250px] opacity-50 flex flex-wrap gap-2">
 
                             {projectTechs.slice(0, 3).map((tech, index) => (
@@ -57,7 +58,7 @@ export default function ProjectCard({
                 </div>
             )}
             {/* title */}
-            <div className="p-3 grow flex flex-col justify-between">
+            <div className="p-3 grow flex flex-col justify-between pointer-events-none">
                 <div>
                     <div className="w-full font-bold">
                         <span className="mr-1">

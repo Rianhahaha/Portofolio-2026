@@ -20,4 +20,6 @@ export interface ProjectItem {
     case?:string;
     techIds:string[];
     previewImg?:string[];
+    className?:string;
+
 }
