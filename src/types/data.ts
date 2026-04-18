@@ -21,5 +21,7 @@ export interface ProjectItem {
     techIds:string[];
     previewImg?:string[];
     className?:string;
+    techIdsActive?:string[];
+    typeActive?:string[];
 
 }

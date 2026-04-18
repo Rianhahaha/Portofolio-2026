@@ -17,7 +17,7 @@ export default function Section3() {
   // const previewProject = PROJECT_DATA.slice(0, 5);
   const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section className="max-w-7xl mx-auto w-full h-full min-h-[50dvh] flex flex-col justify-center items-center">
+    <section className="max-w-7xl mx-auto w-full h-full min-h-[50dvh]  px-5 lg:px-0 py-20  flex flex-col justify-center items-center">
       <div className="my-10 text-center">
         <h1 className="text-3xl font-bold">
           My <span className="text-cyan-500">Skills.</span>
@@ -27,16 +27,27 @@ export default function Section3() {
         I'm Experienced on using
       </div>
       <Swiper
-        direction="vertical"
+        breakpoints={{
+          768: {
+            direction:"vertical",
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: { clickable: true },
+
+            
+            
+          }
+        }}
+        direction="horizontal"
         slidesPerView={1}
         spaceBetween={30}
-        mousewheel={true}
+        // mousewheel={true}
         autoHeight={true}
-        loop={true}
+        // loop={true}
         // navigation
         pagination={{ clickable: true }}
         modules={[Pagination, Mousewheel, Navigation]}
-        className="w-full h-[20rem] overflow-hidden skill-carousel"
+        className="w-full h-[30rem]! skill-carousel "
       >
         <SwiperSlide className="w-full-full relative">
           {/* <div className="absolute  right-[20px] top-0  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px] ">
@@ -50,7 +61,7 @@ export default function Section3() {
             ))}
           </div>
         </SwiperSlide>
-        <SwiperSlide className="w-full-full relative !flex items-center">
+        <SwiperSlide className="w-full h-full relative !flex items-center">
           {/* <div className="absolute  right-[20px] top-1/2 -translate-y-1/2  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px]">
             OTHER
           </div> */}
@@ -63,7 +74,7 @@ export default function Section3() {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className="w-full  relative ">
+      <div className="w-full  relative   px-5">
         <div className="size-full overflow-hidden py-20">
 
           <h1 className="text-3xl font-bold text-center mb-20">
@@ -86,7 +97,7 @@ export default function Section3() {
             // navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
 
-            className="custom w-full relative"
+            className="custom w-full relative "
           >
             {/* <Cog /> */}
 
@@ -105,8 +116,8 @@ export default function Section3() {
             ))}
 
           </Swiper>
-          <MainButton icon={ChevronLeft} onClick={() => swiperRef.current?.slidePrev()} className="absolute left-[-60px] top-[24rem] z-[9999] p-3! cursor-pointer hover:-translate-xa-2" />
-          <MainButton icon={ChevronRight} onClick={() => swiperRef.current?.slideNext()} className="absolute right-[-60px] top-[24rem] z-[9999] p-3! cursor-pointer hover:translate-xa-2" />
+          <MainButton icon={ChevronLeft} onClick={() => swiperRef.current?.slidePrev()} className="absolute left-[0%] - bottom-[300px] z-[9] rounded-lg!  p-1! cursor-pointer hover:-translate-x-1" />
+          <MainButton icon={ChevronRight} onClick={() => swiperRef.current?.slideNext()} className="absolute right-[0%]  bottom-[300px] z-[9]  rounded-lg! p-1! cursor-pointer hover:translate-x-1" />
 
 
         </div>

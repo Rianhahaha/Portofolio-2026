@@ -7,15 +7,15 @@ import Section3 from "../component/home/section-3";
 export default function Home() {
   return (
     <>
-    <div className="hidden lg:block">
+    <div className="scroll-smooth!">
       <Section1 />
       <Navbar />
       <Section2 />
       <Section3 />
     </div>
-    <div className=" lg:hidden h-dvh flex items-center justify-center">
+    {/* <div className=" lg:hidden h-dvh flex items-center justify-center">
       Mobile View is currently on Develop
-    </div>
+    </div> */}
     </>
   );
 }

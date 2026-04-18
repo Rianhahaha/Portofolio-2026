@@ -4,14 +4,16 @@ import { FileDownIcon } from "lucide-react";
 
 export default function Section1() {
   return (
-    <section className="w-full h-[600px] flex items-bottom justify-center overflow-hidden global-transition">
-      <div className="max-w-7xl w-full grid grid-cols-3 items-end ">
-        <div className="w-full text-right mb-[5rem] border-r border-r-cyan-500/50 pr-5">
-          <h1 className="text-4xl font-normal">Hi there!</h1>
-          <h1 className="text-6xl font-bold">
+    <section className="w-full h-[calc(100vh-100px)] lg:h-[600px] flex items-bottom justify-center overflow-hidden global-transition ">
+      <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-end relative px-5">
+
+        <div className="w-[60%] lg:w-full lg:text-right mb-[5rem]  relative z-50 lg:z-10">
+          <div className="absolute left-[-20px] lg:left-auto lg:right-[-30px] w-[1px] h-full bg-cyan-500 hidden lg:block"></div>
+          <h1 className="text-2xl md:text-4xl font-normal">Hi there!</h1>
+          <h1 className="text-3xl md:text-6xl font-bold">
             <span className="text-cyan-500">Rian</span> Here.
           </h1>
-          <p className="">
+          <p className="text-xs md:text-base">
             Fresh Graduated Information Technology student specializing in graphic design,
             illustration, and{" "}
             <b className="text-cyan-500"> front-end web development.</b> His
@@ -30,16 +32,18 @@ export default function Section1() {
             />
           </div>
         </div>
-        <div className="h-full flex items-end">
+        <div className="h-[70dvh] md:h-full  w-full flex items-end pt-10  lg:pt-0 lg:relative z-30 absolute bottom-0 right-[-8dvw] md:right-[-30dvw] lg:right-0 pointer-events-none">
           <Image
-            src="/home/portrait.png"
+            src="/home/portrait-hd.png"
             alt="profile"
-            width={300}
-            height={300}
-            className="object-contain w-full brightness-"
+            width={800}
+            height={800}
+            className="object-cover object-bottom-left w-full h-full lg:h-auto brightness-90 contrast-110 "
           />
         </div>
-        <div className="w-full mb-[5rem] border-l border-l-cyan-500/50 pl-5">
+        <div className="w-full mb-[5rem] relative z-50 lg:z-20   lg:-translate-8 lg:-translate-y-14">
+          <div className="absolute left-[-20px] w-[1px] h-full bg-cyan-500 hidden lg:block"></div>
+
           <h1 className="text-3xl font-normal">Welcome to</h1>
           <h1 className="text-6xl font-bold">
             My <span className="text-cyan-500">Website.</span>

@@ -6,8 +6,8 @@ import Art from "../animatedIcon/art";
 
 export default function Section2() {
   return (
-    <section id="me" className="w-full min-h-[400px] flex items-bottom justify-center  mt-[10rem]">
-      <div className="max-w-7xl w-full grid grid-cols-3 gap-[3rem] items-start">
+    <section id="me" className="w-full min-h-screen md:min-h-[400px] flex items-bottom justify-center  mt-[10rem]  px-5 ">
+      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-3 gap-[1rem] items-start">
         <Card title="Design" desc={`Creating visually-driven interfaces that are actually pleasant to use.`}>
           <Design />
         </Card>

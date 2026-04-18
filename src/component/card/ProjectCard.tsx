@@ -11,13 +11,16 @@ export default function ProjectCard({
     desc,
     year,
     techIds,
+    techIdsActive = [],
     type,
+    typeActive = [],
     className,
 }: ProjectItem) {
     const ALL_RESOURCES = [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
     const projectTechs = techIds
         .map((techId: string) => ALL_RESOURCES.find(skill => skill.id === techId))
         .filter(Boolean);
+
 
     return (
         <div className={"relative group overflow-hidden w-full h-full min-h-[25rem] bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/50  global-transition rounded-xl flex flex-col justify-start items-center " + className}>
@@ -60,23 +63,39 @@ export default function ProjectCard({
             {/* title */}
             <div className="p-3 grow flex flex-col justify-between pointer-events-none">
                 <div>
-                    <div className="w-full font-bold">
+                    <div className="w-full font-bold flex flex-wrap items-center">
                         <span className="mr-1">
-
                             {title}
                         </span>
-                        <span className='font-light text-xs text-white/50'>
-
-                            - {type?.join(", ")}
+                        <span className='font-normal'>
+                            -
                         </span>
+                        {type?.map((typeId, index) => {
+                            return (
+                                <span key={index} className='font-light text-xs  ml-1 text-white/50'>
+                                    <span className={` ${typeActive.includes(typeId) ? 'text-white text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''}`}>
+
+                                    {typeId}
+                                    </span>
+                                    <span>
+
+                                    {index !== type.length - 1 && ', '}
+                                    </span>
+                                </span>
+                            )
+                        })}
                     </div>
                     {/* tech */}
                     <div className="flex w-full gap-2 my-2 flex-wrap">
-                        {projectTechs.map((tech, index) => (
-                            <div key={index} className="w-fit bg-white/20 border rounded-2xl py-1 px-3 text-[8px]">
-                                {tech?.title}
-                            </div>
-                        ))}
+                        {projectTechs.map((tech, index) => {
+                            const isTechActive = techIdsActive.includes(tech?.id || '');
+                            return (
+                                <div key={index} className={`w-fit ${isTechActive ? 'bg-gradient-to-tr from-teal-500 to-sky-500' : 'bg-white/20'} border rounded-2xl py-1 px-3 text-[8px] `}>
+                                    {tech?.title}
+                                </div>
+                            )
+                        }
+                        )}
 
                     </div>
                     {/* desc */}

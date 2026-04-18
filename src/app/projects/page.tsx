@@ -2,7 +2,7 @@
 import Image from "next/image";
 import PagesLayout from "../../component/PagesLayout";
 import MainButton from "../../component/button/MainButton";
-import { BriefcaseBusinessIcon, ChevronDown, Code2Icon, Filter, Search } from "lucide-react";
+import { BriefcaseBusinessIcon, ChevronDown, Code2Icon, Filter, LucidePackageSearch, Search } from "lucide-react";
 import ProjectCard from "../../component/card/ProjectCard";
 import { PROJECT_DATA } from "@/data/ProjectData";
 import { PROJECT_TYPE } from "@/data/ProjectType";
@@ -15,6 +15,8 @@ export default function Projects() {
   const [techOpen, setTechOpen] = useState(false)
   const [projectTypeOpen, setProjectTypeOpen] = useState(false)
   const [selectedTech, setSelectedTech] = useState<string[]>([])
+  const [selectedProjectType, setSelectedProjectType] = useState<string[]>([])
+
   const [loading, setLoading] = useState(false);
 
   const techSort = [...SKILLS_DATA].sort((a, b) => (a.title || '').localeCompare(b.title || ''));
@@ -38,16 +40,38 @@ export default function Projects() {
       setLoading(false);
     }, 500);
 
+    
+    
+  }
+  function handleFilterProjectType(projectTypeId: string) {
+    setLoading(true);
+    setTimeout(() => {
 
+      setSelectedProjectType(prev =>
+        prev.includes(projectTypeId)
+          ? prev.filter(id => id !== projectTypeId)
+          : [...prev, projectTypeId]
+      )
+      setLoading(false);
+    }, 500);
   }
 
   const filteredProjects = defaultSort.filter((project) => {
-    if (selectedTech.length === 0) return true; // Tampilkan semua proyek jika tidak ada filter yang dipilih
+    const hasTechFilter = selectedTech.length > 0;
+    const hasProjectTypeFilter = selectedProjectType.length > 0;
+    if (!hasTechFilter && !hasProjectTypeFilter) return true; 
 
-    return selectedTech.some(tech => project.techIds?.includes(tech as unknown as string))
+        // return selectedTech.some(tech => project.techIds?.includes(tech as unknown as string))
+
+    const hasTech = !hasTechFilter || selectedTech.every(techId => project.techIds?.includes(techId));
+    const hasProjectType = !hasProjectTypeFilter || selectedProjectType.every(projectTypeId => project.type?.includes(projectTypeId));
+
+    return hasTech && hasProjectType;
   })
   // const getTech = SKILLS_DATA.map((tech, id) => tech.id);
   // console.log(getTech)
+
+  console.log("Selected Tech:", selectedTech, "Selected Project Type:", selectedProjectType);
 
   return (
     <PagesLayout>
@@ -134,9 +158,9 @@ export default function Projects() {
 
                     <div className={`flex flex-wrap items-start w-full gap-1 h-fit   global-transition`}>
                       {projectTypeSort.map((type, idx) => (
-                        <div key={idx} className="h-fit select-none text-xs px-3 py-2 bg-white/5 rounded-full border border-transparent hover:border-teal-500 cursor-pointer global-transition">
+                        <button onClick={() => type.id && handleFilterProjectType(type.id)} key={idx} className={`h-fit select-none text-xs px-3 py-2  rounded-full border border-transparent hover:border-teal-500 cursor-pointer global-transition ${selectedProjectType.includes(type.id as string) ? 'bg-gradient-to-tr from-teal-500 to-sky-500 ' : 'bg-white/5'}`}>
                           {type.id}
-                        </div>
+                        </button>
 
                       ))}
                     </div>
@@ -148,21 +172,34 @@ export default function Projects() {
             <div className="w-full">
               {loading ? (
                 <>
-                <div className="w-full gap-2 items-center flex justify-center text-center py-20 text-white">
-                  <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-teal-500 border-t-transparent"></div>
-                  <div className="text-sm animate-pulse">
+                  <div className="w-full gap-2 items-center flex justify-center text-center py-20 text-white">
+                    <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-teal-500 border-t-transparent"></div>
+                    <div className="text-sm animate-pulse">
 
-                    Loading Content...
+                      Loading Content...
+                    </div>
+
                   </div>
-
-                </div>
                 </>
               ) : (
                 <>
+                {/* {selectedTech.length > 0 || selectedProjectType.length > 0 ? (
+                  <div className="w-full flex flex-wrap gap-2 text-[12px] text-start py-1 text-white/70">
+                    {selectedTech.map((techId) => (
+                      <span className="">
+                          {techId}
+                      </span>
+                    ))}
+                  </div>
+                ): null} */}
+
 
                   {filteredProjects.length === 0 ? (
-                    <div className="w-full text-center py-20 text-white/50">
+                    <div className="w-full flex flex-col items-center justify-center text-center py-20 text-white/50">
+                      <LucidePackageSearch className="w-[10rem] h-[10rem] text-white animate-bounce opacity-50" />
+                      <span>
                       No projects found with the selected filters.
+                      </span>
                     </div>
                   ) : (
 
@@ -177,6 +214,8 @@ export default function Projects() {
                           type={data.type}
                           img={data.img}
                           techIds={data.techIds}
+                          techIdsActive={selectedTech}
+                          typeActive={selectedProjectType}
                         />
                       ))}
                     </div>

@@ -3,6 +3,7 @@ import { Linkedin } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Logo from './Logo'
 
 
 export default function Footer() {
@@ -11,7 +12,7 @@ export default function Footer() {
       <div className='absolute w-full h-[1px] bg-gradient-to-l from-teal-500 via-30% via-teal-500/30 to-transparent z-0 top-0' />
 
       <div className="flex flex-col w-full max-w-7xl justify-center items-center gap-5">
-        <Image className='w-[5rem] opacity-80 hover:opacity-100' src="/logo_colored.svg" alt="Logo" width={50} height={50} />
+              <Logo />
         <div className='text-center'>
           <p className='text-white'>Built with Next.js and Tailwind CSS</p>
           <p className='text-white'>Hosted on Vercel</p>
