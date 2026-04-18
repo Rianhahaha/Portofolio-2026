@@ -18,12 +18,12 @@ export default function Section3() {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <section className="max-w-7xl mx-auto w-full h-full min-h-[50dvh]  px-5 lg:px-0 py-20  flex flex-col justify-center items-center">
-      <div className="my-10 text-center">
+      <div className="my-10 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
         <h1 className="text-3xl font-bold">
           My <span className="text-cyan-500">Skills.</span>
         </h1>
       </div>
-      <div className="mb-10 opacity-50">
+      <div className="mb-10 opacity-50" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
         I'm Experienced on using
       </div>
       <Swiper
@@ -49,7 +49,7 @@ export default function Section3() {
         modules={[Pagination, Mousewheel, Navigation]}
         className="w-full h-[30rem]! skill-carousel "
       >
-        <SwiperSlide className="w-full-full relative">
+        <SwiperSlide className="w-full-full relative" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
           {/* <div className="absolute  right-[20px] top-0  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px] ">
             PROGRAMMING
           </div> */}
@@ -74,10 +74,10 @@ export default function Section3() {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className="w-full  relative   px-5">
+      <div className="w-full relative px-5" id="recent-project">
         <div className="size-full overflow-hidden py-20">
 
-          <h1 className="text-3xl font-bold text-center mb-20">
+          <h1 className="text-3xl font-bold text-center mb-20" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
             Recent <span className="text-cyan-500">Projects.</span>
           </h1>
           <Swiper
@@ -98,6 +98,7 @@ export default function Section3() {
             modules={[Autoplay, Pagination, Navigation]}
 
             className="custom w-full relative "
+            data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
           >
             {/* <Cog /> */}
 
@@ -128,19 +129,19 @@ export default function Section3() {
 
         </div>
       </div>
-      <div className="text-center my-20 flex justify-center flex-col">
+      <div className="text-center my-20 flex justify-center flex-col" id="touch">
         <div>
-          <h1 className="text-3xl font-bold text-center mb-10 ">
+          <h1 className="text-3xl font-bold text-center mb-10 " data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
 
             Get in <span className="text-cyan-500">Touch.</span>
           </h1>
-          <div className="mb-2">
+          <div className="mb-2" data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             Have a project in mind or just want to collaborate?
           </div>
-          <div className="mb-10 ">
+          <div className="mb-10 " data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
             Let’s talk about how we can turn ideas into clean, functional, and visually solid work.
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center" data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
 
             <MainButton
               type="link"

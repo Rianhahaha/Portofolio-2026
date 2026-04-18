@@ -7,6 +7,8 @@ import AnimatedBg from "../component/animatedbackground";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
+
 import Footer from "../component/Footer";
 const fontMain = Poppins({
   variable: "--poppins",
