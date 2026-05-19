@@ -23,7 +23,7 @@ export default function ProjectCard({
 
 
     return (
-        <div className={"relative group overflow-hidden w-full h-full min-h-[25rem] bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/50  global-transition rounded-xl flex flex-col justify-start items-center " + className}>
+        <div className={"relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/50  global-transition rounded-xl flex flex-col justify-start items-center " + className}>
             <div className="flex opacity-0 justify-center items-center group-hover:opacity-100 absolute bg-black/50 backdrop-blur-sm z-10 size-full top-0 left-0 global-transition">
                 <div className="translate-y-[15rem] group-hover:translate-y-0 global-transition-slower">
                     <MainButton

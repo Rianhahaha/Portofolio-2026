@@ -29,13 +29,13 @@ export default function Section3() {
       <Swiper
         breakpoints={{
           768: {
-            direction:"vertical",
+            direction: "vertical",
             slidesPerView: 1,
             spaceBetween: 30,
             pagination: { clickable: true },
 
-            
-            
+
+
           }
         }}
         direction="horizontal"
@@ -48,12 +48,13 @@ export default function Section3() {
         pagination={{ clickable: true }}
         modules={[Pagination, Mousewheel, Navigation]}
         className="w-full h-[30rem]! skill-carousel "
+        id="skills"
       >
-        <SwiperSlide className="w-full-full relative" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+        <SwiperSlide className="w-full-full relative" >
           {/* <div className="absolute  right-[20px] top-0  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px] ">
             PROGRAMMING
           </div> */}
-          <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
+          <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`} data-aos-anchor='#skills' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
             {SKILLS_DATA.map((skill, index) => (
               <div key={index} className={`shrink`}>
                 <Skills id={skill.id} img={skill.img} title={skill.title} />
@@ -75,35 +76,62 @@ export default function Section3() {
         </SwiperSlide>
       </Swiper>
       <div className="w-full relative px-5" id="recent-project">
-        <div className="size-full overflow-hidden py-20">
+        <div className="size-full overflow-hidden py-20" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 
-          <h1 className="text-3xl font-bold text-center mb-20" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+          <h1 className="text-3xl font-bold text-center mb-20">
             Recent <span className="text-cyan-500">Projects.</span>
           </h1>
           <Swiper
             onSwiper={(swiper: any) => (swiperRef.current = swiper)}
             // ref={swiper}
             direction="horizontal"
-            slidesPerView={4}
+            slidesPerView={2}
             spaceBetween={30}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //   delay: 2500,
+            //   disableOnInteraction: false,
+            // }}
             loop={true}
             pagination={{
               clickable: true,
             }}
+            // autoHeight={true}
             // navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
 
+            breakpoints={{
+              /* Matches Tailwind 'sm' breakpoint (640px and up). */
+              100: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              /* Matches Tailwind 'md' breakpoint (768px and up). */
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+              /* Matches Tailwind 'lg' breakpoint (1024px and up). */
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+              /* Matches Tailwind 'xl' breakpoint (1280px and up). */
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 30, // You may increase this if the container allows.
+              },
+            }}
             className="custom w-full relative "
-            data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+
           >
             {/* <Cog /> */}
 
             {previewProject.map((data, i) => (
-              <SwiperSlide className="!w-[23rem] h-full">
+              <SwiperSlide className="h-full flex! flex-col min-h-[27rem]">
                 <ProjectCard key={i}
                   id={data.id}
                   title={data.title}
@@ -122,9 +150,9 @@ export default function Section3() {
 
 
         </div>
-        <div className="flex w-full justify-end">
+        <div className="flex w-full justify-center" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
 
-            <MainButton type="link" noblank icon={Code2Icon} text="All Projects" href="/projects" />
+          <MainButton type="link" noblank icon={Code2Icon} text="All Projects" href="/projects" />
 
 
         </div>

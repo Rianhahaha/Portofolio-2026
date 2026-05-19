@@ -12,7 +12,8 @@ export default function Section1() {
     });
   }, [])
   return (
-    <section className="w-full h-[calc(100vh-100px)] lg:h-[630px] flex items-bottom justify-center overflow-hidden global-transition ">
+    <section className="w-full h-[calc(100dvh-100px)] lg:h-[630px] flex items-bottom justify-center overflow-hidden global-transition relative">
+      {/* <div className="w-full h-full absolute bottom-0 bg-gradient-to-t from-cyan-500/10 to-transparent"/> */}
       <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-end relative px-5">
 
         <div className="w-[60%] lg:w-full lg:text-right mb-[5rem]  relative z-50 lg:z-10 " >
@@ -43,13 +44,13 @@ export default function Section1() {
             </div>
           </div>
         </div>
-        <div className="h-[70dvh] md:h-full  w-full flex items-end pt-10  lg:pt-0 lg:relative z-30 absolute bottom-0 right-[-8dvw] md:right-[-30dvw] lg:right-0 pointer-events-none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="0">
+        <div className=" h-[70dvh] md:h-full  w-full flex items-end pt-10  lg:pt-0 lg:relative z-30 absolute bottom-0 right-[-8dvw] md:right-[-30dvw] lg:right-0 pointer-events-none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="0">
           <Image
             src="/home/portrait-hd.png"
             alt="profile"
             width={800}
             height={800}
-            className="object-cover object-bottom-left w-full h-full lg:h-auto brightness-90 contrast-110 "
+            className="object-cover object-bottom-left w-full h-full lg:h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
           />
         </div>
         <div className="w-full mb-[5rem] relative z-50 lg:z-20   lg:-translate-8 lg:-translate-y-14">
