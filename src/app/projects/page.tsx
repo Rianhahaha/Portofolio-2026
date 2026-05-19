@@ -76,7 +76,7 @@ export default function Projects() {
   return (
     <PagesLayout>
       <section className="w-full min-h-screen">
-        <div className="max-w-7xl mx-auto w-full my-[10rem]">
+        <div className="max-w-7xl mx-auto w-full my-[10rem] px-5">
           {/* title */}
           <div className="flex gap-5 items-center">
             <h1 className="text-[5rem] font-bold mb-5">

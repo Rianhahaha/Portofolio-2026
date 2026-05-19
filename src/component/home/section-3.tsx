@@ -42,15 +42,15 @@ export default function Section3() {
         slidesPerView={1}
         spaceBetween={30}
         // mousewheel={true}
-        autoHeight={true}
+        // autoHeight={true}
         // loop={true}
         // navigation
         pagination={{ clickable: true }}
         modules={[Pagination, Mousewheel, Navigation]}
-        className="w-full h-[30rem]! skill-carousel "
+        className="w-full h-[30rem]! skill-carousel"
         id="skills"
       >
-        <SwiperSlide className="w-full-full relative" >
+        <SwiperSlide className="w-full h-full flex! flex-col justify-center relative overflow-y-auto pb-5" >
           {/* <div className="absolute  right-[20px] top-0  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px] ">
             PROGRAMMING
           </div> */}
@@ -62,7 +62,7 @@ export default function Section3() {
             ))}
           </div>
         </SwiperSlide>
-        <SwiperSlide className="w-full h-full relative !flex items-center">
+        <SwiperSlide className="w-full h-full flex! flex-col justify-center relative">
           {/* <div className="absolute  right-[20px] top-1/2 -translate-y-1/2  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px]">
             OTHER
           </div> */}
