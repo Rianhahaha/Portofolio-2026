@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainButton from '../button/MainButton'
 import Image from 'next/image'
 import { ProjectItem } from '@/types'
 import { SKILLS_DATA, OTHER_SKILLS_DATA } from "@/data/SkillsData";
-
+import { useIsTouchDevice } from '@/utils/useMobileClick';
 export default function ProjectCard({
     id,
     title,
@@ -16,6 +16,10 @@ export default function ProjectCard({
     typeActive = [],
     className,
 }: ProjectItem) {
+
+    const [isActive, setIsActive] = useState(false);
+    const isTouch = useIsTouchDevice();
+
     const ALL_RESOURCES = [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
     const projectTechs = techIds
         .map((techId: string) => ALL_RESOURCES.find(skill => skill.id === techId))
@@ -23,15 +27,31 @@ export default function ProjectCard({
 
 
     return (
-        <div className={"relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 hover:border-teal-500 hover:shadow-md hover:shadow-teal-500/50  global-transition rounded-xl flex flex-col justify-start items-center " + className}>
-            <div className="flex opacity-0 justify-center items-center group-hover:opacity-100 absolute bg-black/50 backdrop-blur-sm z-10 size-full top-0 left-0 global-transition">
-                <div className="translate-y-[15rem] group-hover:translate-y-0 global-transition-slower">
+        <div
+        onClick={(e) => {if (isTouch) setIsActive(!isActive)}}
+        data-active={isActive}
+         className={`relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 
+         mouse:hover:border-teal-500 
+         mouse:hover:shadow-md 
+         mouse:hover:shadow-teal-500/50  
+         touch:group-data-[active=true]:border-teal-500 
+         touch:group-data-[active=true]:shadow-md 
+         touch:group-data-[active=true]:shadow-teal-500/50 
+         global-transition rounded-xl flex flex-col justify-start items-center ` + className}>
+            <div className={`flex opacity-0 justify-center items-center 
+                mouse:group-hover:opacity-100 
+                touch:group-data-[active=true]:opacity-100 
+                absolute bg-black/50 backdrop-blur-sm z-10 size-full top-0 left-0 global-transition`}>
+                <div className={`translate-y-[15rem] 
+                    mouse:group-hover:translate-y-0 
+                    touch:group-data-[active=true]:translate-y-0 
+                    global-transition-slower`}>
                     <MainButton
                         type="link"
                         href={`/projects/${id}`}
-                        // href={`/projects/single`}
                         text="View Project"
                         noblank
+                        className='select-auto z-50'
                     />
                 </div>
             </div>
@@ -75,11 +95,11 @@ export default function ProjectCard({
                                 <span key={index} className='font-light text-xs  ml-1 text-white/50'>
                                     <span className={` ${typeActive.includes(typeId) ? 'text-white text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''}`}>
 
-                                    {typeId}
+                                        {typeId}
                                     </span>
                                     <span>
 
-                                    {index !== type.length - 1 && ', '}
+                                        {index !== type.length - 1 && ', '}
                                     </span>
                                 </span>
                             )

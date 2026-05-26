@@ -61,7 +61,7 @@ body {
   /* @apply bottom-[-20px]! */
 }
 .custom .swiper-pagination {
-  bottom: -30px !important;
+  bottom: -40px !important;
 }
 .skill-carousel .swiper-pagination-bullet.swiper-pagination-bullet-active {
   @apply !bg-cyan-500 w-[280px] h-[8px]  md:h-[23rem] md:w-[8px] rounded-2xl transition-all duration-500 ease-in-out;

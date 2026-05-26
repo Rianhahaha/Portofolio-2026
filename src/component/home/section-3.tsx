@@ -145,8 +145,12 @@ export default function Section3() {
             ))}
 
           </Swiper>
-          <MainButton icon={ChevronLeft} onClick={() => swiperRef.current?.slidePrev()} className="absolute left-[0%] - bottom-[300px] z-[9] rounded-lg!  p-1! cursor-pointer hover:-translate-x-1" />
-          <MainButton icon={ChevronRight} onClick={() => swiperRef.current?.slideNext()} className="absolute right-[0%]  bottom-[300px] z-[9]  rounded-lg! p-1! cursor-pointer hover:translate-x-1" />
+          <div className="w-[220px] h-[40px] absolute bottom-[13px] left-1/2 -translate-1/2 z-50 pointer-events-none">
+            <div className="size-full relative">
+              <MainButton icon={ChevronLeft} onClick={() => swiperRef.current?.slidePrev()} className="pointer-events-auto absolute left-[0%]  bottom-0 z-[9] rounded-lg!  p-1! cursor-pointer hover:-translate-x-1" />
+              <MainButton icon={ChevronRight} onClick={() => swiperRef.current?.slideNext()} className="pointer-events-auto absolute right-[0%]  bottom-0 z-[9]  rounded-lg! p-1! cursor-pointer hover:translate-x-1" />
+            </div>
+          </div>
 
 
         </div>

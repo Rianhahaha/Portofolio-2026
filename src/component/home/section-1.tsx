@@ -12,7 +12,7 @@ export default function Section1() {
     });
   }, [])
   return (
-    <section className="w-full h-[calc(100dvh-100px)] lg:h-[630px] flex items-bottom justify-center overflow-hidden global-transition relative">
+    <section className="w-full h-[calc(100svh-100px)] lg:h-[630px] flex items-bottom justify-center overflow-hidden global-transition relative">
       {/* <div className="w-full h-full absolute bottom-0 bg-gradient-to-t from-cyan-500/10 to-transparent"/> */}
       <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-end relative px-5">
 
