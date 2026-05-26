@@ -27,7 +27,7 @@ export default function Home() {
       <Section2 />
       <Section3 />
     </div>
-    {/* <div className=" lg:hidden h-dvh flex items-center justify-center">
+    {/* <div className=" lg:hidden h-svh flex items-center justify-center">
       Mobile View is currently on Develop
     </div> */}
     </>

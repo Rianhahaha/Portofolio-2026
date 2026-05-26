@@ -39,7 +39,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
             </div>
 
             {/* Hero Section */}
-            <div className='w-full h-[100dvh] relative'>
+            <div className='w-full h-[100svh] relative'>
                 <div className="absolute bottom-5 w-full max-w-7xl h-1/2 content-end left-1/2 -translate-x-1/2 z-10 grid grid-cols-1 md:grid-cols-2 px-5">
                     <div className="hidden md:block"></div>
                     <div className='flex flex-col'>
@@ -113,7 +113,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
                 {/* Swiper Preview */}
                 {preview.length === 0 ? (
                     <>
-                        <div className="py-10 h-[100dvh] flex items-center justify-center">
+                        <div className="py-10 h-[100svh] flex items-center justify-center">
                             <h2 className="text-[1rem] font-bold text-center mb-10">
                                 Private Project. No Preview, Sorry :) <span className="text-cyan-500">.</span>
                             </h2>

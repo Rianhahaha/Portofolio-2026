@@ -11,6 +11,9 @@
 @custom-variant touch (@media (pointer: coarse) and (hover: none));
 @custom-variant mouse (@media (pointer: fine) and (hover: hover));
 
+@utility page-title {
+  @apply text-[3rem] md:text-[5rem] text-center md:text-left font-bold mb-5 w-full;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -84,4 +87,42 @@ body {
 }
 .swiper-button-next {
   @apply right-0;
+}
+
+
+@utility shape {
+  @media (max-width: 767px) {
+  --r: 60px; /* control the rounded part */
+  --s: 60px; /* control the size of the cut */
+  --a: 25deg; /* control the depth of the curvature */
+  
+  --_m:0/calc(2*var(--r)) calc(2*var(--r)) no-repeat
+    radial-gradient(50% 50%,#000 calc(100% - 1px),#0000);
+  --_d:(var(--s) + var(--r))*cos(var(--a));
+  mask:
+    calc(50% + var(--_d)) var(--_m),calc(50% - var(--_d)) var(--_m),
+    radial-gradient(var(--s) at 50% calc(-1*sin(var(--a))*var(--s)),
+      #0000 100%,#000 calc(100% + 1px)) 0 calc(var(--r)*(1 - sin(var(--a)))) no-repeat,
+    linear-gradient(90deg,#000 calc(50% - var(--_d)),#0000 0 calc(50% + var(--_d)),#000 0);
+        transition-property: scale none;
+  }
+}
+@utility shape-bottom {
+    @media (max-width: 767px) {
+
+  --r: 60px; /* control the rounded part */
+  --s: 60px; /* control the size of the cut */
+  --a: 25deg; /* control the depth of the curvature */
+  
+  --_m:0/calc(2*var(--r)) calc(2*var(--r)) no-repeat
+    radial-gradient(50% 50%,#000 calc(100% - 1px),#0000);
+  --_d:(var(--s) + var(--r))*cos(var(--a));
+  mask:
+    calc(50% + var(--_d)) var(--_m),calc(50% - var(--_d)) var(--_m),
+    radial-gradient(var(--s) at 50% calc(-1*sin(var(--a))*var(--s)),
+      #0000 100%,#000 calc(100% + 1px)) 0 calc(var(--r)*(1 - sin(var(--a)))) no-repeat,
+    linear-gradient(90deg,#000 calc(50% - var(--_d)),#0000 0 calc(50% + var(--_d)),#000 0);
+    scale: -1;
+    transition-property: scale none;
+    }
 }

@@ -11,7 +11,7 @@ export default function Logo() {
                 width={80}
                 height={80}
                 alt="logo"
-                className="opacity-50 hover:opacity-100 cursor-pointer global-transition hover:drop-shadow-[0_0px_5px_rgb(255_255_255/_0.5)]!"
+                className="touch:opacity-100 mouse:opacity-50 hover:opacity-100 cursor-pointer global-transition hover:drop-shadow-[0_0px_5px_rgb(255_255_255/_0.5)]!"
             />
         </Link>)
 }

@@ -40,8 +40,8 @@ export default function Projects() {
       setLoading(false);
     }, 500);
 
-    
-    
+
+
   }
   function handleFilterProjectType(projectTypeId: string) {
     setLoading(true);
@@ -59,9 +59,9 @@ export default function Projects() {
   const filteredProjects = defaultSort.filter((project) => {
     const hasTechFilter = selectedTech.length > 0;
     const hasProjectTypeFilter = selectedProjectType.length > 0;
-    if (!hasTechFilter && !hasProjectTypeFilter) return true; 
+    if (!hasTechFilter && !hasProjectTypeFilter) return true;
 
-        // return selectedTech.some(tech => project.techIds?.includes(tech as unknown as string))
+    // return selectedTech.some(tech => project.techIds?.includes(tech as unknown as string))
 
     const hasTech = !hasTechFilter || selectedTech.every(techId => project.techIds?.includes(techId));
     const hasProjectType = !hasProjectTypeFilter || selectedProjectType.every(projectTypeId => project.type?.includes(projectTypeId));
@@ -76,10 +76,10 @@ export default function Projects() {
   return (
     <PagesLayout>
       <section className="w-full min-h-screen">
-        <div className="max-w-7xl mx-auto w-full my-[10rem] px-5">
+        <div className="max-w-7xl mx-auto w-full mt-5 md:mt-[10rem] mb-[10rem] px-5">
           {/* title */}
           <div className="flex gap-5 items-center">
-            <h1 className="text-[5rem] font-bold mb-5">
+            <h1 className="page-title">
               My <span className="text-cyan-500">Projects.</span>
             </h1>
             {/* <div className="flex w-full">
@@ -102,26 +102,32 @@ export default function Projects() {
             </div> */}
           </div>
           {/* Projects List */}
-          <div className="flex gap-5 relative">
-            <div className="w-[25rem]  sticky top-[130px] h-fit min-h-[22rem] bg-gradient-to-tr from-white/10 to-transparent  border border-teal-500/20 global-transition backdrop-blur-sm flex flex-col justify-start items-center rounded-xl p-5" >
+          <div className="flex flex-col lg:flex-row gap-5 relative">
+            <div className="w-full lg:w-[25rem]  sticky top-[20px] md:top-[130px] h-fit min-h-[5rem] lg:min-h-[22rem] bg-gradient-to-tr from-white/10 to-transparent  border border-teal-500/20 global-transition backdrop-blur-xl md:backdrop-blur-sm flex flex-row lg:flex-col justify-start  lg:items-center rounded-xl p-5 gap-2 md:gap-10 lg:gap-0 z-50 mb-5 md:mb-5" >
+              <div className="absolute left-1/2 -translate-1/2 top-[0rem] bg-gradient-to-tr from-teal-500 to-sky-500 rounded-full block sm:hidden">
 
-              <div className="flex gap-1 w-full items-center font-bold">
+              <div className={` p-2  rounded-2xl ${techOpen || projectTypeOpen ? 'drop-shadow-[0_0px_3px_rgb(255_255_255)] opacity-100 -translate-y-1' : 'opacity-80'} global-transition`}>
+                <Filter />
+              </div>
+              </div>
+
+              <div className="hidden sm:flex gap-1 w-fit lg:w-full items-center font-bold">
                 <div className={`p-2  rounded-2xl ${techOpen || projectTypeOpen ? 'drop-shadow-[0_0px_4px_rgb(255_255_255)] opacity-100 -translate-y-1' : 'opacity-30'} global-transition`}>
                   <Filter />
                 </div>
-                <span>
+                <span className="">
                   Filters
                 </span>
               </div>
 
-              <div className="flex flex-col w-full">
-                <div className="">
-                  <div className={` py-1  w-full border-b ${techOpen ? 'opacity-100' : 'opacity-30'} text-white  border-teal-500 flex justify-between items-center hover:opacity-100 global-transition cursor-pointer`} onClick={toggleTechOpen}>
+              <div className="flex flex-row lg:flex-col w-full h-fit items-center gap-2 md:gap-10">
+                <div className="flex-1 h-fit relative">
+                  <div className={` py-1 w-full border-b ${techOpen ? 'opacity-100' : 'opacity-70'} text-white  border-teal-500 flex justify-between items-center hover:opacity-100 global-transition cursor-pointer`} onClick={toggleTechOpen}>
                     <div className="text-sm flex gap-1 items-center ">
                       <div className={`${techOpen ? 'rotate-3 scale-125 text-teal-500' : ''} p-2  rounded-2xl global-transition-slower`}>
                         <Code2Icon />
                       </div>
-                      <div className={`${techOpen ? 'text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''}`}>
+                      <div className={`${techOpen ? 'text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''} hidden sm:block`}>
                         Techs
                       </div>
                     </div>
@@ -129,7 +135,7 @@ export default function Projects() {
                       <ChevronDown />
                     </div>
                   </div>
-                  <div className={` ${techOpen ? 'h-[10rem]' : 'h-0'}  overflow-hidden  global-transition-slower`}>
+                  <div className={` ${techOpen ? 'h-[10rem]' : 'h-0'}  overflow-hidden  global-transition-slower absolute lg:static bg-black/80 lg:bg-transparent px-2 rounded-t-none rounded-2xl border-t-0 border-b lg:border-0 border-teal-500`}>
                     <div className={`flex flex-wrap w-full gap-1 h-full overflow-y-auto pt-2 global-transition`}>
                       {techSort.map((tech, idx) => (
                         <button onClick={() => tech.id && handleFilterTech(tech.id)} key={idx} className={`h-fit select-none text-xs px-3 py-2  rounded-full border border-transparent hover:border-teal-500 cursor-pointer global-transition ${selectedTech.includes(tech.id as string) ? 'bg-gradient-to-tr from-teal-500 to-sky-500 ' : 'bg-white/5'}`}>
@@ -140,13 +146,13 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-                <div className="">
-                  <div className={` py-1  w-full border-b ${projectTypeOpen ? 'opacity-100' : 'opacity-30'} text-white  border-teal-500 flex justify-between items-center hover:opacity-100 global-transition cursor-pointer`} onClick={toggleProjectTypeOpen}>
+                <div className="flex-1 h-fit relative">
+                  <div className={`w-full py-1  border-b ${projectTypeOpen ? 'opacity-100' : 'opacity-70'} text-white  border-teal-500 flex justify-between items-center hover:opacity-100 global-transition cursor-pointer`} onClick={toggleProjectTypeOpen}>
                     <div className="text-sm flex gap-1 items-center">
                       <div className={`${projectTypeOpen ? 'rotate-3 scale-125 text-teal-500' : ''} p-2  rounded-2xl global-transition-slower`}>
                         <BriefcaseBusinessIcon />
                       </div>
-                      <div className={`${projectTypeOpen ? 'text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''}`}>
+                      <div className={`${projectTypeOpen ? 'text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''} hidden sm:block`}>
                         Project Type
                       </div>
                     </div>
@@ -154,9 +160,9 @@ export default function Projects() {
                       <ChevronDown />
                     </div>
                   </div>
-                  <div className={` ${projectTypeOpen ? 'h-[10rem]' : 'h-0'} max-h-[10rem] overflow-hidden pt-2 global-transition-slower`}>
+                  <div className={` ${projectTypeOpen ? 'h-[10rem]' : 'h-0'} max-h-[10rem] overflow-hidden  global-transition-slower absolute lg:static bg-black/80 lg:bg-transparent px-2 rounded-t-none rounded-2xl border-t-0 border-b lg:border-0 border-teal-500`}>
 
-                    <div className={`flex flex-wrap items-start w-full gap-1 h-fit   global-transition`}>
+                    <div className={`flex flex-wrap items-start w-full gap-1 h-fit   global-transition pt-2`}>
                       {projectTypeSort.map((type, idx) => (
                         <button onClick={() => type.id && handleFilterProjectType(type.id)} key={idx} className={`h-fit select-none text-xs px-3 py-2  rounded-full border border-transparent hover:border-teal-500 cursor-pointer global-transition ${selectedProjectType.includes(type.id as string) ? 'bg-gradient-to-tr from-teal-500 to-sky-500 ' : 'bg-white/5'}`}>
                           {type.id}
@@ -183,7 +189,7 @@ export default function Projects() {
                 </>
               ) : (
                 <>
-                {/* {selectedTech.length > 0 || selectedProjectType.length > 0 ? (
+                  {/* {selectedTech.length > 0 || selectedProjectType.length > 0 ? (
                   <div className="w-full flex flex-wrap gap-2 text-[12px] text-start py-1 text-white/70">
                     {selectedTech.map((techId) => (
                       <span className="">
@@ -198,12 +204,12 @@ export default function Projects() {
                     <div className="w-full flex flex-col items-center justify-center text-center py-20 text-white/50">
                       <LucidePackageSearch className="w-[10rem] h-[10rem] text-white animate-bounce opacity-50" />
                       <span>
-                      No projects found with the selected filters.
+                        No projects found with the selected filters.
                       </span>
                     </div>
                   ) : (
 
-                    <div className={`grid grid-cols-2 gap-10 
+                    <div className={`grid grid-cols-1 sm:grid-cols-2 gap-10 
                   }`}>
                       {filteredProjects.map((data, i) => (
                         <ProjectCard key={i}

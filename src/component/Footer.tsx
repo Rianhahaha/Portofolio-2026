@@ -8,7 +8,7 @@ import Logo from './Logo'
 
 export default function Footer() {
   return (
-    <footer className='h-[50dvh] w-full bg-black/40 flex items-center justify-center relative'>
+    <footer className='h-[50svh] w-full bg-black/40 flex items-center justify-center relative'>
       <div className='absolute w-full h-[1px] bg-gradient-to-l from-teal-500 via-30% via-teal-500/30 to-transparent z-0 top-0' />
 
       <div className="flex flex-col w-full max-w-7xl justify-center items-center gap-5">

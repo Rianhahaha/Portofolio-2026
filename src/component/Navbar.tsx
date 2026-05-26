@@ -18,10 +18,10 @@ export default function Navbar() {
   // const [activeLink, setActiveLink] = useState(pathname);
 
   const links = [
-    { name: "Home", href: "/", icon: <Home/> },
-    { name: "Projects", href: "/projects", icon: <BriefcaseBusinessIcon/> },
-    { name: "Contact", href: "/contact", icon: <LucideContact2/> },
-    { name: "Artworks", href: "/artworks", icon: <PaletteIcon/> },
+    { name: "Home", href: "/", icon: <Home /> },
+    { name: "Projects", href: "/projects", icon: <BriefcaseBusinessIcon /> },
+    { name: "Contact", href: "/contact", icon: <LucideContact2 /> },
+    { name: "Artworks", href: "/artworks", icon: <PaletteIcon /> },
   ];
   const leftNav = links.slice(0, 2);
   const rightNav = links.slice(2);
@@ -53,20 +53,51 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={`top-0 h-[100px]   z-50  max-w-full auto ${pathname === links[0].href ? "sticky " : " fixed"} global-transition  ${scrolled ? 'w-[calc(100%-2.2rem)] mx-auto' : 'w-full'}`}>
-        <div className={`absolute  w-full h-[2px] bg-gradient-to-l from-teal-500 via-30% via-teal-500/30 to-transparent z-[99999] top-0 global-transition-slower
+      <div className={`top-0 h-[100px]   z-[999]  max-w-full inset-x-0  ${pathname === links[0].href ? "sticky " : " fixed top-auto -bottom-1 md:bottom-auto md:top-0"} global-transition  ${scrolled ? 'w-[calc(100%-2.2rem)] inset-x-[1.1rem]' : 'w-full'}`}>
+        <div className={`absolute hidden md:block  w-full h-[2px] bg-gradient-to-l from-teal-500 via-30% via-teal-500/30 to-transparent z-[99999] top-0 global-transition-slower
           ${scrolled ? 'opacity-0 ' : 'opacity-100'}
           `} />
-        <nav
-          className={`relative flex items-center mx-auto px-5 justify-center global-transition !duration-700   ${scrolled
-            ? "bg-black/10 backdrop-blur-xl w-full max-w-7xl  rounded-2xl translate-y-5 h-full border-t-transparent border-b-teal-500/50 border-y"
-            : "  w-full bg-transparent backdrop-blur-xl h-full border-t-transparent  border-b-transparent"
-            } `}
-        >
+        <div className={`size-25 justify-center absolute left-1/2 -translate-1/2 
+          ${scrolled && pathname === links[0].href
+            ? 'bottom-[-7rem] bg-gradient-to-b border-t border-teal-300'
+            : 'bottom-[-0.5rem] bg-gradient-to-t border-b border-teal-300'
+          }  
+          ${ pathname !== links[0].href 
+            ? scrolled ? 'bottom-[-1.6rem]!' : ''
+            : ''
+          }
 
+           from-teal-500/50 to-black/10 backdrop-blur-lg  p-5  rounded-full flex md:hidden global-transition`}>
+          <Logo />
+        </div>
+
+
+        <nav
+          className={`relative flex items-center mx-auto px-5 justify-center transition-none md:transition-all duration-1000
+            ${scrolled
+              ? "  bg-black/10 backdrop-blur-xl w-full max-w-7xl  rounded-2xl translate-y-5 h-full border-t-teal-500 md:border-t-transparent border-b-teal-500 border-y "
+              : "  w-full bg-transparent backdrop-blur-xl h-full border-t-2 border-t-teal-500 md:border-t-transparent  border-b-transparent"
+            }
+            ${pathname === links[0].href
+              ? scrolled ? 'shape-bottom' : 'shape'
+              : 'shape'
+            } 
+            
+            
+            `}
+        >
+          <div className="size-50 justify-center absolute left-1/2 -translate-1/2 bottom-[-30px] blur-2xl  bg-teal-500 p-5 rounded-full flex md:hidden" />
           <ul
-            className={` w-full mx-auto flex items-center justify-between global-transition !duration-1000 ${scrolled ? "max-w-2xl" : "max-w-7xl"
-              }`}
+            className={` px-5 md:px-10
+              ${scrolled
+                ? 'max-w-2xl '
+                : 'max-w-7xl '} w-full mx-auto  flex items-center justify-between transition-none md:transition-all duration-1000 
+                ${pathname === links[0].href
+                ? scrolled ? "scale-[-1] md:scale-100" : 'scale-[1] '
+                : "scale-[1]"
+              }
+              
+              `}
           >
             {leftNav.map((link) => (
               <li
@@ -81,9 +112,10 @@ export default function Navbar() {
                 <Link className="block md:hidden" href={link.href}>{link.icon}</Link>
               </li>
             ))}
-            <li className="w-12 md:w-50 flex justify-center">
+            <li className="w-12 md:w-50 justify-center flex opacity-0 md:opacity-100">
               <Logo />
             </li>
+
             {rightNav.map((link) => (
               <li
                 key={link.name}

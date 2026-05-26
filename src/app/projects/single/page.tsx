@@ -48,7 +48,7 @@ export default function page() {
                     icon={ArrowBigLeftDashIcon}
                 />
             </div>
-            <div className='w-full h-[100dvh] relative'>
+            <div className='w-full h-[100svh] relative'>
                 <div className="absolute bottom-5 w-full max-w-7xl h-1/2 content-center left-1/2 -translate-x-1/2 z-10 grid grid-cols-2">
                     <div>
 

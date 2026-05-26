@@ -17,7 +17,7 @@ export default function Section3() {
   // const previewProject = PROJECT_DATA.slice(0, 5);
   const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section className="max-w-7xl mx-auto w-full h-full min-h-[50dvh]  px-5 lg:px-0 py-20  flex flex-col justify-center items-center">
+    <section className="max-w-7xl mx-auto w-full h-full min-h-[50svh]  px-5 lg:px-0 py-20  flex flex-col justify-center items-center">
       <div className="my-10 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
         <h1 className="text-3xl font-bold">
           My <span className="text-cyan-500">Skills.</span>
@@ -75,7 +75,7 @@ export default function Section3() {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className="w-full relative px-5" id="recent-project">
+      <div className="w-full relative" id="recent-project">
         <div className="size-full overflow-hidden py-20" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
 
           <h1 className="text-3xl font-bold text-center mb-20">
