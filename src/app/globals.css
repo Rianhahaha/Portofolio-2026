@@ -8,6 +8,9 @@
   --foreground: #171717;
 }
 
+@custom-variant touch (@media (pointer: coarse) and (hover: none));
+@custom-variant mouse (@media (pointer: fine) and (hover: hover));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -22,25 +25,24 @@
 }
 
 ::selection {
-  @apply text-white bg-teal-500
+  @apply text-white bg-teal-500;
 }
 
 /* For Firefox compatibility */
 ::-moz-selection {
-  @apply text-white bg-teal-500
+  @apply text-white bg-teal-500;
 }
 
 body {
-
   color: var(--foreground);
   @apply scroll-smooth;
 }
 
 .global-transition {
-  @apply transition-all duration-200 ease-in-out
+  @apply transition-all duration-200 ease-in-out;
 }
 .global-transition-slower {
-  @apply transition-all duration-500 ease-in-out
+  @apply transition-all duration-500 ease-in-out;
 }
 
 /* custom swiper */
@@ -48,19 +50,21 @@ body {
   margin: 0;
 }
 .swiper.custom {
-  overflow: unset!important;
+  overflow: unset !important;
 }
-.swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-  @apply bottom-[-7px]!
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  @apply bottom-[-7px]!;
 }
-.swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
+.swiper-vertical > .swiper-pagination-bullets,
+.swiper-pagination-vertical.swiper-pagination-bullets {
   /* @apply bottom-[-20px]! */
 }
 .custom .swiper-pagination {
   bottom: -30px !important;
 }
 .skill-carousel .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    @apply !bg-cyan-500 w-[280px] h-[8px]  md:h-[23rem] md:w-[8px] rounded-2xl transition-all duration-500 ease-in-out;
+  @apply !bg-cyan-500 w-[280px] h-[8px]  md:h-[23rem] md:w-[8px] rounded-2xl transition-all duration-500 ease-in-out;
 }
 .skill-carousel .swiper-pagination-bullet {
   @apply transition-all rounded-2xl duration-500 ease-in-out bg-white/70! w-[40px] md:w-[8px] md:h-[5rem];
@@ -73,12 +77,11 @@ body {
 }
 .swiper-button-prev,
 .swiper-button-next {
-  @apply z-[9999]  bg-gradient-to-tr from-teal-500 to-sky-500 text-white! border-t-2 border-l-2 border-white/50 hover:border-white/90 font-bold p-3 rounded-xl hover:from-sky-500 hover:to-teal-500 hover:scale-[95%] transition duration-300 ease-in-out  cursor-pointer fill-white!
+  @apply z-[9999]  bg-gradient-to-tr from-teal-500 to-sky-500 text-white! border-t-2 border-l-2 border-white/50 hover:border-white/90 font-bold p-3 rounded-xl hover:from-sky-500 hover:to-teal-500 hover:scale-[95%] transition duration-300 ease-in-out  cursor-pointer fill-white!;
 }
 .swiper-button-prev {
-  @apply left-[-20px]!
+  @apply left-[-20px]!;
 }
 .swiper-button-next {
-  @apply right-0
+  @apply right-0;
 }
-
