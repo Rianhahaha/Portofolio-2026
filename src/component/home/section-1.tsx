@@ -44,7 +44,7 @@ export default function Section1() {
             </div>
           </div>
         </div>
-        <div className=" h-[70dvh] md:h-full w-full flex items-end  lg:pt-0 lg:relative z-30 absolute bottom-0 right-[-8dvw] md:right-[-30dvw] lg:right-0 pointer-events-none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="0">
+        <div className=" h-[70svh] md:h-full w-full flex items-end  lg:pt-0 lg:relative z-30 absolute bottom-0 right-[-8dvw] md:right-[-30dvw] lg:right-0 pointer-events-none" data-aos="slide-up" data-aos-duration="1000" data-aos-delay="0">
           <Image
             src="/home/portrait-hd.png"
             alt="profile"
