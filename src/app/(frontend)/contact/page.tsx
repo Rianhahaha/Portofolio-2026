@@ -1,14 +1,14 @@
 'use client'
-import PagesLayout from "../../component/PagesLayout";
+import PagesLayout from "@/component/PagesLayout";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Mousewheel } from 'swiper/modules';
-import MainButton from "../../component/button/MainButton";
+import MainButton from "@/component/button/MainButton";
 import { Send } from "lucide-react";
 
 export default function Contact() {
   return (
     <PagesLayout>
-      <section className="w-full min-h-screen overflow-hidden">
+      {/* <section className="w-full min-h-screen overflow-hidden">
         <div className="max-w-7xl w-full content-start grid grid-cols-2 mx-auto mt-[10rem] gap-10">
           <div>
             <h1 className="text-[6rem] leading-[1em] font-bold mb-5">
@@ -41,7 +41,10 @@ export default function Contact() {
           </div>
         </div>
 
-      </section>
+      </section> */}
+      <div className="w-full min-h-screen overflow-hidden flex justify-center items-center">
+        Coming Soon :)
+      </div>
     </PagesLayout>
   );
 }

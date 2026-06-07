@@ -1,5 +1,5 @@
 'use client';
-import PagesLayout from "../../component/PagesLayout";
+import PagesLayout from "@/component/PagesLayout";
 import { useEffect,useState } from "react";
 
 interface Artwork {

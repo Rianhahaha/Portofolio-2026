@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image";
-import PagesLayout from "../../component/PagesLayout";
-import MainButton from "../../component/button/MainButton";
+import PagesLayout from "@/component/PagesLayout";
+import MainButton from "@/component/button/MainButton";
 import { BriefcaseBusinessIcon, ChevronDown, Code2Icon, Filter, LucidePackageSearch, Search } from "lucide-react";
-import ProjectCard from "../../component/card/ProjectCard";
+import ProjectCard from "@/component/card/ProjectCard";
 import { PROJECT_DATA } from "@/data/ProjectData";
 import { PROJECT_TYPE } from "@/data/ProjectType";
 import { SKILLS_DATA } from "@/data/SkillsData";
@@ -103,7 +103,7 @@ export default function Projects() {
           </div>
           {/* Projects List */}
           <div className="flex flex-col lg:flex-row gap-5 relative">
-            <div className="w-full lg:w-[25rem]  sticky top-[20px] md:top-[130px] h-fit min-h-[5rem] lg:min-h-[22rem] bg-gradient-to-tr from-white/10 to-transparent  border border-teal-500/20 global-transition backdrop-blur-xl md:backdrop-blur-sm flex flex-row lg:flex-col justify-start  lg:items-center rounded-xl p-5 gap-2 md:gap-10 lg:gap-0 z-50 mb-5 md:mb-5" >
+            <div className="w-full lg:w-[25rem]  sticky top-[20px] md:top-[130px] h-fit min-h-[5rem] lg:min-h-[22rem] bg-gradient-to-tr from-white/10 to-transparent  border border-teal-500/20 global-transition backdrop-blur-xl md:backdrop-blur-sm flex flex-row lg:flex-col justify-start  lg:items-center rounded-xl p-5 gap-2 sm:gap-10 lg:gap-0 z-50 mb-5 md:mb-5" >
               <div className="absolute left-1/2 -translate-1/2 top-[0rem] bg-gradient-to-tr from-teal-500 to-sky-500 rounded-full block sm:hidden">
 
               <div className={` p-2  rounded-2xl ${techOpen || projectTypeOpen ? 'drop-shadow-[0_0px_3px_rgb(255_255_255)] opacity-100 -translate-y-1' : 'opacity-80'} global-transition`}>
@@ -120,7 +120,7 @@ export default function Projects() {
                 </span>
               </div>
 
-              <div className="flex flex-row lg:flex-col w-full h-fit items-center gap-2 md:gap-10">
+              <div className="flex flex-row lg:flex-col w-full h-fit items-center gap-2 sm:gap-10">
                 <div className="flex-1 h-fit relative">
                   <div className={` py-1 w-full border-b ${techOpen ? 'opacity-100' : 'opacity-70'} text-white  border-teal-500 flex justify-between items-center hover:opacity-100 global-transition cursor-pointer`} onClick={toggleTechOpen}>
                     <div className="text-sm flex gap-1 items-center ">

@@ -2,14 +2,14 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "../component/Navbar";
-import AnimatedBg from "../component/animatedbackground";
+import Navbar from "@/component/Navbar";
+import AnimatedBg from "@/component/animatedbackground";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 
-import Footer from "../component/Footer";
+import Footer from "@/component/Footer";
 const fontMain = Poppins({
   variable: "--poppins",
   subsets: ["devanagari", "latin", "latin-ext"],

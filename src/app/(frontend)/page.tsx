@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image";
-import Navbar from "../component/Navbar";
-import Section1 from "../component/home/section-1";
-import Section2 from "../component/home/section-2";
-import Section3 from "../component/home/section-3";
+import Navbar from "@/component/Navbar";
+import Section1 from "@/component/home/section-1";
+import Section2 from "@/component/home/section-2";
+import Section3 from "@/component/home/section-3";
 import { useEffect } from "react";
 // import aos from "aos";
 import aos from "aos";
