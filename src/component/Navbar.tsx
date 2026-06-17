@@ -20,11 +20,19 @@ export default function Navbar() {
   const links = [
     { name: "Home", href: "/", icon: <Home /> },
     { name: "Projects", href: "/projects", icon: <BriefcaseBusinessIcon /> },
-    { name: "Contact", href: "/contact", icon: <LucideContact2 /> },
-    { name: "Artworks", href: "/artworks", icon: <PaletteIcon /> },
+    // { name: "Contact", href: "/contact", icon: <LucideContact2 /> },
+    // { name: "Artworks", href: "/artworks", icon: <PaletteIcon /> },
   ];
-  const leftNav = links.slice(0, 2);
-  const rightNav = links.slice(2);
+  const leftNav = links.slice(0, 1);
+  const rightNav = links.slice(1);
+  // const links = [
+  //   { name: "Home", href: "/", icon: <Home /> },
+  //   { name: "Projects", href: "/projects", icon: <BriefcaseBusinessIcon /> },
+  //   { name: "Contact", href: "/contact", icon: <LucideContact2 /> },
+  //   { name: "Artworks", href: "/artworks", icon: <PaletteIcon /> },
+  // ];
+  // const leftNav = links.slice(0, 2);
+  // const rightNav = links.slice(2);
   const handleScroll = () => {
     // ... (Logika handleScroll tetap sama)
     const scrollPosition = window.scrollY;
@@ -88,7 +96,7 @@ export default function Navbar() {
         >
           <div className="size-50 justify-center absolute left-1/2 -translate-1/2 bottom-[-30px] blur-2xl  bg-teal-500 p-5 rounded-full flex md:hidden" />
           <ul
-            className={` px-5 md:px-10
+            className={` px-0 md:px-10
               ${scrolled
                 ? 'max-w-2xl '
                 : 'max-w-7xl '} w-full mx-auto  flex items-center justify-between transition-none md:transition-all duration-1000 

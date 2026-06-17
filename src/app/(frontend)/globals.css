@@ -3,6 +3,8 @@
 @import "swiper/css/scrollbar";
 @import "swiper/css";
 @import "swiper/css/effect-coverflow";
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
