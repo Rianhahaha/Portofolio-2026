@@ -86,6 +86,36 @@ export const SKILLS_DATA: SkillItem[] = [
     title: "Svelte",
     img: "/skills/svelte.png",
   },
+  {
+    id: "ibispaintx",
+    title: "IbisPaintX",
+    img: "/skills/ibispaint.png",
+  },
+  {
+    id: "figma",
+    title: "Figma",
+    img: "/skills/figma.png",
+  },
+  {
+    id: "corel",
+    title: "Corel Draw",
+    img: "/skills/corel.png",
+  },
+  {
+    id: "ibispaintx",
+    title: "IbisPaintX",
+    img: "/skills/ibispaint.png",
+  },
+  {
+    id: "figma",
+    title: "Figma",
+    img: "/skills/figma.png",
+  },
+  {
+    id: "corel",
+    title: "Corel Draw",
+    img: "/skills/corel.png",
+  },
 ];
 export const OTHER_SKILLS_DATA: SkillItem[] = [
   {

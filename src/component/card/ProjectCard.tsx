@@ -28,9 +28,9 @@ export default function ProjectCard({
 
     return (
         <div
-        onClick={(e) => {if (isTouch) setIsActive(!isActive)}}
-        data-active={isActive}
-         className={`relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 
+            onClick={(e) => { if (isTouch) setIsActive(!isActive) }}
+            data-active={isActive}
+            className={`relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 
          mouse:hover:border-teal-500 
          mouse:hover:shadow-md 
          mouse:hover:shadow-teal-500/50  
@@ -55,7 +55,7 @@ export default function ProjectCard({
                     />
                 </div>
             </div>
-            {img === '' ? (
+            {!img.original ? (
                 <div className="w-full relative h-[10rem] rounded-xl rounded-b-none overflow-hidden bg-gradient-to-br from-transparent from-10% to-teal-500/40 flex items-start justify-start">
                     <div className=" pl-20 p-10 flex flex-wrap-re w-[23rem] justify-end items-center rotate-[-15deg] translate-x-[-90px] translate-y-[-60px]">
                         <div className="w-[250px] opacity-50 flex flex-wrap gap-2">
@@ -77,11 +77,11 @@ export default function ProjectCard({
                 </div>
             ) : (
                 <div className="w-full h-[10rem] rounded-xl rounded-b-none overflow-hidden">
-                    <img width={300} height={300} className='size-full object-cover' alt='' src={img} />
+                    <img width={300} height={300} className='size-full object-cover' alt='' src={img.card} />
                 </div>
             )}
             {/* title */}
-            <div className="p-3 grow flex flex-col justify-between pointer-events-none">
+            <div className="w-full p-3 grow flex flex-col justify-between pointer-events-none">
                 <div>
                     <div className="w-full font-bold flex flex-wrap items-center">
                         <span className="mr-1">

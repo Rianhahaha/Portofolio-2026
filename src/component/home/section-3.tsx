@@ -2,6 +2,7 @@
 import { OTHER_SKILLS_DATA, SKILLS_DATA } from "@/data/SkillsData";
 import { PROJECT_DATA } from "@/data/ProjectData";
 
+
 import Skills from "../skiils/Skills";
 import { Swiper, SwiperSlide, useSwiper, type SwiperRef } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -10,8 +11,23 @@ import ProjectCard from "../card/ProjectCard";
 import MainButton from "../button/MainButton";
 import { ChevronLeft, ChevronRight, Code2Icon, Cog } from "lucide-react";
 import { useRef } from "react";
-export default function Section3() {
+import { getPayloadProjects } from "@/utils/payloadProjects";
+import { ProjectItem, SkillItem } from "@/types";
+
+
+interface Section3Props {
+  projects?: ProjectItem[];
+  skills?: SkillItem[]
+
+}
+
+export default function Section3({ projects, skills }: Section3Props) {
+  // const project_data = getPayloadProjects()
+  // console.log("project: ", project_data)
   // const swiper = useSwiper();
+  const programming_skills_data = skills?.filter((skill) => skill.type === 'programming');
+  const other_skills_data = skills?.filter((skill) => skill.type === 'other');
+  const projects_data = projects;
   const previewProject = [...PROJECT_DATA].sort((a, b) => b.year - a.year).slice(0, 5);
 
   // const previewProject = PROJECT_DATA.slice(0, 5);
@@ -55,7 +71,7 @@ export default function Section3() {
             PROGRAMMING
           </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`} data-aos-anchor='#skills' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-            {SKILLS_DATA.map((skill, index) => (
+            {programming_skills_data?.map((skill, index) => (
               <div key={index} className={`shrink`}>
                 <Skills id={skill.id} img={skill.img} title={skill.title} />
               </div>
@@ -67,7 +83,7 @@ export default function Section3() {
             OTHER
           </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
-            {OTHER_SKILLS_DATA.map((skill, index) => (
+            {other_skills_data?.map((skill, index) => (
               <div key={index} className={`shrink`}>
                 <Skills id={skill.id} img={skill.img} title={skill.title} />
               </div>
@@ -111,17 +127,17 @@ export default function Section3() {
               },
               /* Matches Tailwind 'md' breakpoint (768px and up). */
               768: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 24,
               },
               /* Matches Tailwind 'lg' breakpoint (1024px and up). */
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               /* Matches Tailwind 'xl' breakpoint (1280px and up). */
               1280: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 30, // You may increase this if the container allows.
               },
             }}
@@ -130,7 +146,7 @@ export default function Section3() {
           >
             {/* <Cog /> */}
 
-            {previewProject.map((data, i) => (
+            {projects_data?.map((data, i) => (
               <SwiperSlide className="h-full flex! flex-col min-h-[27rem]">
                 <ProjectCard key={i}
                   id={data.id}
@@ -145,7 +161,7 @@ export default function Section3() {
             ))}
 
           </Swiper>
-          <div className="w-[220px] h-[40px] absolute bottom-[13px] left-1/2 -translate-1/2 z-50 pointer-events-none">
+          <div className="w-[220px] h-[40px] absolute bottom-[55px] left-1/2 -translate-1/2 z-50 pointer-events-none">
             <div className="size-full relative">
               <MainButton icon={ChevronLeft} onClick={() => swiperRef.current?.slidePrev()} className="pointer-events-auto absolute left-[0%]  bottom-0 z-[9] rounded-lg!  p-1! cursor-pointer hover:-translate-x-1" />
               <MainButton icon={ChevronRight} onClick={() => swiperRef.current?.slideNext()} className="pointer-events-auto absolute right-[0%]  bottom-0 z-[9]  rounded-lg! p-1! cursor-pointer hover:translate-x-1" />

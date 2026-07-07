@@ -1,28 +1,42 @@
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from "payload";
 
 export const Technologies: CollectionConfig = {
-  slug: 'technologies',
+  slug: "technologies",
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: "name",
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'name', // e.g., 'React', 'Figma', 'Tailwind CSS'
-      type: 'text',
+      name: "name", // e.g., 'React', 'Figma', 'Tailwind CSS'
+      type: "text",
       required: true,
       unique: true,
     },
     {
-      name: 'techId', // Replaces your lowercase string ID (e.g., 'figma', 'tailwind-css')
-      type: 'text',
+      name: "techId", // Replaces your lowercase string ID (e.g., 'figma', 'tailwind-css')
+      type: "text",
       required: true,
       unique: true,
       admin: {
-        description: 'Machine-readable ID for frontend logic (no spaces)',
+        description: "Machine-readable ID for frontend logic (no spaces)",
+      },
+    },
+    {
+      name: "img",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
+      name: "type",
+      type: "select",
+      options: ["programming", "other"],
+      defaultValue: "programming",
+      admin: {
+        position: "sidebar",
       },
     },
   ],
-}
+};

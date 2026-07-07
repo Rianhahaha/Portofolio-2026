@@ -16,17 +16,16 @@ export const ProjectType: CollectionConfig = {
       name: "title",
       type: "text",
       required: true,
-      unique:true,
+      unique: true,
     },
     {
-        name: 'projectTypeId',
-        type: 'text',
-        required: true,
-        unique: true,
-        admin: {
-            description: "Machine-readable ID for frontend logic (no spaces)"
-        }
-
-    }
+      name: "projectTypeId",
+      type: "text",
+      required: true,
+      unique: true,
+      admin: {
+        description: "Machine-readable ID for frontend logic (no spaces)",
+      },
+    },
   ],
 };

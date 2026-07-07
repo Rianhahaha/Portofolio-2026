@@ -1,3 +1,4 @@
+'use client'
 interface CardProps {
   children: React.ReactNode;
   title: string;
@@ -58,36 +59,36 @@ export default function Card({ children, title, desc, link }: CardProps) {
       <div className={descClasses}>
         <p>
           {desc}
-          </p>
-      {link ? (
-        <>
-          <MainButton
-            type="link"
-            href={link}
-            noblank
-            className='w-fit! justify-center!'
-          >
-            <View />
-            </MainButton>     
-             </>
-      ) : (
-        <></>
-      )}
-        </div>
+        </p>
+        {link ? (
+          <>
+            <MainButton
+              type="link"
+              href={link}
+              noblank
+              className='w-fit! justify-center!'
+            >
+              <View />
+            </MainButton>
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 
   return (
     <>
-            <div
-          className={cardClasses}
-          onClick={(e) => {
-            if (isTouch) setIsActive(!isActive);
-          }}
-          data-active={isActive}
-        >
-          {CardContent}
-        </div>
+      <div
+        className={cardClasses}
+        onClick={(e) => {
+          if (isTouch) setIsActive(!isActive);
+        }}
+        data-active={isActive}
+      >
+        {CardContent}
+      </div>
 
     </>
   );

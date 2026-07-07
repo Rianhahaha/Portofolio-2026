@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import MainButton from "../button/MainButton";
 import { FileDownIcon } from "lucide-react";

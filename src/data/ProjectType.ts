@@ -1,4 +1,4 @@
-import { ProjectType, SkillItem } from "@/types";
+import { ProjectType } from "@/types";
 
 export const PROJECT_TYPE: ProjectType[] = [
   {
@@ -29,5 +29,4 @@ export const PROJECT_TYPE: ProjectType[] = [
     id: "internship",
     name: "internship",
   },
-
 ];
