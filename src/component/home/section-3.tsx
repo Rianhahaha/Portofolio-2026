@@ -1,6 +1,5 @@
 'use client'
 import { OTHER_SKILLS_DATA, SKILLS_DATA } from "@/data/SkillsData";
-import { PROJECT_DATA } from "@/data/ProjectData";
 
 
 import Skills from "../skiils/Skills";
@@ -28,7 +27,6 @@ export default function Section3({ projects, skills }: Section3Props) {
   const programming_skills_data = skills?.filter((skill) => skill.type === 'programming');
   const other_skills_data = skills?.filter((skill) => skill.type === 'other');
   const projects_data = projects;
-  const previewProject = [...PROJECT_DATA].sort((a, b) => b.year - a.year).slice(0, 5);
 
   // const previewProject = PROJECT_DATA.slice(0, 5);
   const swiperRef = useRef<SwiperType | null>(null);

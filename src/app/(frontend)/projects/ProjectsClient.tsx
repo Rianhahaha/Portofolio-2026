@@ -10,8 +10,6 @@ import {
 import { useState } from "react";
 import ProjectCard from "@/component/card/ProjectCard";
 import PagesLayout from "@/component/PagesLayout";
-import { PROJECT_TYPE } from "@/data/ProjectType";
-import { SKILLS_DATA } from "@/data/SkillsData";
 import type { ProjectItem, ProjectType, SkillItem } from "@/types";
 import DropdownButton from "@/component/project/DropdownButton";
 
