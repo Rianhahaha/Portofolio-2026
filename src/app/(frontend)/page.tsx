@@ -1,4 +1,6 @@
+import Footer from "@/component/Footer";
 import Navbar from "@/component/Navbar";
+import AnimatedBg from "@/component/animatedbackground";
 import Section1 from "@/component/home/section-1";
 import Section2 from "@/component/home/section-2";
 import Section3 from "@/component/home/section-3";
@@ -14,6 +16,7 @@ export default async function Home() {
 
   return (
     <>
+      <AnimatedBg />
       <div className="scroll-smooth!">
         <Section1 />
         <Navbar />
@@ -23,6 +26,8 @@ export default async function Home() {
       {/* <div className=" lg:hidden h-svh flex items-center justify-center">
       Mobile View is currently on Develop
     </div> */}
+      <Footer />
+
     </>
   );
 }

@@ -61,7 +61,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={`top-0 h-[100px]   z-[999]  max-w-full inset-x-0  ${pathname === links[0].href ? "sticky " : " fixed top-auto -bottom-1 md:bottom-auto md:top-0"} global-transition  ${scrolled ? 'w-[calc(100%-2.2rem)] inset-x-[1.1rem]' : 'w-full'}`}>
+      <div className={` top-0 h-[100px]   z-[999]  max-w-full inset-x-0  ${pathname === links[0].href ? "sticky " : " fixed top-auto -bottom-1 md:bottom-auto md:top-0"} global-transition  ${scrolled ? 'w-[calc(100%-2.2rem)] inset-x-[1.1rem]' : 'w-full'}`}>
         <div className={`absolute hidden md:block  w-full h-[2px] bg-gradient-to-l from-teal-500 via-30% via-teal-500/30 to-transparent z-[99999] top-0 global-transition-slower
           ${scrolled ? 'opacity-0 ' : 'opacity-100'}
           `} />

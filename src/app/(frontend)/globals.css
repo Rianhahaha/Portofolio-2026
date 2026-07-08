@@ -19,6 +19,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-main: var(--poppins);
+  --font-artwork: var(--black-han-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -171,4 +172,13 @@ body {
     scale: -1;
     transition-property: scale none;
   }
+}
+
+.text-shadow {
+  -webkit-text-stroke-width: 4svh;
+  -webkit-text-stroke-color: #000000;
+}
+.text-shadow > p,
+.text-shadow > h1 {
+  paint-order: stroke fill;
 }

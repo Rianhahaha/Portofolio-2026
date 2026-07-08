@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Black_Han_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/Navbar";
 import AnimatedBg from "@/component/animatedbackground";
@@ -15,6 +15,11 @@ const fontMain = Poppins({
   subsets: ["devanagari", "latin", "latin-ext"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
+const fontArtwork = Black_Han_Sans({
+  variable: "--black-han-sans",
+  subsets: ['latin'],
+  weight: ['400']
+});
 export const metadata: Metadata = {
   title: "Rian's Portfolio",
   description: "Welcome to Rian's Portfolio - Showcasing My Projects and Skills",
@@ -27,12 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontMain.variable} ${fontMain.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
+        className={`${fontMain.variable} ${fontArtwork.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
       >
-        <AnimatedBg />
-        
-     {children}
-      <Footer/>
+
+        {children}
       </body>
     </html>
   );
