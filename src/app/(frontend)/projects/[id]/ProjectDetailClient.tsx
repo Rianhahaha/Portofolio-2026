@@ -11,8 +11,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MainButton from "@/component/button/MainButton";
 import Skills from "@/component/skiils/Skills";
-import { OTHER_SKILLS_DATA, SKILLS_DATA } from "@/data/SkillsData";
-import type { ProjectItem } from "@/types";
+import type { ProjectItem, SkillItem } from "@/types";
 
 
 import Image from "next/image";
@@ -21,15 +20,17 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 
 interface ProjectDetailClientProps {
   project: ProjectItem;
+  skills: SkillItem[];
 }
 
 export default function ProjectDetailClient({
   project,
+  skills,
 }: ProjectDetailClientProps) {
   // Gabungkan data skill di sini
 
 
-  const ALL_RESOURCES = [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
+  const ALL_RESOURCES = [...skills];
 
   const preview = project?.previewImg || [];
   const projectTechs = project.techIds

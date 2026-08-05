@@ -8,6 +8,11 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth {
+    scroll-behavior: auto;
+  }
+}
 
 @custom-variant touch (@media (pointer: coarse) and (hover: none));
 @custom-variant mouse (@media (pointer: fine) and (hover: hover));
@@ -117,6 +122,33 @@ body {
 .swiper-button-next {
   @apply right-0;
 }
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-reverse 35s linear infinite;
+  }
+}
 
 @utility shape {
   @media (max-width: 768px) {
@@ -175,10 +207,18 @@ body {
 }
 
 .text-shadow {
-  -webkit-text-stroke-width: 4svh;
+  -webkit-text-stroke-width: 3svw;
   -webkit-text-stroke-color: #000000;
 }
 .text-shadow > p,
 .text-shadow > h1 {
+  paint-order: stroke fill;
+}
+.text-shadow-thin {
+  -webkit-text-stroke-width: 1svw;
+  -webkit-text-stroke-color: #000000;
+}
+.text-shadow-thin > p,
+.text-shadow-thin > h1 {
   paint-order: stroke fill;
 }

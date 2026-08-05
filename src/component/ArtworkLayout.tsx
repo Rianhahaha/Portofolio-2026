@@ -1,12 +1,14 @@
+import SmoothScroll from "./SmoothScroll";
 
-export default function ArtworkLayout({ children }: any) {
+export default function ArtworkLayout({ children }: { children: React.ReactNode }) {
+  // Removed scroll-smooth.
+  // Note: Refactored 'any' to 'React.ReactNode' for strict TypeScript typing.
   return (
-    <section className="relative">
-      {/* <div className="absolute size-full  px-[2svw] py-[3svh] z-[9999] pointer-events-none">
-        <div className="size-full border-2 border-red-500"></div>
+    <SmoothScroll>
 
-      </div> */}
-      {children}
-    </section>
+      <section className="relative scroll-smooth">
+        {children}
+      </section>
+    </SmoothScroll>
   );
 }

@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 
 
 import Footer from "@/component/Footer";
+import SmoothScroll from "@/component/SmoothScroll";
 const fontMain = Poppins({
   variable: "--poppins",
   subsets: ["devanagari", "latin", "latin-ext"],
@@ -30,13 +31,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${fontMain.variable} ${fontArtwork.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
-      >
+    <html lang="en" className="scroll-smooth">
+      <SmoothScroll>
 
-        {children}
-      </body>
+        <body
+          className={`${fontMain.variable} ${fontArtwork.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950 scroll-smooth`}
+        >
+
+          {children}
+        </body>
+      </SmoothScroll>
     </html>
   );
 }
