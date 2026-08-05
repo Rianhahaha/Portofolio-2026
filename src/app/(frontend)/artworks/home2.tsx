@@ -58,7 +58,7 @@ export default function ArtworksHome2() {
                         />
                     </div>
                     <div className="absolute left-1/2 -translate-x-1/2  text-white text-[10svw] drop-shadow-[1svh_1svw_0px_rgba(0,0,0,1)]  leading-[0.85] z-[50] pointer-events-none select-none text-shadow-thin">
-                        <h1>MY <br /> ARTWORK</h1> asd
+                        <h1>MY <br /> ARTWORK</h1>
                     </div>
                 </div>
 
