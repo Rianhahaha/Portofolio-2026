@@ -102,7 +102,7 @@ export default function Contact() {
             <div className="my-2">
               <Turnstile
                 ref={turnstileRef}
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                siteKey={process.env.TURNSTILE_SITE_KEY || ""}
                 onSuccess={(token) => setTurnstileToken(token)}
                 onExpire={() => setTurnstileToken(null)}
                 onError={() => setTurnstileToken(null)}

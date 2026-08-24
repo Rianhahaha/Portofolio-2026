@@ -1,3 +1,5 @@
+import ComingSoonPage from "./ComingSoonPage";
+import Navbar from "./Navbar";
 import SmoothScroll from "./SmoothScroll";
 
 export default function ArtworkLayout({ children }: { children: React.ReactNode }) {
@@ -5,9 +7,11 @@ export default function ArtworkLayout({ children }: { children: React.ReactNode 
   // Note: Refactored 'any' to 'React.ReactNode' for strict TypeScript typing.
   return (
     <SmoothScroll>
+      <Navbar />
 
       <section className="relative scroll-smooth">
-        {children}
+        {/* {children} */}
+        <ComingSoonPage />
       </section>
     </SmoothScroll>
   );

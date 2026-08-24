@@ -40,7 +40,7 @@ export default function ProjectDetailClient({
   console.log(project)
   // console.log("RAW PREVIEW IMG:", JSON.stringify(project.previewImg, null, 2));
   return (
-    <section className="w-full min-h-screen overflow-hidden pb-10 ">
+    <section className="w-full min-h-screen overflow-x-clip pb-10 ">
       {/* Navigasi Balik */}
       <div className="size-fit fixed top-5 left-5 z-9999">
         <MainButton
@@ -123,7 +123,7 @@ export default function ProjectDetailClient({
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 py-20">
 
           <div className="text-justify text-lg col-span-3">
-            <h1 className="text-[3rem] font-bold relative">
+            <h1 className="text-[3rem] font-bold relative mb-5">
               <div className="absolute w-full h-[1px] bg-gradient-to-r from-teal-500 via-30% via-teal-500/30 to-transparent z-50 bottom-0" />
               Case
             </h1>
@@ -140,12 +140,12 @@ export default function ProjectDetailClient({
             <ClipboardList className="absolute size-60 opacity-5 right-[150px] top-1/2 -translate-y-1/2" />
             Case <span className="text-cyan-500">.</span>
           </h2> */}
-          <div className="col-span-2">
-            <h1 className="text-[3rem] font-bold relative mb-2">
+          <div className="col-span-2  ">
+            <h1 className="text-[3rem] font-bold relative mb-5">
               <div className="absolute w-full h-[1px] bg-gradient-to-r from-teal-500 via-30% via-teal-500/30 to-transparent z-50 bottom-0" />
               Tech
             </h1>
-            <div className="w-full flex flex-wrap justify-start items-start gap-3">
+            <div className="w-full flex flex-wrap justify-start items-start gap-3 self-start sticky top-5">
               {projectTechs.map((tech) => (
                 <Skills
                   key={tech?.id || tech?.title}
