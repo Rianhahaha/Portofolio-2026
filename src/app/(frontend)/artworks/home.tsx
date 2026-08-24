@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, Transition } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -34,7 +34,7 @@ export default function ArtworksHome() {
     };
 
     // Fast and snappy spring physics for Persona-like kinetic transition
-    const snappyTransition = {
+    const snappyTransition: Transition = {
         type: "spring",
         stiffness: 120,
         damping: 12,
