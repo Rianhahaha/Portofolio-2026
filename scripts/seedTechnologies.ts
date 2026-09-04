@@ -7,43 +7,43 @@ async function seedTechnologies() {
   const payload = await getPayload({ config: configPromise });
 
   // Dedupe by techId — SKILLS_DATA has duplicate entries (ibispaintx, figma, corel)
-  const uniqueSkills = Array.from(
-    new Map(SKILLS_DATA.map((skill) => [skill.id, skill])).values(),
+  const uniqueTechnologies = Array.from(
+    new Map(SKILLS_DATA.map((technology) => [technology.id, technology])).values(),
   );
 
   let created = 0;
   let skipped = 0;
   let failed = 0;
 
-  for (const skill of uniqueSkills) {
+  for (const technology of uniqueTechnologies) {
     try {
       const existing = await payload.find({
         collection: "technologies",
-        where: { techId: { equals: skill.id } },
+        where: { techId: { equals: technology.id } },
         limit: 1,
       });
 
       if (existing.docs.length > 0) {
         skipped++;
-        console.log(`SKIP  ${skill.id} (already exists)`);
+        console.log(`SKIP  ${technology.id} (already exists)`);
         continue;
       }
 
       await payload.create({
         collection: "technologies",
         data: {
-          name: skill.title,
-          techId: skill.id,
+          name: technology.title,
+          techId: technology.id,
           // img intentionally left empty per request
         },
       });
 
       created++;
-      console.log(`OK    ${skill.id}`);
+      console.log(`OK    ${technology.id}`);
     } catch (err) {
       failed++;
       console.error(
-        `FAIL  ${skill.id}:`,
+        `FAIL  ${technology.id}:`,
         err instanceof Error ? err.message : err,
       );
     }

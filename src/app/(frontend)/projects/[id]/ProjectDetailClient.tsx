@@ -10,8 +10,9 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MainButton from "@/component/button/MainButton";
-import Skills from "@/component/skiils/Skills";
-import type { ProjectItem, SkillItem } from "@/types";
+import TechnologyBadge from "@/component/skills/TechnologyBadge";
+import { OTHER_SKILLS_DATA, SKILLS_DATA } from "@/data/SkillsData";
+import type { ProjectItem, TechnologyItem } from "@/types";
 
 
 import Image from "next/image";
@@ -21,21 +22,22 @@ import { formatProjectDate } from "@/utils/formatProjectDate";
 
 interface ProjectDetailClientProps {
   project: ProjectItem;
-  skills: SkillItem[];
+  technologies: TechnologyItem[];
 }
 
 export default function ProjectDetailClient({
   project,
-  skills,
+  technologies,
 }: ProjectDetailClientProps) {
-  // Gabungkan data skill di sini
-
-
-  const ALL_RESOURCES = [...skills];
+  // Gabungkan data technology di sini
+  // Fallback ke static snapshot ketika data Payload tidak tersedia
+  const ALL_RESOURCES = technologies?.length
+    ? [...technologies]
+    : [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
 
   const preview = project?.previewImg || [];
   const projectTechs = project.techIds
-    .map((techId: string) => ALL_RESOURCES.find((skill) => skill.id === techId))
+    .map((techId: string) => ALL_RESOURCES.find((technology) => technology.id === techId))
     .filter(Boolean);
 
   console.log(project)
@@ -151,7 +153,7 @@ export default function ProjectDetailClient({
             </h1>
             <div className="w-full flex flex-wrap justify-start items-start gap-3 self-start sticky top-5">
               {projectTechs.map((tech) => (
-                <Skills
+                <TechnologyBadge
                   key={tech?.id || tech?.title}
                   id={tech?.id}
                   img={tech?.img}
@@ -169,7 +171,7 @@ export default function ProjectDetailClient({
           </h2>
           <div className="w-full flex flex-wrap justify-center items-center gap-3">
             {projectTechs.map((tech) => (
-              <Skills
+              <TechnologyBadge
                 key={tech?.id || tech?.title}
                 id={tech?.id}
                 img={tech?.img}

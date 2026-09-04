@@ -1,6 +1,9 @@
-import { SkillItem } from "@/types";
+import { TechnologyItem } from "@/types";
 
-export const SKILLS_DATA: SkillItem[] = [
+// FALLBACK DATA: static snapshot of the `technologies` Payload collection.
+// Used as seed (scripts/seedTechnologies.ts) and as fallback in ProjectCard
+// when Payload data is unavailable. Source of truth is the CMS.
+export const SKILLS_DATA: TechnologyItem[] = [
   {
     id: "javascript",
     title: "JavaScript",
@@ -117,7 +120,7 @@ export const SKILLS_DATA: SkillItem[] = [
     img: "/skills/corel.png",
   },
 ];
-export const OTHER_SKILLS_DATA: SkillItem[] = [
+export const OTHER_SKILLS_DATA: TechnologyItem[] = [
   {
     id: "ibispaintx",
     title: "IbisPaintX",

@@ -54,11 +54,11 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id } = await params;
   const project = await getPayloadProjectBySlug(id);
-  const skills = await getPayloadTechnologies();
+  const technologies = await getPayloadTechnologies();
 
   if (!project) {
     return notFound();
   }
 
-  return <ProjectDetailClient project={project} skills={skills} />;
+  return <ProjectDetailClient project={project} technologies={technologies} />;
 }

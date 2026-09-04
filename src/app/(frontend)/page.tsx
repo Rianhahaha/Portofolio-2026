@@ -8,8 +8,8 @@ import { getPayloadProjects } from "@/utils/payloadProjects";
 import { getPayloadTechnologies } from "@/utils/payloadTechnologies";
 export default async function Home() {
 
-  const skills = await getPayloadTechnologies()
-  // console.log(skills)
+  const technologies = await getPayloadTechnologies()
+  // console.log(technologies)
   const projects = await getPayloadProjects({
     limit: 5
   })
@@ -21,7 +21,7 @@ export default async function Home() {
         <Section1 />
         <Navbar />
         <Section2 />
-        <Section3 skills={skills} projects={projects} />
+        <Section3 technologies={technologies} projects={projects} />
       </div>
       {/* <div className=" lg:hidden h-svh flex items-center justify-center">
       Mobile View is currently on Develop

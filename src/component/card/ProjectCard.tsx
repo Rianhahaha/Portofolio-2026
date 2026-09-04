@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import MainButton from '../button/MainButton'
 import Image from 'next/image'
-import { ProjectItem } from '@/types'
+import { ProjectItem, TechnologyItem } from '@/types'
 import { SKILLS_DATA, OTHER_SKILLS_DATA } from "@/data/SkillsData";
 import { useIsTouchDevice } from '@/utils/useMobileClick';
 import { formatProjectDate } from '@/utils/formatProjectDate';
+
+type ProjectCardProps = ProjectItem & {
+    // Payload data (preferred). Falls back to static SkillsData snapshot when empty.
+    technologies?: TechnologyItem[];
+};
 
 export default function ProjectCard({
     id,
@@ -20,14 +25,17 @@ export default function ProjectCard({
     type,
     typeActive = [],
     className,
-}: ProjectItem) {
+    technologies = []
+}: ProjectCardProps) {
 
     const [isActive, setIsActive] = useState(false);
     const isTouch = useIsTouchDevice();
 
-    const ALL_RESOURCES = [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
+    const ALL_RESOURCES = technologies.length
+        ? technologies
+        : [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
     const projectTechs = techIds
-        .map((techId: string) => ALL_RESOURCES.find(skill => skill.id === techId))
+        .map((techId: string) => ALL_RESOURCES.find(technology => technology.id === techId))
         .filter(Boolean);
 
 

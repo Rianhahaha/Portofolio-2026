@@ -1,4 +1,4 @@
-export interface SkillItem {
+export interface TechnologyItem {
   id?: string;
   title?: string;
   img?: string;
@@ -36,6 +36,7 @@ export interface ProjectItem {
   className?: string;
   techIdsActive?: string[];
   typeActive?: string[];
+  skills?: string[];
 }
 
 export interface Artwork {

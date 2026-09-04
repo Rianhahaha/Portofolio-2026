@@ -1,4 +1,4 @@
-import { SkillItem } from "@/types";
+import { TechnologyItem } from "@/types";
 import { getMediaUrl } from "./getMediaUrl";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
@@ -12,7 +12,7 @@ type PayloadTechnologies = {
 
 export const normalizedPayloadTechnologies = (
   technologies: PayloadTechnologies,
-): SkillItem => ({
+): TechnologyItem => ({
   id: technologies.techId,
   title: technologies.name,
   img: getMediaUrl(technologies.img),

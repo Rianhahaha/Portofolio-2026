@@ -2,7 +2,7 @@
 import { OTHER_SKILLS_DATA, SKILLS_DATA } from "@/data/SkillsData";
 
 
-import Skills from "../skiils/Skills";
+import TechnologyBadge from "../skills/TechnologyBadge";
 import { Swiper, SwiperSlide, useSwiper, type SwiperRef } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Pagination, Navigation, Mousewheel, Autoplay } from 'swiper/modules';
@@ -11,21 +11,23 @@ import MainButton from "../button/MainButton";
 import { ChevronLeft, ChevronRight, Code2Icon, Cog } from "lucide-react";
 import { useRef } from "react";
 import { getPayloadProjects } from "@/utils/payloadProjects";
-import { ProjectItem, SkillItem } from "@/types";
+import { ProjectItem, TechnologyItem } from "@/types";
 
 
 interface Section3Props {
   projects?: ProjectItem[];
-  skills?: SkillItem[]
+  technologies?: TechnologyItem[]
 
 }
 
-export default function Section3({ projects, skills }: Section3Props) {
+export default function Section3({ projects, technologies }: Section3Props) {
   // const project_data = getPayloadProjects()
   // console.log("project: ", project_data)
   // const swiper = useSwiper();
-  const programming_skills_data = skills?.filter((skill) => skill.type === 'programming');
-  const other_skills_data = skills?.filter((skill) => skill.type === 'other');
+  // Fallback to static snapshot when Payload data is unavailable
+  const technologyList = technologies?.length ? technologies : [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
+  const programming_technologies_data = technologyList?.filter((technology) => technology.type === 'programming');
+  const other_technologies_data = technologyList?.filter((technology) => technology.type === 'other');
   const projects_data = projects;
 
   // const previewProject = PROJECT_DATA.slice(0, 5);
@@ -69,9 +71,9 @@ export default function Section3({ projects, skills }: Section3Props) {
             PROGRAMMING
           </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
-            {programming_skills_data?.map((skill, index) => (
+            {programming_technologies_data?.map((technology, index) => (
               <div key={index} className={`shrink`}>
-                <Skills id={skill.id} img={skill.img} title={skill.title} />
+                <TechnologyBadge id={technology.id} img={technology.img} title={technology.title} />
               </div>
             ))}
           </div>
@@ -81,9 +83,9 @@ export default function Section3({ projects, skills }: Section3Props) {
             OTHER
           </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
-            {other_skills_data?.map((skill, index) => (
+            {other_technologies_data?.map((technology, index) => (
               <div key={index} className={`shrink`}>
-                <Skills id={skill.id} img={skill.img} title={skill.title} />
+                <TechnologyBadge id={technology.id} img={technology.img} title={technology.title} />
               </div>
             ))}
           </div>
@@ -157,6 +159,7 @@ export default function Section3({ projects, skills }: Section3Props) {
                   dateType={data.dateType}
                   img={data.img}
                   techIds={data.techIds}
+                  technologies={technologies}
                 />
               </SwiperSlide>
             ))}

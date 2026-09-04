@@ -10,12 +10,12 @@ import {
 import { useState } from "react";
 import ProjectCard from "@/component/card/ProjectCard";
 import PagesLayout from "@/component/PagesLayout";
-import type { ProjectItem, ProjectType, SkillItem } from "@/types";
+import type { ProjectItem, ProjectType, TechnologyItem } from "@/types";
 import DropdownButton from "@/component/project/DropdownButton";
 
 type ProjectsClientProps = {
   projects: ProjectItem[];
-  technologies: SkillItem[];
+  technologies: TechnologyItem[];
   projectTypes: ProjectType[];
 };
 
@@ -177,6 +177,7 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
                       startDate={data.startDate}
                       endDate={data.endDate}
                       dateType={data.dateType}
+                      technologies={technologies}
                     />
                   ))}
                 </div>
