@@ -149,16 +149,7 @@ export default function Section3({ projects, technologies }: Section3Props) {
             {projects_data?.map((data, i) => (
               <SwiperSlide className="h-full flex! flex-col min-h-[27rem]">
                 <ProjectCard key={i}
-                  id={data.id}
-                  title={data.title}
-                  subtitle={data.subtitle}
-                  desc={data.desc}
-                  type={data.type}
-                  startDate={data.startDate}
-                  endDate={data.endDate}
-                  dateType={data.dateType}
-                  img={data.img}
-                  techIds={data.techIds}
+                  project={data}
                   technologies={technologies}
                 />
               </SwiperSlide>

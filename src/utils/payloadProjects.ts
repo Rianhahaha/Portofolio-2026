@@ -1,6 +1,6 @@
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
-import type { ProjectItem } from "@/types";
+import type { Affiliation, ProjectItem } from "@/types";
 import { getMediaUrl, getStringField } from "./getMediaUrl";
 import { MediaUrls } from "@/types";
 
@@ -54,8 +54,13 @@ export const normalizePayloadProject = (
     .map((type) => getStringField(type, "projectTypeId"))
     .filter((type): type is string => Boolean(type)),
   affiliations: (project.affiliations || [])
-    .map((aff) => getStringField(aff, "affiliationId"))
-    .filter((aff): aff is string => Boolean(aff)),
+    .map((aff): Affiliation | null => {
+      const id = getStringField(aff, "affiliationId");
+      const title = getStringField(aff, "title");
+      if (!id || !title) return null;
+      return { id, title };
+    })
+    .filter((aff): aff is Affiliation => aff !== null),
   case: project.case || "",
   techIds: (project.techIds || [])
     .map((tech) => getStringField(tech, "techId"))

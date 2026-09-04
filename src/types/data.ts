@@ -14,8 +14,8 @@ export interface ProjectType {
   name?: string;
 }
 export interface Affiliation {
-  id?: string;
-  title?: string;
+  id: string;
+  title: string;
 }
 
 export interface ProjectItem {
@@ -29,14 +29,13 @@ export interface ProjectItem {
   endDate?: string;
   dateType?: "year" | "year-month" | "full";
   type?: string[];
-  affiliations?: string[];
+  affiliations?: Affiliation[];
   case?: string;
   techIds: string[];
   previewImg?: MediaUrls[];
   className?: string;
   techIdsActive?: string[];
   typeActive?: string[];
-  skills?: string[];
 }
 
 export interface Artwork {

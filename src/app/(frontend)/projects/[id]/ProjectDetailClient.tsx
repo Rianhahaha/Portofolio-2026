@@ -40,8 +40,7 @@ export default function ProjectDetailClient({
     .map((techId: string) => ALL_RESOURCES.find((technology) => technology.id === techId))
     .filter(Boolean);
 
-  console.log(project)
-  // console.log("RAW PREVIEW IMG:", JSON.stringify(project.previewImg, null, 2));
+
   return (
     <section className="w-full min-h-screen overflow-x-clip pb-10 ">
       {/* Navigasi Balik */}
@@ -65,10 +64,27 @@ export default function ProjectDetailClient({
               <span className="text-cyan-500">.</span>
             </h1>
             {project.subtitle && (
-              <p className="text-xl text-slate-400 mt-1">{project.subtitle}</p>
+              <div className="mb-5 inline-block">
+                <p className="text-xl font-semibold text-white ">{project.subtitle}<span className="text-cyan-500">.</span>
+                </p>
+              </div>
+
             )}
             <p className="text-justify text-slate-300">{project.desc}</p>
-            <div className="text-xl font-bold mt-4 text-cyan-500">
+            {project.affiliations && project.affiliations.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 mt-4">
+                <span className="text-sm text-slate-400">In collaboration with</span>
+                {project.affiliations.map((affiliation) => (
+                  <span
+                    key={affiliation.id}
+                    className="text-sm font-semibold text-cyan-500 border border-cyan-500/30 rounded-full px-3 py-1"
+                  >
+                    {affiliation.title}
+                  </span>
+                ))}
+              </div>
+            )}
+            <div className="text-md font-bold mt-4 text-cyan-500">
               {formatProjectDate(project)}
             </div>
             {project.link && (

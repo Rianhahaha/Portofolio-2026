@@ -11,7 +11,7 @@ export default function Section1() {
       {/* <div className="w-full h-full absolute bottom-0 bg-gradient-to-t from-cyan-500/10 to-transparent"/> */}
       <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-end relative px-5">
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -38,14 +38,14 @@ export default function Section1() {
             <div className="flex justify-start md:justify-end mt-5">
               <MainButton
                 type="link"
-                href="/cv.pdf"
+                href="/CV.pdf"
                 text="See my CV"
                 icon={FileDownIcon}
               />
             </div>
           </div>
         </motion.div>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -59,7 +59,7 @@ export default function Section1() {
             className="object-cover object-top-left lg:object-bottom-left w-full h-full lg:h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]"
           />
         </motion.div>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}

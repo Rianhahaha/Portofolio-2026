@@ -46,6 +46,8 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
     setProjectTypeOpen(!projectTypeOpen);
   }
 
+  console.log(projects)
+
   function handleFilterTech(techId: string) {
     setLoading(true);
     setTimeout(() => {
@@ -94,10 +96,11 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
     <PagesLayout>
       <section className="w-full min-h-screen">
         <div className="max-w-7xl mx-auto w-full mt-5 md:mt-[10rem] mb-[10rem] px-5">
-          <div className="flex gap-5 items-center">
-            <h1 className="page-title">
+          <div className="flex flex-col gap-1 items-center mb-5">
+            <h1 className="page-title mb-0!">
               My <span className="text-cyan-500">Projects.</span>
             </h1>
+            <p className="w-full">I will <span className="text-cyan-500">Always </span>updating my new projects here! So stay tune for more!</p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-5 relative">
@@ -164,20 +167,11 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                   {filteredProjects.map((data) => (
                     <ProjectCard
-                      desc={data.desc}
-                      id={data.id}
-                      img={data.img}
                       key={data.id}
-                      techIds={data.techIds}
-                      techIdsActive={selectedTech}
-                      title={data.title}
-                      subtitle={data.subtitle}
-                      type={data.type}
-                      typeActive={selectedProjectType}
-                      startDate={data.startDate}
-                      endDate={data.endDate}
-                      dateType={data.dateType}
+                      project={data}
                       technologies={technologies}
+                      techIdsActive={selectedTech}
+                      typeActive={selectedProjectType}
                     />
                   ))}
                 </div>

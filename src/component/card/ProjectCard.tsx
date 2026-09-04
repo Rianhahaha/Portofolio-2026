@@ -6,27 +6,23 @@ import { SKILLS_DATA, OTHER_SKILLS_DATA } from "@/data/SkillsData";
 import { useIsTouchDevice } from '@/utils/useMobileClick';
 import { formatProjectDate } from '@/utils/formatProjectDate';
 
-type ProjectCardProps = ProjectItem & {
+type ProjectCardProps = {
+    project: ProjectItem;
     // Payload data (preferred). Falls back to static SkillsData snapshot when empty.
     technologies?: TechnologyItem[];
+    techIdsActive?: string[];
+    typeActive?: string[];
+    className?: string;
 };
 
 export default function ProjectCard({
-    id,
-    title,
-    subtitle,
-    img,
-    desc,
-    startDate,
-    endDate,
-    dateType,
-    techIds,
+    project,
+    technologies = [],
     techIdsActive = [],
-    type,
     typeActive = [],
     className,
-    technologies = []
 }: ProjectCardProps) {
+    const { id, title, subtitle, img, desc, startDate, endDate, dateType, techIds, type, affiliations } = project;
 
     const [isActive, setIsActive] = useState(false);
     const isTouch = useIsTouchDevice();
@@ -43,7 +39,7 @@ export default function ProjectCard({
         <div
             onClick={(e) => { if (isTouch) setIsActive(!isActive) }}
             data-active={isActive}
-            className={`relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-5 from-white/10 to-transparent border border-teal-500/20 
+            className={`relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-2 from-white/10 to-transparent border border-teal-500/20 
          mouse:hover:border-teal-500 
          mouse:hover:shadow-md 
          mouse:hover:shadow-teal-500/50  
@@ -95,16 +91,33 @@ export default function ProjectCard({
             )}
             {/* title */}
             <div className="w-full p-3 grow flex flex-col justify-between pointer-events-none">
-                <div>
+                {/* Date Range */}
+                <div className=''>
+
+                    <div className="text-[12px] mb-2 text-white">
+                        {formatProjectDate({ startDate, endDate, dateType })}
+                    </div>
+                    {affiliations?.map((affiliation, index) => {
+                        return (
+                            <span key={index} className='font-semibold text-xs  text-cyan-500'>
+                                <span className={` ${typeActive.includes(affiliation?.id || '') ? 'text-white text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''}`}>
+
+                                    {affiliation?.title}
+                                    <span>
+
+                                        {index !== affiliations.length - 1 && ', '}
+                                    </span>
+                                </span>
+
+                            </span>
+                        )
+                    })}
                     <div className="w-full font-bold flex flex-wrap items-center">
                         <span className="mr-1">
                             {title}
                         </span>
-                        {subtitle && (
-                            <span className="w-full text-xs font-normal text-white/60">
-                                {subtitle}
-                            </span>
-                        )}
+
+
                         <span className='font-normal'>
                             -
                         </span>
@@ -122,13 +135,29 @@ export default function ProjectCard({
                                 </span>
                             )
                         })}
+
                     </div>
+                    <div className="mt-2">
+
+                        {subtitle && (
+                            <span className="w-full text-sm font-normal   ">
+                                {subtitle}
+                            </span>
+                        )}
+                        {/* desc */}
+                        <div className="line-clamp-3 text-[12px] text-white/60 ">
+                            {desc}
+                        </div>
+                    </div>
+                </div>
+                <div>
+
                     {/* tech */}
                     <div className="flex w-full gap-2 my-2 flex-wrap">
                         {projectTechs.map((tech, index) => {
                             const isTechActive = techIdsActive.includes(tech?.id || '');
                             return (
-                                <div key={index} className={`w-fit ${isTechActive ? 'bg-gradient-to-tr from-teal-500 to-sky-500' : 'bg-white/20'} border rounded-2xl py-1 px-3 text-[8px] `}>
+                                <div key={index} className={`w-fit ${isTechActive ? 'bg-gradient-to-tr from-teal-500 to-sky-500' : 'bg-white/20'} border border-white/40 rounded-2xl py-1 px-3 text-[8px] `}>
                                     {tech?.title}
                                 </div>
                             )
@@ -136,15 +165,8 @@ export default function ProjectCard({
                         )}
 
                     </div>
-                    {/* desc */}
-                    <div className="line-clamp-3 text-[12px]">
-                        {desc}
-                    </div>
                 </div>
-                {/* Date Range */}
-                <div className="text-[12px] font-bold my-2 text-cyan-500">
-                    {formatProjectDate({ startDate, endDate, dateType })}
-                </div>
+
             </div>
         </div>
     )
