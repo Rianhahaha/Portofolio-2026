@@ -8,11 +8,11 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   html.scroll-smooth {
     scroll-behavior: auto;
   }
-}
+} */
 
 @custom-variant touch (@media (pointer: coarse) and (hover: none));
 @custom-variant mouse (@media (pointer: fine) and (hover: hover));
@@ -69,13 +69,13 @@
 
 body {
   color: var(--foreground);
-  @apply scroll-smooth;
+  /* @apply scroll-smooth; */
 }
 
-.global-transition {
+@utility global-transition {
   @apply transition-all duration-200 ease-in-out;
 }
-.global-transition-slower {
+@utility global-transition-slower {
   @apply transition-all duration-500 ease-in-out;
 }
 
@@ -205,9 +205,12 @@ body {
     transition-property: scale none;
   }
 }
-
+.card-button .text-shadow {
+  -webkit-text-stroke-width: 1svh;
+  -webkit-text-stroke-color: #000000;
+}
 .text-shadow {
-  -webkit-text-stroke-width: 3svw;
+  -webkit-text-stroke-width: 1.2svw;
   -webkit-text-stroke-color: #000000;
 }
 .text-shadow > p,
@@ -317,3 +320,5 @@ body {
     }
   }
 }
+
+/* BG Glitch Effect */

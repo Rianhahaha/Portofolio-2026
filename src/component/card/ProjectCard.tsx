@@ -4,12 +4,17 @@ import Image from 'next/image'
 import { ProjectItem } from '@/types'
 import { SKILLS_DATA, OTHER_SKILLS_DATA } from "@/data/SkillsData";
 import { useIsTouchDevice } from '@/utils/useMobileClick';
+import { formatProjectDate } from '@/utils/formatProjectDate';
+
 export default function ProjectCard({
     id,
     title,
+    subtitle,
     img,
     desc,
-    year,
+    startDate,
+    endDate,
+    dateType,
     techIds,
     techIdsActive = [],
     type,
@@ -87,6 +92,11 @@ export default function ProjectCard({
                         <span className="mr-1">
                             {title}
                         </span>
+                        {subtitle && (
+                            <span className="w-full text-xs font-normal text-white/60">
+                                {subtitle}
+                            </span>
+                        )}
                         <span className='font-normal'>
                             -
                         </span>
@@ -123,9 +133,9 @@ export default function ProjectCard({
                         {desc}
                     </div>
                 </div>
-                {/* Year Start */}
+                {/* Date Range */}
                 <div className="text-[12px] font-bold my-2 text-cyan-500">
-                    {year}
+                    {formatProjectDate({ startDate, endDate, dateType })}
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ export const Projects: CollectionConfig = {
   slug: "projects",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "year", "slug"],
+    defaultColumns: ["title", "startDate", "slug"],
   },
   access: {
     read: () => true, // Exposes the API endpoint to your Next.js frontend
@@ -14,6 +14,10 @@ export const Projects: CollectionConfig = {
       name: "title",
       type: "text",
       required: true,
+    },
+    {
+      name: "subtitle",
+      type: "text",
     },
     {
       name: "slug", // Replaces your 'id' property (e.g., 'lacak', 'ala')
@@ -31,11 +35,47 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: "year",
-      type: "number",
+      name: "dateType",
+      type: "select",
+      options: [
+        { label: "Year only", value: "year" },
+        { label: "Year and month", value: "year-month" },
+        { label: "Full date", value: "full" },
+      ],
+      defaultValue: "year",
       required: true,
       admin: {
-        step: 1,
+        description: "Specify date granularity for the project duration.",
+      },
+    },
+    {
+      name: "startDate",
+      type: "date",
+      required: true,
+      admin: {
+        date: {
+          pickerAppearance: "dayOnly",
+        },
+      },
+    },
+    {
+      name: "endDate",
+      type: "date",
+      admin: {
+        date: {
+          pickerAppearance: "dayOnly",
+        },
+        description: "Only selectable if Start Date is filled. Leave empty if ongoing / present.",
+        condition: (data) => Boolean(data?.startDate),
+      },
+    },
+    {
+      name: "affiliations",
+      type: "relationship",
+      relationTo: "affiliation",
+      hasMany: true,
+      admin: {
+        description: "Select one or multiple affiliations (companies, clients, or organizations).",
       },
     },
     {

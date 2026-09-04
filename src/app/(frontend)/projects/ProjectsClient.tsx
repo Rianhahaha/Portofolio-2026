@@ -20,7 +20,11 @@ type ProjectsClientProps = {
 };
 
 export default function ProjectsClient({ projects, technologies, projectTypes }: ProjectsClientProps) {
-  const defaultSort = [...projects].sort((a, b) => b.year - a.year);
+  const defaultSort = [...projects].sort((a, b) => {
+    const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
+    const dateB = b.startDate ? new Date(b.startDate).getTime() : 0;
+    return dateB - dateA;
+  });
   const [techOpen, setTechOpen] = useState(false);
   const [projectTypeOpen, setProjectTypeOpen] = useState(false);
   const [selectedTech, setSelectedTech] = useState<string[]>([]);
@@ -167,9 +171,12 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
                       techIds={data.techIds}
                       techIdsActive={selectedTech}
                       title={data.title}
+                      subtitle={data.subtitle}
                       type={data.type}
                       typeActive={selectedProjectType}
-                      year={data.year}
+                      startDate={data.startDate}
+                      endDate={data.endDate}
+                      dateType={data.dateType}
                     />
                   ))}
                 </div>

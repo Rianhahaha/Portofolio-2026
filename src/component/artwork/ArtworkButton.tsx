@@ -3,12 +3,14 @@ import React from "react";
 
 interface ArtworkButtonProps {
     type: "link" | "button";
-    text: string;
+    text?: string;
     href?: string;
     onClick?: () => void;
     noblank?: boolean;
     bgPosition?: "left" | "right";
     className?: string; // Untuk menampung koordinat absolute / layout positioning dari parent
+    children?: React.ReactNode;
+
 }
 
 export default function ArtworkButton({
@@ -18,35 +20,48 @@ export default function ArtworkButton({
     onClick,
     noblank = false,
     className = "",
-    bgPosition = "right"
+    bgPosition = "right",
+    children
+
 }: ArtworkButtonProps) {
     // Core design system tokens untuk Artwork Button
     const baseStyles = `
-    
-    border-[2svw] border-black 
+    outline-[.7svw] outline-black 
     w-fit h-fit 
      active:scale-[0.98]
-    z-[70] text-[10svw] font-artwork font-bold text-white
+    z-[70] 
+    text-[8svw] md:text-[2.5svw]
+    font-artwork font-bold text-white
     flex justify-center items-center 
     transition-all duration-200 select-none
     group
-    
+    tracking-[.2svw]
+    pointer-events-default
+    cursor-pointer
+    card-button
   `;
 
     // Gabungkan base styles dengan extra positioning classes dari parent
     const combinedStyles = ` ${className} ${baseStyles}`.trim();
 
     const renderContent = () => (
-        <div className="text-shadow size-full px-[6svw] py-[3svh]  relative overflow-hidden">
-            <p className="z-50">{text}</p>
+        <div className="flex justify-center gap-5 text-shadow size-full  md:px-[3svw] md:py-[3svh] px-[8svw] py-[1svh]  relative overflow-hidden">
+            {text && (
 
-            <img className={`absolute -z-10  bottom-[-20svh] w-[50svh]    fill-white pointer-events-none transition-all duration-300
-                    ${bgPosition === 'right' ? ' right-[-15svh] group-hover:right-[-20svh] rotate-[37deg]' :
-                    'left-[-15svh] group-hover:left-[-20svh] rotate-[145deg]'}
+                <p className="z-50">{text}</p>
+            )}
+            {children && (
+                <>
+                    {children}
+                </>
+            )}
+
+            <img className={`absolute -z-10  bottom-[0] size-full    fill-white pointer-events-none transition-all duration-300 object-cover
+                    ${bgPosition === 'right' ? ' right-[0] group-hover:right-[-5svh] ' :
+                    'left-[0] group-hover:left-[-5svh] '}
                 
                 `}
                 src="/artwork/dot-pattern-black.svg" alt="" />
-
         </div>
     );
 

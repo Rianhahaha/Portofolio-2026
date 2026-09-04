@@ -17,6 +17,7 @@ import type { ProjectItem, SkillItem } from "@/types";
 import Image from "next/image";
 
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { formatProjectDate } from "@/utils/formatProjectDate";
 
 interface ProjectDetailClientProps {
   project: ProjectItem;
@@ -61,9 +62,12 @@ export default function ProjectDetailClient({
               {project.title}
               <span className="text-cyan-500">.</span>
             </h1>
+            {project.subtitle && (
+              <p className="text-xl text-slate-400 mt-1">{project.subtitle}</p>
+            )}
             <p className="text-justify text-slate-300">{project.desc}</p>
             <div className="text-xl font-bold mt-4 text-cyan-500">
-              {project.year}
+              {formatProjectDate(project)}
             </div>
             {project.link && (
 

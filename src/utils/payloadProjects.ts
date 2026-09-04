@@ -14,17 +14,21 @@ export type PayloadRelation =
 type PayloadProject = {
   id?: string | number;
   title?: string | null;
+  subtitle?: string | null;
   slug?: string | null;
   link?: string | null;
   desc?: string | null;
-  year?: number | null;
+  startDate?: string | null;
+  endDate?: string | null;
+  dateType?: "year" | "year-month" | "full" | null;
   ProjectType?: PayloadRelation[] | null;
+  affiliations?: PayloadRelation[] | null;
   case?: string | null;
   techIds?: PayloadRelation[] | null;
   img?: PayloadRelation;
   previewImg?: Array<{
     id?: string;
-    media?: PayloadRelation; // Sesuaikan "image" dengan nama field di config Payload kamu
+    media?: PayloadRelation;
   }> | null;
 };
 
@@ -39,13 +43,19 @@ export const normalizePayloadProject = (
 ): ProjectItem => ({
   id: project.slug || String(project.id || ""),
   title: project.title || "",
+  subtitle: project.subtitle || undefined,
   link: project.link || "",
   img: extractMediaUrls(project.img),
   desc: project.desc || "",
-  year: project.year || 0,
+  startDate: project.startDate || undefined,
+  endDate: project.endDate || undefined,
+  dateType: project.dateType || undefined,
   type: (project.ProjectType || [])
     .map((type) => getStringField(type, "projectTypeId"))
     .filter((type): type is string => Boolean(type)),
+  affiliations: (project.affiliations || [])
+    .map((aff) => getStringField(aff, "affiliationId"))
+    .filter((aff): aff is string => Boolean(aff)),
   case: project.case || "",
   techIds: (project.techIds || [])
     .map((tech) => getStringField(tech, "techId"))
@@ -71,7 +81,7 @@ export const getPayloadProjects = async (
     collection: "projects",
     depth: 2,
     limit,
-    sort: "-year",
+    sort: "-startDate",
   });
 
   return projects.docs.map((project) =>

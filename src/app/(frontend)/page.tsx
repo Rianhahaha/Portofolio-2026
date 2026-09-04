@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <>
       <AnimatedBg />
-      <div className="scroll-smooth!">
+      <div className="">
         <Section1 />
         <Navbar />
         <Section2 />

@@ -11,6 +11,7 @@ import { ProjectType } from "./app/collections/ProjectType";
 import { Technologies } from "./app/collections/Technologies";
 import { Users } from "./app/collections/Users";
 import { Inquiries } from "./app/collections/Inquiries";
+import { Affiliation } from "./app/collections/Affiliation";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,7 +31,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Projects, Technologies, ProjectType, Inquiries],
+  collections: [Users, Media, Projects, Technologies, ProjectType, Inquiries, Affiliation],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -40,6 +41,9 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || "",
     },
+    // Dev-only escape hatch: set PAYLOAD_DB_PUSH=true to push schema
+    // changes directly (Payload CLI is broken on Node 24).
+    push: process.env.PAYLOAD_DB_PUSH === "true",
   }),
   sharp,
   plugins: [

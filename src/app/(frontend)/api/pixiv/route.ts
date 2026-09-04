@@ -31,6 +31,8 @@ async function getPixivIllusts(userId: string, limit: number) {
         title: illustData.body.title,
         // url asli (kena 403 kalau dipakai langsung)
         original: illustData.body.urls.original,
+        uploadDate: illustData.body.uploadDate,
+
         // url proxy lewat API ini
         proxy: {
           // orginal: `/api/pixiv/image?url=${encodeURIComponent(
@@ -51,6 +53,7 @@ async function getPixivIllusts(userId: string, limit: number) {
 // --- endpoint utama: return list karya ---
 export async function GET(req: NextRequest) {
   const userId = req.nextUrl.searchParams.get("user") || "67360022"; // default user
-  const illusts = await getPixivIllusts(userId, 5);
+  const illusts = await getPixivIllusts(userId, 30);
+  // console.log(illusts);
   return NextResponse.json(illusts);
 }

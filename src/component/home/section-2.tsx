@@ -8,18 +8,18 @@ export default function Section2() {
   return (
     <section id="service" className="w-full min-h-screen md:min-h-[600px]  flex items-bottom justify-center  pt-[10rem]  px-5 overflow-hidden">
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1rem] items-start">
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+        <div>
           <Card title="Design" desc={`Creating visually-driven interfaces that are actually pleasant to use.`}>
             <Design />
           </Card>
         </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div>
 
           <Card title="Programmer" desc={`Turning ideas into interactive products with clean and scalable code.`}>
             <Code />
           </Card>
         </div>
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" className="col-span-1 md:col-span-2 lg:col-span-1">
+        <div className="col-span-1 md:col-span-2 lg:col-span-1">
           <Card link="/artworks" title="Artist" desc={`Visual storytelling through illustration and creative experimentation.`}>
             <Art />
           </Card>

@@ -32,12 +32,12 @@ export default function Section3({ projects, skills }: Section3Props) {
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <section className="max-w-7xl mx-auto w-full h-full min-h-[50svh]  px-5 lg:px-0 py-20  flex flex-col justify-center items-center">
-      <div className="my-10 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
-        <h1 className="text-3xl font-bold">
+      <div className="my-10 text-center">
+        <h2 className="text-3xl font-bold">
           My <span className="text-cyan-500">Skills.</span>
-        </h1>
+        </h2>
       </div>
-      <div className="mb-10 opacity-50" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+      <div className="mb-10 opacity-50">
         I'm Experienced on using
       </div>
       <Swiper
@@ -68,7 +68,7 @@ export default function Section3({ projects, skills }: Section3Props) {
           {/* <div className="absolute  right-[20px] top-0  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px] ">
             PROGRAMMING
           </div> */}
-          <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`} data-aos-anchor='#skills' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+          <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
             {programming_skills_data?.map((skill, index) => (
               <div key={index} className={`shrink`}>
                 <Skills id={skill.id} img={skill.img} title={skill.title} />
@@ -90,11 +90,11 @@ export default function Section3({ projects, skills }: Section3Props) {
         </SwiperSlide>
       </Swiper>
       <div className="w-full relative" id="recent-project">
-        <div className="size-full overflow-hidden py-20" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div className="size-full overflow-hidden py-20">
 
-          <h1 className="text-3xl font-bold text-center mb-20">
+          <h2 className="text-3xl font-bold text-center mb-20">
             Recent <span className="text-cyan-500">Projects.</span>
-          </h1>
+          </h2>
           <Swiper
             onSwiper={(swiper: any) => (swiperRef.current = swiper)}
             // ref={swiper}
@@ -149,9 +149,12 @@ export default function Section3({ projects, skills }: Section3Props) {
                 <ProjectCard key={i}
                   id={data.id}
                   title={data.title}
+                  subtitle={data.subtitle}
                   desc={data.desc}
                   type={data.type}
-                  year={data.year}
+                  startDate={data.startDate}
+                  endDate={data.endDate}
+                  dateType={data.dateType}
                   img={data.img}
                   techIds={data.techIds}
                 />
@@ -168,7 +171,7 @@ export default function Section3({ projects, skills }: Section3Props) {
 
 
         </div>
-        <div className="flex w-full justify-center" data-aos-anchor='#recent-project' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+        <div className="flex w-full justify-center">
 
           <MainButton type="link" noblank icon={Code2Icon} text="All Projects" href="/projects" />
 
@@ -177,17 +180,17 @@ export default function Section3({ projects, skills }: Section3Props) {
       </div>
       <div className="text-center my-20 flex justify-center flex-col" id="touch">
         <div>
-          <h1 className="text-3xl font-bold text-center mb-10 " data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+          <h2 className="text-3xl font-bold text-center mb-10 ">
 
             Get in <span className="text-cyan-500">Touch.</span>
-          </h1>
-          <div className="mb-2" data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          </h2>
+          <div className="mb-2">
             Have a project in mind or just want to collaborate?
           </div>
-          <div className="mb-10 " data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+          <div className="mb-10 ">
             Let’s talk about how we can turn ideas into clean, functional, and visually solid work.
           </div>
-          <div className="flex justify-center" data-aos-anchor='#touch' data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+          <div className="flex justify-center">
 
             <MainButton
               type="link"
