@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPayloadProjectBySlug } from "@/utils/payloadProjects";
 import ProjectDetailClient from "./ProjectDetailClient";
 import { getPayloadTechnologies } from "@/utils/payloadTechnologies";
+import { getPayloadAffiliation } from "@/utils/payloadAffiliations";
 import type { Metadata } from "next";
 
 interface ProjectPageProps {
@@ -55,10 +56,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id } = await params;
   const project = await getPayloadProjectBySlug(id);
   const technologies = await getPayloadTechnologies();
+  const affiliationList = await getPayloadAffiliation();
 
   if (!project) {
     return notFound();
   }
 
-  return <ProjectDetailClient project={project} technologies={technologies} />;
+  return <ProjectDetailClient project={project} technologies={technologies} affiliationList={affiliationList} />;
 }

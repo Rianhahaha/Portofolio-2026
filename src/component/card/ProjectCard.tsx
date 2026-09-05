@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import MainButton from '../button/MainButton'
 import Image from 'next/image'
-import { ProjectItem, TechnologyItem } from '@/types'
+import { Affiliation, ProjectItem, TechnologyItem } from '@/types'
 import { SKILLS_DATA, OTHER_SKILLS_DATA } from "@/data/SkillsData";
 import { useIsTouchDevice } from '@/utils/useMobileClick';
 import { formatProjectDate } from '@/utils/formatProjectDate';
@@ -10,16 +10,20 @@ type ProjectCardProps = {
     project: ProjectItem;
     // Payload data (preferred). Falls back to static SkillsData snapshot when empty.
     technologies?: TechnologyItem[];
+    affiliationList?: Affiliation[];
     techIdsActive?: string[];
     typeActive?: string[];
+    affiliationActive?: string[]
     className?: string;
 };
 
 export default function ProjectCard({
     project,
     technologies = [],
+    affiliationList = [],
     techIdsActive = [],
     typeActive = [],
+    affiliationActive = [],
     className,
 }: ProjectCardProps) {
     const { id, title, subtitle, img, desc, startDate, endDate, dateType, techIds, type, affiliations } = project;
@@ -97,19 +101,20 @@ export default function ProjectCard({
                     <div className="text-[12px] mb-2 text-white">
                         {formatProjectDate({ startDate, endDate, dateType })}
                     </div>
-                    {affiliations?.map((affiliation, index) => {
+                    {affiliations?.map((affiliationId, index) => {
+                        const affiliationTitle = affiliationList.find((a) => a.id === affiliationId)?.title || affiliationId;
                         return (
-                            <span key={index} className='font-semibold text-xs  text-cyan-500'>
-                                <span className={` ${typeActive.includes(affiliation?.id || '') ? 'text-white text-shadow-[0_0px_4px_rgb(255_255_255)]' : ''}`}>
+                            <>
+                                <span key={affiliationId} className={`font-semibold text-xs  text-cyan-500 ${affiliationActive.includes(affiliationId) ? ' text-shadow-[0_0px_4px_rgb(0_214_255)]' : ''}`}>
 
-                                    {affiliation?.title}
-                                    <span>
+                                    {affiliationTitle}
 
-                                        {index !== affiliations.length - 1 && ', '}
-                                    </span>
                                 </span>
+                                <span>
 
-                            </span>
+                                    {index !== affiliations.length - 1 && ', '}
+                                </span>
+                            </>
                         )
                     })}
                     <div className="w-full font-bold flex flex-wrap items-center">

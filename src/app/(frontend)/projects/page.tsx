@@ -3,6 +3,7 @@ import { getPayloadTechnologies } from "@/utils/payloadTechnologies";
 import ProjectsClient from "./ProjectsClient";
 import { getPayloadProjectTypes } from "@/utils/payloadProjectType";
 import { Metadata } from "next";
+import { getPayloadAffiliation } from "@/utils/payloadAffiliations";
 
 // 1. Definisikan metadata khusus untuk halaman Projects
 export const metadata: Metadata = {
@@ -32,7 +33,10 @@ export default async function Projects() {
   const projects = await getPayloadProjects();
   const technologies = await getPayloadTechnologies();
   const projectTypes = await getPayloadProjectTypes();
-  // console.log(projectTypes)
+  const affiliation = await getPayloadAffiliation();
 
-  return <ProjectsClient projects={projects} technologies={technologies} projectTypes={projectTypes} />;
+  // console.log("affiliation :", affiliation)
+
+
+  return <ProjectsClient projects={projects} technologies={technologies} projectTypes={projectTypes} affiliation={affiliation} />;
 }

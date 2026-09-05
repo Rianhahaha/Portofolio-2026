@@ -62,15 +62,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="">
-      <SmoothScroll>
 
-        <body
-          className={`${fontMain.variable} ${fontArtwork.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
-        >
 
-          {children}
-        </body>
-      </SmoothScroll>
+      <body
+        className={`${fontMain.variable} ${fontArtwork.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
+      >
+
+        {children}
+      </body>
     </html>
   );
 }

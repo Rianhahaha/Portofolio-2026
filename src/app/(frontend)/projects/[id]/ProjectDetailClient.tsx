@@ -12,7 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import MainButton from "@/component/button/MainButton";
 import TechnologyBadge from "@/component/skills/TechnologyBadge";
 import { OTHER_SKILLS_DATA, SKILLS_DATA } from "@/data/SkillsData";
-import type { ProjectItem, TechnologyItem } from "@/types";
+import type { Affiliation, ProjectItem, TechnologyItem } from "@/types";
 
 
 import Image from "next/image";
@@ -23,11 +23,13 @@ import { formatProjectDate } from "@/utils/formatProjectDate";
 interface ProjectDetailClientProps {
   project: ProjectItem;
   technologies: TechnologyItem[];
+  affiliationList?: Affiliation[];
 }
 
 export default function ProjectDetailClient({
   project,
   technologies,
+  affiliationList = [],
 }: ProjectDetailClientProps) {
   // Gabungkan data technology di sini
   // Fallback ke static snapshot ketika data Payload tidak tersedia
@@ -59,6 +61,19 @@ export default function ProjectDetailClient({
         <div className="absolute z-[100] bottom-5 w-full max-w-7xl h-1/2 content-end left-1/2 -translate-x-1/2  grid grid-cols-1 md:grid-cols-2 px-5">
           <div className="hidden md:block"></div>
           <div className="flex flex-col z-50">
+            {project.affiliations && project.affiliations.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 mt-4">
+                {/* <span className="text-sm text-slate-400">In collaboration with</span> */}
+                {project.affiliations.map((affiliationId) => (
+                  <span
+                    key={affiliationId}
+                    className="text-sm font-semibold text-cyan-500 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-3 py-1"
+                  >
+                    {affiliationList.find((a) => a.id === affiliationId)?.title || affiliationId}
+                  </span>
+                ))}
+              </div>
+            )}
             <h1 className="text-[4.5rem] font-bold leading-tight">
               {project.title}
               <span className="text-cyan-500">.</span>
@@ -71,19 +86,6 @@ export default function ProjectDetailClient({
 
             )}
             <p className="text-justify text-slate-300">{project.desc}</p>
-            {project.affiliations && project.affiliations.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 mt-4">
-                <span className="text-sm text-slate-400">In collaboration with</span>
-                {project.affiliations.map((affiliation) => (
-                  <span
-                    key={affiliation.id}
-                    className="text-sm font-semibold text-cyan-500 border border-cyan-500/30 rounded-full px-3 py-1"
-                  >
-                    {affiliation.title}
-                  </span>
-                ))}
-              </div>
-            )}
             <div className="text-md font-bold mt-4 text-cyan-500">
               {formatProjectDate(project)}
             </div>
@@ -199,12 +201,7 @@ export default function ProjectDetailClient({
 
         {/* Swiper Preview */}
         {preview.length === 0 ? (
-          <div className="py-10 h-[100svh] flex items-center justify-center">
-            <h2 className="text-[1rem] font-bold text-center mb-10">
-              Private Project. No Preview, Sorry :){" "}
-              <span className="text-cyan-500">.</span>
-            </h2>
-          </div>
+          <></>
         ) : (
           <div className="py-10">
             <h2 className="text-[5rem] font-bold text-center mb-10">

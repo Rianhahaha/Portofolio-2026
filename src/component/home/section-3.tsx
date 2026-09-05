@@ -11,16 +11,17 @@ import MainButton from "../button/MainButton";
 import { ChevronLeft, ChevronRight, Code2Icon, Cog } from "lucide-react";
 import { useRef } from "react";
 import { getPayloadProjects } from "@/utils/payloadProjects";
-import { ProjectItem, TechnologyItem } from "@/types";
+import { Affiliation, ProjectItem, TechnologyItem } from "@/types";
 
 
 interface Section3Props {
   projects?: ProjectItem[];
-  technologies?: TechnologyItem[]
+  technologies?: TechnologyItem[];
+  affiliatons?: Affiliation[];
 
 }
 
-export default function Section3({ projects, technologies }: Section3Props) {
+export default function Section3({ projects, technologies, affiliatons }: Section3Props) {
   // const project_data = getPayloadProjects()
   // console.log("project: ", project_data)
   // const swiper = useSwiper();
@@ -151,6 +152,7 @@ export default function Section3({ projects, technologies }: Section3Props) {
                 <ProjectCard key={i}
                   project={data}
                   technologies={technologies}
+                  affiliationList={affiliatons}
                 />
               </SwiperSlide>
             ))}

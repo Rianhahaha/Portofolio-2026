@@ -29,7 +29,7 @@ export interface ProjectItem {
   endDate?: string;
   dateType?: "year" | "year-month" | "full";
   type?: string[];
-  affiliations?: Affiliation[];
+  affiliations?: string[];
   case?: string;
   techIds: string[];
   previewImg?: MediaUrls[];

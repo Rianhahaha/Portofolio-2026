@@ -1,7 +1,7 @@
 
 import { ChevronDown, Code2Icon, LucideIcon } from "lucide-react";
 
-interface DropdownButtonProps<T extends { id?: string }> {
+interface DropdownButtonProps<T extends { id?: string, name?: string, title?: string }> {
     isOpen: boolean;
     toggleOpen: () => void;
     data: T[];
@@ -11,7 +11,7 @@ interface DropdownButtonProps<T extends { id?: string }> {
     label: string;
 }
 
-export default function DropdownButton<T extends { id?: string }>({
+export default function DropdownButton<T extends { id?: string, name?: string, title?: string }>({
     isOpen,
     toggleOpen,
     data,
@@ -60,7 +60,7 @@ export default function DropdownButton<T extends { id?: string }>({
                             onClick={() => item.id && filter(item.id)}
                             type="button"
                         >
-                            {item.id}
+                            {item?.name ?? item.title}
                         </button>
                     ))}
                 </div>

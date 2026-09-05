@@ -2,6 +2,7 @@
 
 import {
   BriefcaseBusinessIcon,
+  Building2Icon,
   ChevronDown,
   Code2Icon,
   Filter,
@@ -10,16 +11,18 @@ import {
 import { useState } from "react";
 import ProjectCard from "@/component/card/ProjectCard";
 import PagesLayout from "@/component/PagesLayout";
-import type { ProjectItem, ProjectType, TechnologyItem } from "@/types";
+import type { Affiliation, ProjectItem, ProjectType, TechnologyItem } from "@/types";
 import DropdownButton from "@/component/project/DropdownButton";
 
 type ProjectsClientProps = {
   projects: ProjectItem[];
   technologies: TechnologyItem[];
   projectTypes: ProjectType[];
+  affiliation: Affiliation[];
+
 };
 
-export default function ProjectsClient({ projects, technologies, projectTypes }: ProjectsClientProps) {
+export default function ProjectsClient({ projects, technologies, projectTypes, affiliation }: ProjectsClientProps) {
   const defaultSort = [...projects].sort((a, b) => {
     const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
     const dateB = b.startDate ? new Date(b.startDate).getTime() : 0;
@@ -27,8 +30,11 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
   });
   const [techOpen, setTechOpen] = useState(false);
   const [projectTypeOpen, setProjectTypeOpen] = useState(false);
+  const [affiliationOpen, setaffiliationOpen] = useState(false);
+
   const [selectedTech, setSelectedTech] = useState<string[]>([]);
   const [selectedProjectType, setSelectedProjectType] = useState<string[]>([]);
+  const [selectedAffiliation, setSelectedAffiliation] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
   const techSort = [...technologies].sort((a, b) =>
@@ -36,6 +42,9 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
   );
   const projectTypeSort = [...projectTypes].sort((a, b) =>
     (a.name || "").localeCompare(b.name || ""),
+  );
+  const affiliationSort = [...affiliation].sort((a, b) =>
+    (a.title || "").localeCompare(b.title || ""),
   );
 
   function toggleTechOpen() {
@@ -46,7 +55,11 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
     setProjectTypeOpen(!projectTypeOpen);
   }
 
-  console.log(projects)
+  function toggleAffiliationOpen() {
+    setaffiliationOpen(!affiliationOpen);
+  }
+
+  // console.log(projects)
 
   function handleFilterTech(techId: string) {
     setLoading(true);
@@ -71,25 +84,44 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
       setLoading(false);
     }, 500);
   }
+  function handleFilterAffiliation(affiliationId: string) {
+    setLoading(true);
+    setTimeout(() => {
+      setSelectedAffiliation((prev) =>
+        prev.includes(affiliationId)
+          ? prev.filter((id) => id !== affiliationId)
+          : [...prev, affiliationId],
+      );
+      setLoading(false);
+    }, 500);
+  }
 
   const filteredProjects = defaultSort.filter((project) => {
     const hasTechFilter = selectedTech.length > 0;
     const hasProjectTypeFilter = selectedProjectType.length > 0;
+    const hasAffiliationFilter = selectedAffiliation.length > 0;
 
-    if (!hasTechFilter && !hasProjectTypeFilter) {
+    if (!hasTechFilter && !hasProjectTypeFilter && !hasAffiliationFilter) {
       return true;
     }
 
     const hasTech =
       !hasTechFilter ||
       selectedTech.every((techId) => project.techIds?.includes(techId));
+
     const hasProjectType =
       !hasProjectTypeFilter ||
       selectedProjectType.every((projectTypeId) =>
         project.type?.includes(projectTypeId),
       );
 
-    return hasTech && hasProjectType;
+    const hasAffiliation =
+      !hasAffiliationFilter ||
+      selectedAffiliation.every((affiliationId) =>
+        project.affiliations?.includes(affiliationId),
+      );
+
+    return hasTech && hasProjectType && hasAffiliation;
   });
 
   return (
@@ -118,7 +150,7 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
 
               <div className="hidden sm:flex gap-1 w-fit lg:w-full items-center font-bold">
                 <div
-                  className={`p-2 rounded-2xl ${techOpen || projectTypeOpen
+                  className={`p-2 rounded-2xl ${techOpen || projectTypeOpen || affiliationOpen
                     ? "drop-shadow-[0_0px_4px_rgb(255_255_255)] opacity-100 -translate-y-1"
                     : "opacity-30"
                     } global-transition`}
@@ -147,6 +179,15 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
                   icon={BriefcaseBusinessIcon}
                   label="Project Type"
                 />
+                <DropdownButton
+                  isOpen={affiliationOpen}
+                  toggleOpen={toggleAffiliationOpen}
+                  data={affiliationSort}
+                  selected={selectedAffiliation}
+                  filter={handleFilterAffiliation}
+                  icon={Building2Icon}
+                  label="Affiliation"
+                />
               </div>
             </div>
 
@@ -164,14 +205,16 @@ export default function ProjectsClient({ projects, technologies, projectTypes }:
                   <span>No projects found with the selected filters.</span>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {filteredProjects.map((data) => (
                     <ProjectCard
                       key={data.id}
                       project={data}
                       technologies={technologies}
+                      affiliationList={affiliation}
                       techIdsActive={selectedTech}
                       typeActive={selectedProjectType}
+                      affiliationActive={selectedAffiliation}
                     />
                   ))}
                 </div>
