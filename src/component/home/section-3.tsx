@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight, Code2Icon, Cog } from "lucide-react";
 import { useRef } from "react";
 import { getPayloadProjects } from "@/utils/payloadProjects";
 import { Affiliation, ProjectItem, TechnologyItem } from "@/types";
+import { motion } from "framer-motion";
 
 
 interface Section3Props {
@@ -35,14 +36,25 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
   const swiperRef = useRef<SwiperType | null>(null);
   return (
     <section className="max-w-7xl mx-auto w-full h-full min-h-[50svh]  px-5 lg:px-0 py-20  flex flex-col justify-center items-center">
-      <div className="my-10 text-center">
+      <motion.div className="my-10 text-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0 }}
+      >
         <h2 className="text-3xl font-bold">
           My <span className="text-cyan-500">Skills.</span>
         </h2>
-      </div>
-      <div className="mb-10 opacity-50">
+      </motion.div>
+      <motion.div className="mb-10 opacity-50"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+
+      >
         I'm Experienced on using
-      </div>
+      </motion.div>
       <Swiper
         breakpoints={{
           768: {
@@ -50,9 +62,6 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
             slidesPerView: 1,
             spaceBetween: 30,
             pagination: { clickable: true },
-
-
-
           }
         }}
         direction="horizontal"
@@ -73,9 +82,14 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
           </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
             {programming_technologies_data?.map((technology, index) => (
-              <div key={index} className={`shrink`}>
+              <motion.div key={index} className={`shrink`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: '-50px', }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
                 <TechnologyBadge id={technology.id} img={technology.img} title={technology.title} />
-              </div>
+              </motion.div>
             ))}
           </div>
         </SwiperSlide>
@@ -85,19 +99,32 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
           </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
             {other_technologies_data?.map((technology, index) => (
-              <div key={index} className={`shrink`}>
+              <motion.div key={index} className={`shrink`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: '-50px', }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+
+              >
                 <TechnologyBadge id={technology.id} img={technology.img} title={technology.title} />
-              </div>
+              </motion.div>
             ))}
           </div>
         </SwiperSlide>
       </Swiper>
       <div className="w-full relative" id="recent-project">
         <div className="size-full overflow-hidden py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0 }}
+          >
 
-          <h2 className="text-3xl font-bold text-center mb-20">
-            Recent <span className="text-cyan-500">Projects.</span>
-          </h2>
+            <h2 className="text-3xl font-bold text-center mb-20">
+              Recent <span className="text-cyan-500">Projects.</span>
+            </h2>
+          </motion.div>
           <Swiper
             onSwiper={(swiper: any) => (swiperRef.current = swiper)}
             // ref={swiper}
@@ -149,52 +176,81 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
 
             {projects_data?.map((data, i) => (
               <SwiperSlide className="h-full flex! flex-col min-h-[27rem]">
+
                 <ProjectCard key={i}
                   project={data}
                   technologies={technologies}
                   affiliationList={affiliatons}
+                  motionDelay={Math.min(i * 0.1)}
                 />
+
               </SwiperSlide>
             ))}
 
           </Swiper>
           <div className="w-[220px] h-[40px] absolute bottom-[55px] left-1/2 -translate-1/2 z-50 pointer-events-none">
-            <div className="size-full relative">
+            <motion.div className="size-full relative">
               <MainButton icon={ChevronLeft} onClick={() => swiperRef.current?.slidePrev()} className="pointer-events-auto absolute left-[0%]  bottom-0 z-[9] rounded-lg!  p-1! cursor-pointer hover:-translate-x-1" />
               <MainButton icon={ChevronRight} onClick={() => swiperRef.current?.slideNext()} className="pointer-events-auto absolute right-[0%]  bottom-0 z-[9]  rounded-lg! p-1! cursor-pointer hover:translate-x-1" />
-            </div>
+            </motion.div>
           </div>
 
 
         </div>
-        <div className="flex w-full justify-center">
+        <motion.div className="flex w-full justify-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: '-50px' }}
+          transition={{ duration: 0.6, delay: 0 }}
+
+        >
 
           <MainButton type="link" noblank icon={Code2Icon} text="All Projects" href="/projects" />
 
 
-        </div>
+        </motion.div>
       </div>
       <div className="text-center my-20 flex justify-center flex-col" id="touch">
         <div>
-          <h2 className="text-3xl font-bold text-center mb-10 ">
-
-            Get in <span className="text-cyan-500">Touch.</span>
-          </h2>
-          <div className="mb-2">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0 }}
+          >
+            <h2 className="text-3xl font-bold text-center mb-10 ">
+              Get in <span className="text-cyan-500">Touch.</span>
+            </h2>
+          </motion.div>
+          <motion.div className="mb-2"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Have a project in mind or just want to collaborate?
-          </div>
-          <div className="mb-10 ">
+          </motion.div>
+          <motion.div className="mb-10 "
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             Let’s talk about how we can turn ideas into clean, functional, and visually solid work.
-          </div>
-          <div className="flex justify-center">
-
+          </motion.div>
+          <motion.div className="flex justify-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-50px' }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
             <MainButton
               type="link"
               href={`/contact`}
               text="Contact Me"
               noblank
             />
-          </div>
+          </motion.div>
         </div>
 
       </div>

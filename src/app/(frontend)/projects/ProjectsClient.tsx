@@ -13,6 +13,7 @@ import ProjectCard from "@/component/card/ProjectCard";
 import PagesLayout from "@/component/PagesLayout";
 import type { Affiliation, ProjectItem, ProjectType, TechnologyItem } from "@/types";
 import DropdownButton from "@/component/project/DropdownButton";
+import { motion } from "framer-motion";
 
 type ProjectsClientProps = {
   projects: ProjectItem[];
@@ -128,15 +129,36 @@ export default function ProjectsClient({ projects, technologies, projectTypes, a
     <PagesLayout>
       <section className="w-full min-h-screen">
         <div className="max-w-7xl mx-auto w-full mt-5 md:mt-[10rem] mb-[10rem] px-5">
-          <div className="flex flex-col gap-1 items-center mb-5">
-            <h1 className="page-title mb-0!">
+          <div className="flex flex-col gap-1 items-center mb-5"
+
+          >
+            <motion.h1 className="page-title mb-0!"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              viewport={{ once: true }}
+
+            >
               My <span className="text-cyan-500">Projects.</span>
-            </h1>
-            <p className="w-full">I will <span className="text-cyan-500">Always </span>updating my new projects here! So stay tune for more!</p>
+            </motion.h1>
+            <motion.p className="w-full"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+
+
+            >I will <span className="text-cyan-500">Always </span>updating my new projects here! So stay tune for more!</motion.p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-5 relative">
-            <div className="w-full lg:w-[25rem] sticky top-[20px] md:top-[130px] h-fit min-h-[5rem] lg:min-h-[22rem] bg-gradient-to-tr from-white/10 to-transparent border border-teal-500/20 global-transition backdrop-blur-xl md:backdrop-blur-sm flex flex-row lg:flex-col justify-start lg:items-center rounded-xl p-5 gap-2 sm:gap-10 lg:gap-0 z-50 mb-5 md:mb-0">
+            <motion.div className="w-full lg:w-[25rem] sticky top-[20px] md:top-[130px] h-fit min-h-[5rem] lg:min-h-[22rem] bg-gradient-to-tr from-white/10 to-transparent border border-teal-500/20  backdrop-blur-xl md:backdrop-blur-sm flex flex-row lg:flex-col justify-start lg:items-center rounded-xl p-5 gap-2 sm:gap-10 lg:gap-0 z-50 mb-5 md:mb-0"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+
+            >
               <div className="absolute left-1/2 -translate-1/2 top-[0rem] bg-gradient-to-tr from-teal-500 to-sky-500 rounded-full block sm:hidden">
                 <div
                   className={`p-2 rounded-2xl ${techOpen || projectTypeOpen
@@ -189,7 +211,7 @@ export default function ProjectsClient({ projects, technologies, projectTypes, a
                   label="Affiliation"
                 />
               </div>
-            </div>
+            </motion.div>
 
             <div className="w-full">
               {loading ? (
@@ -206,7 +228,7 @@ export default function ProjectsClient({ projects, technologies, projectTypes, a
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {filteredProjects.map((data) => (
+                  {filteredProjects.map((data, i) => (
                     <ProjectCard
                       key={data.id}
                       project={data}
@@ -215,6 +237,9 @@ export default function ProjectsClient({ projects, technologies, projectTypes, a
                       techIdsActive={selectedTech}
                       typeActive={selectedProjectType}
                       affiliationActive={selectedAffiliation}
+                      motionDelay={Math.min(i * 0.1)}
+                      motionOnce={true}
+
                     />
                   ))}
                 </div>

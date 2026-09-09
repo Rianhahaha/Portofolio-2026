@@ -11,6 +11,7 @@ import 'swiper/css/navigation';
 
 import Footer from "@/component/Footer";
 import SmoothScroll from "@/component/SmoothScroll";
+
 const fontMain = Poppins({
   variable: "--poppins",
   subsets: ["devanagari", "latin", "latin-ext"],
@@ -68,7 +69,10 @@ export default function RootLayout({
         className={`${fontMain.variable} ${fontArtwork.variable} antialiased font-main bg-linear-to-bl from-black  to-teal-950`}
       >
 
+
         {children}
+
+        <Footer />
       </body>
     </html>
   );

@@ -17,6 +17,12 @@ export default function RecentArtworksSection({ artworks, isLoading }: RecentArt
     const [direction, setDirection] = useState(1);
 
 
+    const baseTransition = {
+        type: "spring",
+        stiffness: 400,
+        damping: 15
+    } as any;
+
 
     // Safeguard & Loading Placeholder
     if (isLoading || !artworks || artworks.length === 0) {
@@ -79,13 +85,25 @@ export default function RecentArtworksSection({ artworks, isLoading }: RecentArt
     return (
         <section className="h-screen relative overflow-hidden" id="recent-artwork">
             {/* Header Text */}
-            <div className="font-artwork absolute top-[0svw] right-[2svw] -rotate-3 text-white text-[20svw] md:text-[10svw] drop-shadow-[1svh_1svw_0px_rgba(0,0,0,1)] leading-[0.85] z-[60] pointer-events-none select-none text-shadow-thin">
+            <motion.div className="font-artwork absolute top-[0svw] right-[2svw] -rotate-3 text-white text-[20svw] md:text-[10svw] drop-shadow-[1svh_1svw_0px_rgba(0,0,0,1)] leading-[0.85] z-[60] pointer-events-none select-none text-shadow-thin"
+                initial={{ opacity: 0, scale: 0.95, x: "15svh", skewX: "20deg" }}
+                animate={{ opacity: 1, scale: 1, x: 0, skewX: 0 }}
+                viewport={{ once: false, margin: "0 -200px 0 0" }}
+                transition={{ duration: 5, ...baseTransition, delay: 0.8 }}
+
+            >
                 <h1>RECENT <br /> ARTWORK</h1>
-            </div>
+            </motion.div>
 
             {/* Background Slanted Container */}
             <div className="absolute h-full w-full md:w-[55%] rotate-2 bg-black pointer-events-none py-[3svh] px-[1.5svw] overflow-hidden z-0">
-                <div className="relative size-full overflow-hidden">
+                <motion.div className="relative size-full overflow-hidden"
+                    initial={{ opacity: 0, x: "-15svh", rotate: "20deg" }}
+                    animate={{ opacity: 1, scale: 1, x: 0, rotate: 0 }}
+                    viewport={{ once: false, margin: "-50px" }}
+                    transition={{ duration: 5, ...baseTransition, delay: 0.8 }}
+
+                >
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={`bg-${currentArt.id || activeIndex}`}
@@ -103,7 +121,7 @@ export default function RecentArtworksSection({ artworks, isLoading }: RecentArt
                     <img src="/artwork/dot-pattern-black-2.svg" alt="" className="absolute bottom-0 left-0 mix-blend-overlay hidden md:block" />
                     <img src="/artwork/dot-pattern-white-2.svg" alt="" className="absolute top-0 right-0 mix-blend-overlay scale-[-1] hidden md:block" />
                     <img src="/artwork/dot-pattern-black-2.svg" alt="" className="absolute top-0 right-0 mix-blend-overlay scale-[-1] hidden md:block" />
-                </div>
+                </motion.div>
             </div>
 
             {/* Foreground Main Slider */}
@@ -127,11 +145,11 @@ export default function RecentArtworksSection({ artworks, isLoading }: RecentArt
                                 src={activeImageSrc}
                                 alt={currentArt.title || "Recent Artwork"}
                             />
+
                         </AnimatePresence>
                     </div>
-
                     {/* Bottom Gradient & Fullscreen Icon */}
-                    <div className="h-1/2 bg-gradient-to-t from-black to-transparent w-full absolute z-40 -bottom-1 pointer-events-none">
+                    {/* <div className="h-1/2 bg-gradient-to-t from-black to-transparent w-full absolute z-40 -bottom-1 pointer-events-none">
                         <div className="absolute bottom-0 right-0 cursor-pointer opacity-50 hover:opacity-100 global-transition scale-65 hover:scale-75 pointer-events-auto">
                             <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g filter="url(#filter0_d_349_5)">
@@ -150,7 +168,7 @@ export default function RecentArtworksSection({ artworks, isLoading }: RecentArt
                                 </defs>
                             </svg>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Controls */}
                     <div onClick={triggerPrev} className="font-artwork text-[6svw] absolute left-[-5svw] top-1/2 -translate-y-1/2 cursor-pointer opacity-80 hover:opacity-100 global-transition hover:-translate-x-2 select-none z-50">

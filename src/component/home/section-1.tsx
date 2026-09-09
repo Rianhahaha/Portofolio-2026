@@ -12,9 +12,11 @@ export default function Section1() {
       <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-end relative px-5">
 
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ margin: '-50px' }}
+
           className="w-[60%] sm:w-1/3 md:w-[60%] lg:w-full lg:text-right mb-[5rem]  relative z-50 lg:z-10 "
         >
           <div className="absolute left-[-20px] lg:left-auto lg:right-[-30px] w-[1px] h-full bg-cyan-500 hidden lg:block"></div>
@@ -48,7 +50,9 @@ export default function Section1() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0 }}
+          viewport={{ margin: '-50px' }}
+
           className=" h-[75svh] sm:h-full w-full flex items-end  lg:pt-0 lg:relative z-30 absolute bottom-0 right-[-10svw] sm:right-[-30svw] lg:right-0 pointer-events-none"
         >
           <Image
@@ -63,6 +67,8 @@ export default function Section1() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ margin: '-50px' }}
+
           className="w-full mb-[5rem] relative z-50 lg:z-20   lg:-translate-8 lg:-translate-y-14"
         >
           <div className="absolute left-[-20px] w-[1px] h-full bg-cyan-500 hidden lg:block"></div>

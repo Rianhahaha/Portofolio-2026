@@ -4,6 +4,7 @@ import MainButton from "@/component/button/MainButton";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
 import { useState, useRef } from "react";
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,11 +65,29 @@ export default function Contact() {
         <div className="max-w-7xl w-full content-start grid grid-cols-1 md:grid-cols-2 mx-auto mt-[3rem] md:mt-[10rem] gap-10 px-5">
 
           <div>
-            <h1 className="text-[4rem] lg:text-[6rem] leading-[1em] font-bold mb-5">
+            <motion.h1 className="text-[4rem] lg:text-[6rem] leading-[1em] font-bold mb-5"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              viewport={{ once: true }}
+
+            >
               Now, let's make it <br /><span className="text-cyan-500">Real.</span>
-            </h1>
-            <p>Have a project in mind or just want to <span className="text-cyan-500">collaborate?</span></p>
-            <p>Let's talk about how we can turn ideas into clean, functional, and visually solid work.</p>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+
+            >Have a project in mind or just want to <span className="text-cyan-500">collaborate?</span></motion.p>
+            <motion.p
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+
+            >Let's talk about how we can turn ideas into clean, functional, and visually solid work.</motion.p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

@@ -14,7 +14,7 @@ export default function Section2() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0 }}
         >
           <Card title="Design" desc={`Creating visually-driven interfaces that are actually pleasant to use.`}>
@@ -26,7 +26,7 @@ export default function Section2() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Card title="Programmer" desc={`Turning ideas into interactive products with clean and scalable code.`}>
@@ -39,7 +39,7 @@ export default function Section2() {
           className="col-span-1 md:col-span-2 lg:col-span-1"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Card title="Artist" desc={`Visual storytelling through illustration and creative experimentation.`}>

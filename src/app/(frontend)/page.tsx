@@ -28,7 +28,7 @@ export default async function Home() {
       {/* <div className=" lg:hidden h-svh flex items-center justify-center">
       Mobile View is currently on Develop
     </div> */}
-      <Footer />
+      {/* <Footer /> */}
 
     </>
   );

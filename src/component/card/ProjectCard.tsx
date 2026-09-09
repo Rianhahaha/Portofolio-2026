@@ -5,6 +5,7 @@ import { Affiliation, ProjectItem, TechnologyItem } from '@/types'
 import { SKILLS_DATA, OTHER_SKILLS_DATA } from "@/data/SkillsData";
 import { useIsTouchDevice } from '@/utils/useMobileClick';
 import { formatProjectDate } from '@/utils/formatProjectDate';
+import { motion } from "framer-motion";
 
 type ProjectCardProps = {
     project: ProjectItem;
@@ -15,6 +16,8 @@ type ProjectCardProps = {
     typeActive?: string[];
     affiliationActive?: string[]
     className?: string;
+    motionDelay?: number;
+    motionOnce?: boolean
 };
 
 export default function ProjectCard({
@@ -25,6 +28,8 @@ export default function ProjectCard({
     typeActive = [],
     affiliationActive = [],
     className,
+    motionDelay = 0.2,
+    motionOnce = false
 }: ProjectCardProps) {
     const { id, title, subtitle, img, desc, startDate, endDate, dateType, techIds, type, affiliations } = project;
 
@@ -40,7 +45,11 @@ export default function ProjectCard({
 
 
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: "-50px", once: motionOnce }}
+            transition={{ duration: 0.6, delay: motionDelay }}
             onClick={(e) => { if (isTouch) setIsActive(!isActive) }}
             data-active={isActive}
             className={`relative group overflow-hidden flex-1 w-full h-full  bg-gradient-to-tr gap-2 from-white/10 to-transparent border border-teal-500/20 
@@ -50,7 +59,7 @@ export default function ProjectCard({
          touch:group-data-[active=true]:border-teal-500 
          touch:group-data-[active=true]:shadow-md 
          touch:group-data-[active=true]:shadow-teal-500/50 
-         global-transition rounded-xl flex flex-col justify-start items-center ` + className}>
+          rounded-xl flex flex-col justify-start items-center ` + className}>
             <div className={`flex opacity-0 justify-center items-center 
                 mouse:group-hover:opacity-100 
                 touch:group-data-[active=true]:opacity-100 
@@ -173,6 +182,6 @@ export default function ProjectCard({
                 </div>
 
             </div>
-        </div>
+        </motion.div>
     )
 }
