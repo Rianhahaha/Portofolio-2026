@@ -8,6 +8,7 @@ import ArtworkButton from "@/component/artwork/ArtworkButton";
 import { Menu } from "lucide-react";
 import ColorfulBg from "@/component/artwork/ColorfulBg";
 import ArtworkArrow from "@/component/artwork/ArtworkArrow";
+import { useRouter } from "next/navigation";
 
 interface MenuItem {
     id: number;
@@ -25,6 +26,7 @@ export default function ArtworksHomeMain() {
         { id: 3, label: "COMMISSIONS", href: "#", accentColor: "#00FF66" },
         { id: 4, label: "ABOUT ME", href: "#", accentColor: "#FF007F" },
     ];
+    const nav = useRouter()
 
 
     const baseTransition = {
@@ -33,6 +35,7 @@ export default function ArtworksHomeMain() {
         damping: 15
     } as any;
 
+
     return (
         <section className="relative w-full h-[100svh]   font-artwork select-none overflow-hidden ">
             <motion.div className="absolute top-3 left-2  md:top-[5svh] md:left-[2svw] md:px-10 flex flex-col items-center md:items-start gap-[2svw] w-fit  text-center md:text-left z-50"
@@ -40,6 +43,8 @@ export default function ArtworksHomeMain() {
                 animate={{ opacity: 1, scale: 1, x: 0, skewX: 0 }}
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ duration: 5, ...baseTransition, delay: 1 }}
+
+                onClick={() => { nav.push('/') }}
 
             >
                 <svg className="text-[#FFBB03] hover:text-[#e0ff14] w-[15svw] md:w-[8svw] global-transition cursor-pointer hover:-translate-x-2" width="144" height="127" viewBox="0 0 144 127" fill="none" xmlns="http://www.w3.org/2000/svg">

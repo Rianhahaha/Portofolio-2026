@@ -5,20 +5,28 @@ import { useEffect } from "react";
 
 interface AnimatedModalProps {
     isOpen: boolean;
-    onClose?: () => void; // Opsional: kalau lu mau modal ketutup pas user klik area luar
+    isArtwork?: boolean;
+    onClose?: () => void;
     children: React.ReactNode;
 }
 
-export default function AnimatedModal({ isOpen, onClose, children }: AnimatedModalProps) {
+// Config diekstrak ke global scope file untuk efisiensi memori (Clean Code)
+const defaultSpring = { type: "spring", damping: 25, stiffness: 300 };
+const artworkSpring = { type: "spring", stiffness: 400, damping: 15 }; // Agresi tinggi ala Persona
 
-    // Logic lock body scroll pindah ke sini. DRY principle!
+export default function AnimatedModal({
+    isOpen,
+    isArtwork = false, // Default false agar modal biasa tidak terlalu agresif
+    onClose,
+    children
+}: AnimatedModalProps) {
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "";
         }
-        // Cleanup saat komponen unmount
         return () => {
             document.body.style.overflow = "";
         };
@@ -34,15 +42,17 @@ export default function AnimatedModal({ isOpen, onClose, children }: AnimatedMod
                     exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
                     transition={{ duration: 0.3 }}
                     data-lenis-prevent="true"
+                    onClick={onClose} // Eksekusi onClose saat backdrop diklik
                 >
                     <motion.div
                         className="size-full relative flex items-center justify-center p-5"
-                        initial={{ scale: 0.9, y: 20 }}
-                        animate={{ scale: 1, y: 0 }}
-                        exit={{ scale: 0.9, y: 20 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                        initial={isArtwork ? { scale: 0.9, y: 20, rotate: '-3deg' } : { scale: 0.9, y: 20 }}
+                        animate={isArtwork ? { scale: 1, y: 0, rotate: '0deg' } : { scale: 1, y: 0 }}
+                        exit={isArtwork ? { scale: 0.9, y: 20, rotate: '-3deg' } : { scale: 0.9, y: 20 }}
+                        // Conditional rendering untuk transition
+                        transition={isArtwork ? artworkSpring : defaultSpring}
+                        onClick={(e) => e.stopPropagation()} // Mencegah event bubbling ke backdrop
                     >
-
                         {children}
                     </motion.div>
                 </motion.div>
