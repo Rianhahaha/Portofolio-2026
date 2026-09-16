@@ -11,8 +11,8 @@ interface AnimatedModalProps {
 }
 
 // Config diekstrak ke global scope file untuk efisiensi memori (Clean Code)
-const defaultSpring = { type: "spring", damping: 25, stiffness: 300 };
-const artworkSpring = { type: "spring", stiffness: 400, damping: 15 }; // Agresi tinggi ala Persona
+const defaultSpring = { type: "spring", damping: 25, stiffness: 300 } as any;
+const artworkSpring = { type: "spring", stiffness: 400, damping: 15 } as any; // Agresi tinggi ala Persona
 
 export default function AnimatedModal({
     isOpen,

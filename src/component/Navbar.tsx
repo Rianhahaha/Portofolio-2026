@@ -10,6 +10,7 @@ import { BriefcaseBusinessIcon, Home, LucideContact2, PaletteIcon } from "lucide
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedModal from "./modal/AnimatedModal";
 import MainButton from "./button/MainButton";
+import Art from "./animatedIcon/art";
 export default function Navbar() {
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState(pathname);
@@ -183,65 +184,79 @@ export default function Navbar() {
           <AnimatedModal isOpen={warningModal} onClose={() => !isTransitioning && setWarningModal(false)}>
 
             {/* 
-                Logika UI: 
-                Kalau isTransitioning FALSE -> Tunjukin UI Korporat yang rapih.
-                Kalau isTransitioning TRUE -> UI meledak jadi warna merah/hitam khas Persona + layarnya ketutup.
-            */}
+          1. LAYER PERTAMA: MODAL KORPORAT -> ZOOM IN
+          Saat proceed, ini membesar nutupin layar jadi warna #FFBB03
+      */}
             <motion.div
               animate={isTransitioning ? "proceeding" : "idle"}
               variants={{
-                idle: { outline: 0, backgroundColor: "#0000040", borderRadius: '20px' },
+                idle: { outline: 0, scale: 1, backgroundColor: "#0000040", borderRadius: '20px' },
                 proceeding: {
                   outline: '20px',
                   outlineColor: '#000',
                   outlineStyle: 'solid',
-
+                  scale: 25, // Gedein dikit lagi biar aman nutupin sudut layar
                   backgroundColor: "#FFBB03",
-                  transition: { duration: 1.2, ease: "easeIn" }
+                  transition: { duration: 1, ease: "easeInOut" } // Jangan kelamaan, 1 detik cukup buat efek kejut
                 }
               }}
-              className="w-full min-w-lg h-full max-h-[25rem] max-w-lg p-8  flex flex-col items-center justify-center text-center bg-gradient-to-tr gap-2 from-white/10 to-transparent border border-teal-500/20"
+              className="w-full min-w-lg h-full max-h-[25rem] max-w-lg p-8 flex flex-col items-center justify-center text-center bg-gradient-to-tr gap-2 from-white/10 to-transparent border border-teal-500/20"
             >
-              {/* Konten Warning Biasa */}
-              {!isTransitioning ? (
-                <div className="flex items-center flex-col justify-center">
-                  <h2 className="text-2xl font-bold text-cyan-500 mb-4">Content Warning</h2>
-                  <p className="text-white/50 mb-8">
-                    You are about to enter the Artworks section. This area contains pop-culture illustrations and creative experiments, completely separate from my professional software engineering portfolio.
-                  </p>
-                  <div className="flex gap-4 w-full justify-center">
-                    {/* <button onClick={() => setWarningModal(false)} className="px-6 py-2 rounded-lg border border-gray-300 text-black hover:bg-gray-100">
-                      
-                    </button> */}
-                    <MainButton
-                      type="button"
-                      text={"Take me back"}
-                      onClick={() => setWarningModal(false)}
-                      className="bg-none! bg-red-500"
-                    />
-                    <MainButton
-                      type="button"
-                      text={"Proceed"}
-                      onClick={handleProceed}
-                    />
-                    {/* <button onClick={handleProceed} className="px-6 py-2 rounded-lg bg-teal-500 text-white font-bold hover:bg-teal-600">
-                      Proceed
-                    </button> */}
-                  </div>
+              {/* Konten Warning disembunyikan pakai opacity biar nggak ikut melar aneh pas di-scale */}
+              <motion.div
+                animate={{ opacity: isTransitioning ? 0 : 1 }}
+                className="flex items-center flex-col justify-center"
+              >
+                <h2 className="text-2xl font-bold text-cyan-500 mb-4">Content Warning</h2>
+                <p className="text-white/50 mb-8">
+                  You are about to enter the Artworks section. This area contains pop-culture illustrations and creative experiments, completely separate from my professional software engineering portfolio.
+                </p>
+                <div className="flex gap-4 w-full justify-center">
+                  <MainButton
+                    type="button"
+                    text={"Take me back"}
+                    onClick={() => setWarningModal(false)}
+                    className="bg-none! bg-red-500"
+                  />
+                  <MainButton
+                    type="button"
+                    text={"Proceed"}
+                    onClick={handleProceed}
+                  />
                 </div>
-              ) : (
-                /* Loading State Kasar pas layarnya lagi nutup */
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <h1 className="text-black font-black text-6xl tracking-tighter mix-blend-overlay">
-                    ENTERING THE <br /> UNKNOWN
-                  </h1>
-                </motion.div>
-              )}
+              </motion.div>
             </motion.div>
+
+            {/* 
+          2. LAYER KEDUA: BLACK WIPE TRANSITION
+          Blok hitam ini sejajar sama modal, jadi dia kebal dari efek scale: 25.
+          Dia nunggu 0.5 detik (delay), baru nyapu dari bawah ke atas.
+      */}
+            {isTransitioning && (
+              <motion.div
+                className="fixed bottom-0 left-0 w-full h-[100svh] bg-black z-[99999] flex items-center justify-center pointer-events-none rounded-t-full"
+                initial={{ y: "100%" }}
+                animate={{
+                  y: "0%",
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.5, // Nunggu modal kuning nge-zoom dulu setengah jalan
+                  ease: [0.22, 1, 0.36, 1] // Custom ease curve buat efek "nyapu" yang kenceng di awal, ngerem di akhir
+                }}
+              >
+                {/* Teks muncul di dalam blok hitam */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.5, }}
+                  className="text-white font-black text-4xl md:text-6xl tracking-tighter text-center"
+                >
+                  <Art />
+                </motion.h1>
+              </motion.div>
+            )}
+
           </AnimatedModal>
         )}
       </AnimatePresence>
