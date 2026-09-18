@@ -29,7 +29,7 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
   // Fallback to static snapshot when Payload data is unavailable
   const technologyList = technologies?.length ? technologies : [...SKILLS_DATA, ...OTHER_SKILLS_DATA];
   const programming_technologies_data = technologyList?.filter((technology) => technology.type === 'programming');
-  const other_technologies_data = technologyList?.filter((technology) => technology.type === 'other');
+  // const other_technologies_data = technologyList?.filter((technology) => technology.type === 'other');
   const projects_data = projects;
 
   // const previewProject = PROJECT_DATA.slice(0, 5);
@@ -55,7 +55,22 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
       >
         I'm Experienced on using
       </motion.div>
-      <Swiper
+      <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
+        {technologyList?.map((technology, index) => (
+          <motion.div key={index} className={`shrink`}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: '-50px', once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+
+
+          >
+            <TechnologyBadge id={technology.id} img={technology.img} title={technology.title} />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* <Swiper
         breakpoints={{
           768: {
             direction: "vertical",
@@ -67,19 +82,13 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
         direction="horizontal"
         slidesPerView={1}
         spaceBetween={30}
-        // mousewheel={true}
-        // autoHeight={true}
-        // loop={true}
-        // navigation
+
         pagination={{ clickable: true }}
         modules={[Pagination, Mousewheel, Navigation]}
         className="w-full h-[30rem]! skill-carousel"
         id="skills"
       >
         <SwiperSlide className="w-full h-full flex! flex-col justify-center relative overflow-y-auto pb-5" >
-          {/* <div className="absolute  right-[20px] top-0  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px] ">
-            PROGRAMMING
-          </div> */}
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
             {programming_technologies_data?.map((technology, index) => (
               <motion.div key={index} className={`shrink`}
@@ -94,9 +103,7 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
           </div>
         </SwiperSlide>
         <SwiperSlide className="w-full h-full flex! flex-col justify-center relative">
-          {/* <div className="absolute  right-[20px] top-1/2 -translate-y-1/2  opacity-50 text-cyan-500 animate-spina text-xl  [writing-mode:vertical-rl] rotate-180 tracking-[10px]">
-            OTHER
-          </div> */}
+
           <div className={`max-w-4xl mx-auto w-full flex justify-center items-center flex-wrap gap-5`}>
             {other_technologies_data?.map((technology, index) => (
               <motion.div key={index} className={`shrink`}
@@ -111,7 +118,7 @@ export default function Section3({ projects, technologies, affiliatons }: Sectio
             ))}
           </div>
         </SwiperSlide>
-      </Swiper>
+      </Swiper> */}
       <div className="w-full relative" id="recent-project">
         <div className="size-full overflow-hidden py-20">
           <motion.div

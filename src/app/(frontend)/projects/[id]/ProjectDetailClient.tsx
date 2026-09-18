@@ -72,38 +72,42 @@ export default function ProjectDetailClient({
         </div>
 
         {/* Hero Section */}
-        <div className="w-full h-[100svh] relative">
+        <div className="w-full h-[50svh] lg:h-[100svh] relative">
           <div className="absolute w-full h-[1px] bg-gradient-to-r from-teal-500 via-30% via-teal-500/30 to-transparent z-50 bottom-0" />
           <div className="absolute z-[100] bottom-5 w-full max-w-7xl h-1/2 content-end left-1/2 -translate-x-1/2  grid grid-cols-1 md:grid-cols-2 px-5">
             <div className="hidden md:block"></div>
             <div className="flex flex-col z-50">
               {project.affiliations && project.affiliations.length > 0 && (
-                <div className="flex flex-wrap items-center gap-2 mt-4">
+                <div className="flex flex-wrap justify-center lg:justify-start items-center gap-2 mt-4">
                   {project.affiliations.map((affiliationId) => (
-                    <span key={affiliationId} className="text-sm font-semibold text-cyan-500 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-3 py-1">
+                    <span key={affiliationId} className="text-xs lg:text-sm font-semibold text-cyan-500 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-3 py-1">
                       {affiliationList.find((a) => a.id === affiliationId)?.title || affiliationId}
                     </span>
                   ))}
                 </div>
               )}
-              <h1 className="text-[4.5rem] font-bold leading-tight">
+              <h1 className="text-center lg:text-left text-[2rem] lg:text-[4.5rem] font-bold leading-tight">
                 {project.title}<span className="text-cyan-500">.</span>
               </h1>
-              {project.subtitle && (
-                <div className="mb-5 inline-block">
-                  <p className="text-xl font-semibold text-white ">{project.subtitle}<span className="text-cyan-500">.</span></p>
+              <div className=" flex-col hidden md:flex">
+
+                {project.subtitle && (
+                  <div className="md:mb-5 inline-block">
+                    <p className="text-lg md:text-xl font-normal text-white ">{project.subtitle}<span className="text-cyan-500">.</span></p>
+                  </div>
+                )}
+                <p className="text-justify text-slate-300">{project.desc}</p>
+                <div className="text-md font-bold mt-4 text-cyan-500">
+                  {formatProjectDate(project)}
                 </div>
-              )}
-              <p className="text-justify text-slate-300">{project.desc}</p>
-              <div className="text-md font-bold mt-4 text-cyan-500">
-                {formatProjectDate(project)}
+                {project.link && (
+                  <div className="flex justify-end mt-4">
+                    <MainButton type="link" href={project.link} text="Take a Peek!" icon={ArrowBigRightDash} />
+                  </div>
+                )}
               </div>
-              {project.link && (
-                <div className="flex justify-end mt-4">
-                  <MainButton type="link" href={project.link} text="Take a Peek!" icon={ArrowBigRightDash} />
-                </div>
-              )}
             </div>
+
           </div>
 
           {/* Main Background Cover */}
@@ -113,14 +117,32 @@ export default function ProjectDetailClient({
             </div>
           ) : (
             <>
-              <div className="absolute size-full bg-gradient-to-tl from-black via-30% via-black/80 to-transparent z-[5]" />
+              <div className="absolute size-full bg-gradient-to-t  md:bg-gradient-to-tl from-black via-30% via-black/80 to-transparent z-[5]" />
               <Image alt={project.title} className="size-full object-cover object-center" fill sizes="100vw" src={project?.img?.original} unoptimized />
             </>
           )}
         </div>
 
+
         {/* Case & Tech Section */}
         <div className="max-w-7xl mx-auto px-5">
+          <div className=" flex-col flex md:hidden mt-5">
+
+            {project.subtitle && (
+              <div className="mb-5 inline-block">
+                <p className="text-sm text-center font-normal text-white ">{project.subtitle}<span className="text-cyan-500">.</span></p>
+              </div>
+            )}
+            <p className="text-justify text-slate-300">{project.desc}</p>
+            <div className="text-md font-bold mt-4 text-cyan-500">
+              {formatProjectDate(project)}
+            </div>
+            {project.link && (
+              <div className="flex justify-end mt-4">
+                <MainButton type="link" href={project.link} text="Take a Peek!" icon={ArrowBigRightDash} />
+              </div>
+            )}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 py-20">
             <div className="text-justify text-lg col-span-3">
               <h1 className="text-[3rem] font-bold relative mb-5">

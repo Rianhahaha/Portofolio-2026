@@ -9,7 +9,7 @@ export default function Section1() {
   return (
     <section className="w-full h-[calc(100svh-100px)] lg:h-[630px] flex items-bottom justify-center overflow-hidden global-transition relative">
       {/* <div className="w-full h-full absolute bottom-0 bg-gradient-to-t from-cyan-500/10 to-transparent"/> */}
-      <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-end relative px-5">
+      <div className="max-w-7xl w-full flex flex-col lg:grid grid-cols-3 lg:items-end justify-center lg:justify-end relative px-5">
 
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -17,14 +17,14 @@ export default function Section1() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ margin: '-50px' }}
 
-          className="w-[60%] sm:w-1/3 md:w-[60%] lg:w-full lg:text-right mb-[5rem]  relative z-50 lg:z-10 "
+          className="w-[60%] sm:w-1/2 md:w-[60%] lg:w-full lg:text-right mb-8 md:mb-[5rem]  relative z-50 lg:z-10 "
         >
           <div className="absolute left-[-20px] lg:left-auto lg:right-[-30px] w-[1px] h-full bg-cyan-500 hidden lg:block"></div>
           <div className="relative overflow-hidden">
 
-            <span className="text-2xl md:text-2xl font-normal">What's up? Name's</span>
+            <span className="text-lg md:text-2xl font-normal">What's up? Name's</span>
             <br />
-            <h1 className="mb-5">
+            <h1 className="md:mb-5">
               <span className=" text-3xl md:text-5xl font-bold uppercase">T<span className="text-cyan-500">rian</span>di Aprilio </span>
             </h1>
             <p className="text-xs md:text-base">
@@ -69,13 +69,13 @@ export default function Section1() {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ margin: '-50px' }}
 
-          className="w-full mb-[5rem] relative z-50 lg:z-20   lg:-translate-8 lg:-translate-y-14"
+          className="hidden md:block w-full mb-[5rem] relative z-50 lg:z-20   lg:-translate-8 lg:-translate-y-14"
         >
           <div className="absolute left-[-20px] w-[1px] h-full bg-cyan-500 hidden lg:block"></div>
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden ">
 
-            <p className="text-3xl font-normal">Welcome to</p>
-            <h2 className="text-6xl font-bold">
+            <p className=" text-xl md:text-3xl  font-normal">Welcome to</p>
+            <h2 className=" text-3xl md:text-6xl font-bold">
               My <span className="text-cyan-500">Website.</span>
             </h2>
           </div>

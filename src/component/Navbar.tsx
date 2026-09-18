@@ -134,7 +134,7 @@ export default function Navbar() {
         >
           <div className="size-50 justify-center absolute left-1/2 -translate-1/2 bottom-[-30px] blur-2xl  bg-teal-500 p-5 rounded-full flex md:hidden" />
           <ul
-            className={` px-10
+            className={` 
               ${scrolled
                 ? 'max-w-2xl '
                 : 'max-w-7xl '} w-full mx-auto  flex items-center justify-between transition-none md:transition-all duration-1000 
