@@ -19,6 +19,7 @@ export default function Navbar() {
 
   const [warningModal, setWarningModal] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
   useEffect(() => {
     setWarningModal(false);
     setIsTransitioning(false);
@@ -41,13 +42,25 @@ export default function Navbar() {
       setWarningModal(true); // Buka modal warning
     }
   };
+  useEffect(() => {
+    setWarningModal(false);
+    setIsTransitioning(false);
+    setIsFadingOut(false);
+  }, [pathname]);
   const handleProceed = () => {
-    setIsTransitioning(true); // Trigger UI berubah jadi gila (tema artwork)
+    setIsTransitioning(true);
 
-    // Tahan routing selama 1.5 detik biarin animasi jalan dulu
+    // 1. Fase Fade Out: Teks & Ikon selesai muncul di detik ke 2.3.
+    // Di detik 2.5, kita suruh mereka memudar.
     setTimeout(() => {
-      // router.push("/artworks");
+      setIsFadingOut(true);
     }, 2500);
+
+    // 2. Fase Routing: Setelah fade out beres (makan waktu 0.5s), 
+    // layar udah hitam pekat, baru kita push router di detik ke 3.0.
+    setTimeout(() => {
+      router.push("/artworks");
+    }, 3000);
   };
   const links = [
     { name: "Home", href: "/", icon: <Home /> },
@@ -82,6 +95,7 @@ export default function Navbar() {
 
     return pathname.startsWith(href);
   };
+
 
   return (
     <>
@@ -156,7 +170,7 @@ export default function Navbar() {
                   } flex flex-col items-center text-xs md:text-base hover:opacity-100 hover:text-shadow-[0_0px_4px_rgb(255_255_255)] cursor-pointer global-transition`}
 
               >
-                {/* {link.href === "/artworks" ? (
+                {link.href === "/artworks" ? (
                   <button onClick={(e) => handleMenuClick(e, link.href)} className="flex flex-col items-center cursor-pointer!">
                     <span className="hidden md:block">{link.icon}</span>
                     <span className="hidden md:block">{link.name}</span>
@@ -168,98 +182,174 @@ export default function Navbar() {
                     <span className="hidden md:block">{link.name}</span>
                     <span className="block md:hidden">{link.icon}</span>
                   </Link>
-                )} */}
-                <Link href={link.href} className="flex flex-col items-center">
+                )}
+                {/* <Link href={link.href} className="flex flex-col items-center">
                   <span className="hidden md:block">{link.icon}</span>
                   <span className="hidden md:block">{link.name}</span>
                   <span className="block md:hidden">{link.icon}</span>
-                </Link>
+                </Link> */}
               </li>
             ))}
           </ul>
         </nav>
       </div>
-      <AnimatePresence>
-        {warningModal && (
-          <AnimatedModal isOpen={warningModal} onClose={() => !isTransitioning && setWarningModal(false)}>
 
-            {/* 
+      <AnimatedModal isOpen={warningModal} onClose={() => !isTransitioning && setWarningModal(false)}>
+
+        {/* 
           1. LAYER PERTAMA: MODAL KORPORAT -> ZOOM IN
           Saat proceed, ini membesar nutupin layar jadi warna #FFBB03
       */}
-            <motion.div
-              animate={isTransitioning ? "proceeding" : "idle"}
-              variants={{
-                idle: { outline: 0, scale: 1, backgroundColor: "#0000040", borderRadius: '20px' },
-                proceeding: {
-                  outline: '20px',
-                  outlineColor: '#000',
-                  outlineStyle: 'solid',
-                  scale: 25, // Gedein dikit lagi biar aman nutupin sudut layar
-                  backgroundColor: "#FFBB03",
-                  transition: { duration: 1, ease: "easeInOut" } // Jangan kelamaan, 1 detik cukup buat efek kejut
-                }
-              }}
-              className="w-full min-w-lg h-full max-h-[25rem] max-w-lg p-8 flex flex-col items-center justify-center text-center bg-gradient-to-tr gap-2 from-white/10 to-transparent border border-teal-500/20"
-            >
-              {/* Konten Warning disembunyikan pakai opacity biar nggak ikut melar aneh pas di-scale */}
-              <motion.div
-                animate={{ opacity: isTransitioning ? 0 : 1 }}
-                className="flex items-center flex-col justify-center"
-              >
-                <h2 className="text-2xl font-bold text-cyan-500 mb-4">Content Warning</h2>
-                <p className="text-white/50 mb-8">
-                  You are about to enter the Artworks section. This area contains pop-culture illustrations and creative experiments, completely separate from my professional software engineering portfolio.
-                </p>
-                <div className="flex gap-4 w-full justify-center">
-                  <MainButton
-                    type="button"
-                    text={"Take me back"}
-                    onClick={() => setWarningModal(false)}
-                    className="bg-none! bg-red-500"
-                  />
-                  <MainButton
-                    type="button"
-                    text={"Proceed"}
-                    onClick={handleProceed}
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
+        <motion.div
+          animate={isTransitioning ? "proceeding" : "idle"}
+          variants={{
+            idle: { outline: 0, scale: 1, backgroundColor: "#0000040", borderRadius: '20px' },
+            proceeding: {
+              outline: '20px',
+              outlineColor: '#000',
+              outlineStyle: 'solid',
+              scale: 25, // Gedein dikit lagi biar aman nutupin sudut layar
+              backgroundColor: "#FFBB03",
+              transition: { duration: 1, ease: "easeInOut" } // Jangan kelamaan, 1 detik cukup buat efek kejut
+            }
+          }}
+          className="w-full min-w-lg h-full max-h-[25rem] max-w-lg p-8 flex flex-col items-center justify-center text-center bg-gradient-to-tr gap-2 from-white/10 to-transparent border border-teal-500/20"
+        >
+          {/* Konten Warning disembunyikan pakai opacity biar nggak ikut melar aneh pas di-scale */}
+          <motion.div
+            animate={{ opacity: isTransitioning ? 0 : 1 }}
+            className="flex items-center flex-col justify-center"
+          >
+            <h2 className="text-2xl font-bold text-cyan-500 mb-4">Content Warning</h2>
+            <p className="text-white/50 mb-8">
+              You are about to enter the Artworks section. This area contains pop-culture illustrations and creative experiments, completely separate from my professional software engineering portfolio.
+            </p>
+            <div className="flex gap-4 w-full justify-center">
+              <MainButton
+                type="button"
+                text={"Take me back"}
+                onClick={() => setWarningModal(false)}
+                className="bg-none! bg-red-500"
+              />
+              <MainButton
+                type="button"
+                text={"Proceed"}
+                onClick={handleProceed}
+              />
+            </div>
+          </motion.div>
+        </motion.div>
 
-            {/* 
+        {/* 
           2. LAYER KEDUA: BLACK WIPE TRANSITION
           Blok hitam ini sejajar sama modal, jadi dia kebal dari efek scale: 25.
           Dia nunggu 0.5 detik (delay), baru nyapu dari bawah ke atas.
       */}
-            {isTransitioning && (
+        {isTransitioning && (
+          <>
+            {/* =========================================
+        BACKGROUND LAYERS (Wipe & Scale)
+        ========================================= */}
+
+            {/* Layer 1: Cyan Wave */}
+            <motion.div
+              className="fixed inset-0 w-full rounded-t-full h-[120svh] bg-[#0096FA] z-[99995] pointer-events-none overflow-hidden"
+              initial={{ y: "100%", scale: 1 }}
+              animate={{ y: "-10%", scale: 3 }}
+              transition={{ duration: 1.5, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+            >
+            </motion.div>
+
+            {/* Layer 2: Yellow Wave */}
+            <motion.div
+              className="fixed inset-0 w-full rounded-t-full h-[120svh] bg-[#FFBB03] z-[99996] pointer-events-none overflow-hidden"
+              initial={{ y: "100%", scale: 1 }}
+              animate={{ y: "-10%", scale: 3 }}
+              transition={{ duration: 1.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            >
+            </motion.div>
+
+            {/* Layer 3: Main Black Overlay */}
+            <motion.div
+              className="fixed inset-0 w-full rounded-t-full h-[120svh] bg-black z-[99997] pointer-events-none overflow-hidden"
+              initial={{ y: "100%", scale: 1 }}
+              animate={{ y: "-10%", scale: 3 }}
+              transition={{ duration: 1.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Pattern dots di background hitam pakai putih biar pop-out */}
+            </motion.div>
+
+
+
+            {/* =========================================
+        FOREGROUND CONTENT (Static Container)
+        Terpisah dari background agar kebal distorsi scale
+        ========================================= */}
+            <motion.div
+              className="fixed inset-0 w-full h-[100svh] z-[99999] flex flex-col items-center justify-center pointer-events-none"
+              // Kunci transisi keluarnya ada di sini:
+              animate={{ opacity: isFadingOut ? 0 : 1, y: isFadingOut ? -10 : 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {/* Icon Group */}
+              <div className="size-[13rem] relative flex items-center justify-center pt-[4rem]">
+                <motion.div
+                  className="absolute w-full"
+                  initial={{ x: 0, y: "2rem", rotate: 0, opacity: 0 }}
+                  animate={{ x: 0, y: "-4rem", opacity: 1 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 1.0 }} // Mulai saat layer hitam udah nutupin tengah layar
+                >
+                  <Image className="w-full object-contain" src="/home/section2/artColored.svg" width={100} height={100} alt="" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute w-full"
+                  initial={{ x: 0, y: "2rem", rotate: 0, opacity: 0 }}
+                  animate={{ x: 0, y: "-4rem", rotate: -45, opacity: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: 1.1 }}
+                >
+                  <Image className="w-full object-contain " src="/home/section2/artColored2.svg" width={100} height={100} alt="" />
+                </motion.div>
+              </div>
+
+              {/* Sequential Letter Text Effect */}
               <motion.div
-                className="fixed bottom-0 left-0 w-full h-[100svh] bg-black z-[99999] flex items-center justify-center pointer-events-none rounded-t-full"
-                initial={{ y: "100%" }}
-                animate={{
-                  y: "0%",
-                }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.5, // Nunggu modal kuning nge-zoom dulu setengah jalan
-                  ease: [0.22, 1, 0.36, 1] // Custom ease curve buat efek "nyapu" yang kenceng di awal, ngerem di akhir
+                className=" flex overflow-hidden font-artwork text-white text-4xl md:text-6xl tracking-widest uppercase text-shadow-thin"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.05,
+                      delayChildren: 1.3 // Teks nunggu ikon beres muncul
+                    }
+                  }
                 }}
               >
-                {/* Teks muncul di dalam blok hitam */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.5, }}
-                  className="text-white font-black text-4xl md:text-6xl tracking-tighter text-center"
-                >
-                  <Art />
-                </motion.h1>
+                {"ENTERING ARTWORK...".split("").map((char, index) => (
+                  <motion.p
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 40 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { type: "spring", stiffness: 400, damping: 15 }
+                      }
+                    }}
+                    className={char === " " ? "mr-4" : "inline-block"}
+                  >
+                    {char}
+                  </motion.p>
+                ))}
               </motion.div>
-            )}
-
-          </AnimatedModal>
+            </motion.div>
+          </>
         )}
-      </AnimatePresence>
+
+      </AnimatedModal >
+
     </>
   );
 }
