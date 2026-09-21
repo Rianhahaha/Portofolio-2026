@@ -20,10 +20,10 @@ export default function Artworks() {
     return (
         <ArtworkLayout>
             <ArtworksHomeMain />
-            <RecentArtworksSection
+            {/* <RecentArtworksSection
                 artworks={artworks.slice(0, 5)}
                 isLoading={artworks.length === 0} />
-            <GallerySection artworks={artworks} />
+            <GallerySection artworks={artworks} /> */}
         </ArtworkLayout>
     );
 }
