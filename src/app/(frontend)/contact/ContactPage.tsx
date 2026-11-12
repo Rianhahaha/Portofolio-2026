@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import PagesLayout from "@/component/PagesLayout";
 import MainButton from "@/component/button/MainButton";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
@@ -63,37 +63,42 @@ export default function Contact() {
     <PagesLayout>
       <section className="w-full min-h-screen overflow-hidden">
         <div className="max-w-7xl w-full content-start grid grid-cols-1 md:grid-cols-2 mx-auto mt-[3rem] md:mt-[10rem] gap-10 px-5">
-
           <div>
-            <motion.h1 className="text-[4rem] lg:text-[6rem] leading-[1em] font-bold mb-5"
+            <motion.h1
+              className="text-[4rem] lg:text-[6rem] leading-[1em] font-bold mb-5"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0 }}
               viewport={{ once: true }}
-
             >
-              Now, let's make it <br /><span className="text-cyan-500">Real.</span>
+              Now, let's make it <br />
+              <span className="text-cyan-500">Real.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-
-            >Have a project in mind or just want to <span className="text-cyan-500">collaborate?</span></motion.p>
+            >
+              Have a project in mind or just want to{" "}
+              <span className="text-cyan-500">collaborate?</span>
+            </motion.p>
             <motion.p
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
-
-            >Let's talk about how we can turn ideas into clean, functional, and visually solid work.</motion.p>
+            >
+              Let's talk about how we can turn ideas into clean, functional, and
+              visually solid work.
+            </motion.p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div>
               <label htmlFor="email" className="mb-2 block">
-                Email <span className="text-teal-500/50 text-sm">(Optional)</span>
+                Email{" "}
+                <span className="text-teal-500/50 text-sm">(Optional)</span>
               </label>
               <input
                 id="email"
@@ -106,7 +111,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="mb-2 block">Message</label>
+              <label htmlFor="message" className="mb-2 block">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -121,7 +128,7 @@ export default function Contact() {
             <div className="my-2">
               <Turnstile
                 ref={turnstileRef}
-                siteKey={process.env.TURNSTILE_SITE_KEY || ""}
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
                 onSuccess={(token) => setTurnstileToken(token)}
                 onExpire={() => setTurnstileToken(null)}
                 onError={() => setTurnstileToken(null)}
@@ -133,7 +140,8 @@ export default function Contact() {
 
             {status === "success" && (
               <div className="text-green-400 flex items-center gap-2 text-sm bg-green-500/10 p-3 rounded-lg border border-green-500/20">
-                <CheckCircle2 size={16} /> Message received. I'll get back to you soon.
+                <CheckCircle2 size={16} /> Message received. I'll get back to
+                you soon.
               </div>
             )}
             {status === "error" && (
@@ -143,23 +151,15 @@ export default function Contact() {
             )}
 
             <div className="flex justify-end mt-2">
-              <button
+              <MainButton
                 type="submit"
+                noblank
                 disabled={isLoading || !turnstileToken} // Disable jika loading atau token belum siap
-                className="disabled:cursor-not-allowed disabled:opacity-50 "
-              >
-                <div className="">
-                  <MainButton
-                    type="button"
-                    noblank
-                    text={isLoading ? "Sending..." : "Send"}
-                    icon={isLoading ? Loader2 : Send}
-                  />
-                </div>
-              </button>
+                text={isLoading ? "Sending..." : "Send"}
+                icon={isLoading ? Loader2 : Send}
+              />
             </div>
           </form>
-
         </div>
       </section>
     </PagesLayout>

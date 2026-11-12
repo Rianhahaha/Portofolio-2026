@@ -1,12 +1,23 @@
-import Footer from "@/component/Footer";
-import Navbar from "@/component/Navbar";
+import type { Metadata } from "next";
 import AnimatedBg from "@/component/animatedbackground";
+import Footer from "@/component/Footer";
 import Section1 from "@/component/home/section-1";
 import Section2 from "@/component/home/section-2";
 import Section3 from "@/component/home/section-3";
+import Navbar from "@/component/Navbar";
+import { buildMetadata } from "@/lib/seo";
+import { SITE_DESCRIPTION, SITE_TITLE_DEFAULT } from "@/lib/site";
 import { getPayloadAffiliation } from "@/utils/payloadAffiliations";
 import { getPayloadProjects } from "@/utils/payloadProjects";
 import { getPayloadTechnologies } from "@/utils/payloadTechnologies";
+
+export const metadata: Metadata = buildMetadata({
+  title: SITE_TITLE_DEFAULT,
+  description: SITE_DESCRIPTION,
+  path: "/",
+  absoluteTitle: true,
+});
+
 export default async function Home() {
 
   const technologies = await getPayloadTechnologies()

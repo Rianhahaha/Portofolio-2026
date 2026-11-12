@@ -33,6 +33,8 @@ export interface ProjectItem {
   case?: string;
   techIds: string[];
   previewImg?: MediaUrls[];
+  status?: "draft" | "published";
+  updatedAt?: string;
   className?: string;
   techIdsActive?: string[];
   typeActive?: string[];

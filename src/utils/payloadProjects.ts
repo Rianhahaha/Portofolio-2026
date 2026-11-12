@@ -1,8 +1,7 @@
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
-import type { ProjectItem } from "@/types";
+import type { MediaUrls, ProjectItem } from "@/types";
 import { getMediaUrl, getStringField } from "./getMediaUrl";
-import { MediaUrls } from "@/types";
 
 export type PayloadRelation =
   | string
@@ -30,6 +29,8 @@ type PayloadProject = {
     id?: string;
     media?: PayloadRelation;
   }> | null;
+  status?: "draft" | "published" | null;
+  updatedAt?: string | null;
 };
 
 const extractMediaUrls = (media: PayloadRelation): MediaUrls => ({
@@ -63,6 +64,8 @@ export const normalizePayloadProject = (
   previewImg: (project.previewImg || [])
     .filter((preview) => Boolean(preview?.media))
     .map((preview) => extractMediaUrls(preview!.media)),
+  status: project.status || "published",
+  updatedAt: project.updatedAt || undefined,
 });
 
 interface PayloadProjectsProps {
@@ -108,4 +111,41 @@ export const getPayloadProjectBySlug = async (slug: string) => {
   const project = projects.docs[0];
 
   return project ? normalizePayloadProject(project as PayloadProject) : null;
+};
+
+export type PublishedProjectRef = {
+  id: string;
+  updatedAt?: string;
+};
+
+/**
+ * Lightweight, sitemap-only query: published projects with their slug.
+ * Deliberately does not normalize images/relations (depth 0) since the
+ * sitemap only needs the URL and lastModified date.
+ */
+export const getPublishedProjects = async (): Promise<
+  PublishedProjectRef[]
+> => {
+  const payload = await getPayload({
+    config: configPromise,
+  });
+
+  const projects = await payload.find({
+    collection: "projects",
+    depth: 0,
+    pagination: false,
+    where: {
+      status: {
+        equals: "published",
+      },
+    },
+  });
+
+  return projects.docs
+    .map((project) => project as PayloadProject)
+    .filter((project) => Boolean(project.slug))
+    .map((project) => ({
+      id: project.slug as string,
+      updatedAt: project.updatedAt || undefined,
+    }));
 };

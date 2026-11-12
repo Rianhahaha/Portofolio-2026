@@ -7,6 +7,7 @@ interface MainButtonProps {
   noblank?: true | false;
   href?: string; // dipakai kalau type = "link"
   onClick?: () => void; // dipakai kalau type = "button"
+  disabled?: boolean;
   className?: string;
   children?: React.ReactNode;
 }
@@ -18,15 +19,16 @@ export default function MainButton({
   href = "#",
   onClick,
   noblank,
+  disabled,
   className,
   children
 }: MainButtonProps) {
   const baseClass =
-    "group bg-gradient-to-tr from-teal-500 to-sky-500 text-white border-t-2 border-l-2 border-white/50 hover:border-white/90 font-bold py-2 px-6 rounded-xl hover:from-sky-500 hover:to-teal-500 hover:scale-[95%] transition duration-300 ease-in-out flex items-center gap-2 cursor-pointer";
+    "group bg-gradient-to-tr from-teal-500 to-sky-500 text-white border-t-2 border-l-2 border-white/50 hover:border-white/90 font-bold py-2 px-6 rounded-xl hover:from-sky-500 hover:to-teal-500 hover:scale-[95%] transition duration-300 ease-in-out flex items-center gap-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100";
 
   if (type === "link") {
     return (
-      <Link href={href} className={`${className} ${baseClass}`} target={noblank ? "_self" : "_blank"}>
+      <Link href={href} className={`${className ?? ""} ${baseClass}`} target={noblank ? "_self" : "_blank"}>
         {text}
         {Icon && <Icon className="group-hover:-translate-y-1 group-hover:-rotate-12 global-transition-slower" />}
         {children ? (
@@ -41,7 +43,12 @@ export default function MainButton({
   }
 
   return (
-    <button onClick={onClick} className={`${className} ${baseClass}`}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={`${className ?? ""} ${baseClass}`}
+    >
       {text}
       {Icon && <Icon className="" />}
     </button>
