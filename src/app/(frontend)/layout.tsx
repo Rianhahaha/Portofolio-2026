@@ -7,6 +7,7 @@ import Navbar from "@/component/Navbar";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Analytics } from "@vercel/analytics/react";
 
 
 import Footer from "@/component/Footer";
@@ -113,6 +114,7 @@ export default function RootLayout({
         {children}
 
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
