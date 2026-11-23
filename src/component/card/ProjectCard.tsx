@@ -113,17 +113,15 @@ export default function ProjectCard({
                     {affiliations?.map((affiliationId, index) => {
                         const affiliationTitle = affiliationList.find((a) => a.id === affiliationId)?.title || affiliationId;
                         return (
-                            <>
-                                <span key={affiliationId} className={`font-semibold text-xs  text-cyan-500 ${affiliationActive.includes(affiliationId) ? ' text-shadow-[0_0px_4px_rgb(0_214_255)]' : ''}`}>
-
+                            <div key={affiliationId}>
+                                <span  className={`font-semibold text-xs  text-cyan-500 ${affiliationActive.includes(affiliationId) ? ' text-shadow-[0_0px_4px_rgb(0_214_255)]' : ''}`}>
                                     {affiliationTitle}
-
                                 </span>
                                 <span>
 
                                     {index !== affiliations.length - 1 && ', '}
                                 </span>
-                            </>
+                            </div>
                         )
                     })}
                     <div className="w-full font-bold flex flex-wrap items-center">
