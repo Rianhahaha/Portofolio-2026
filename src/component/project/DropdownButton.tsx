@@ -50,7 +50,7 @@ export default function DropdownButton<T extends { id?: string, name?: string, t
             <div
                 className={`${isOpen ? "h-[10rem]" : "h-0"} w-full flex overflow-hidden global-transition-slower absolute lg:static bg-black/80 lg:bg-transparent px-2 rounded-t-none rounded-2xl `}
             >
-                <div className="flex flex-wrap w-full gap-x-2 gap-y-2  h-full overflow-y-auto py-2 global-transition">
+                <div className="flex flex-col md:flex-row md:flex-wrap w-full gap-x-2 gap-y-2  h-full overflow-y-auto py-2 global-transition">
                     {data.map((item) => (
                         <button
                             className={`h-fit select-none text-xs px-3 py-2 rounded-full border border-transparent hover:border-teal-500 cursor-pointer global-transition ${selected.includes(item.id as string)
